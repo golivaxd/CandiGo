@@ -1,7 +1,7 @@
 // filepath: c:\Users\Goliva\Desktop\Modular\supabase-login-app\src\app\layout.tsx
 export const metadata = {
-  title: 'Supabase Login App',
-  description: 'Aplicación de inicio de sesión con Supabase',
+  title: 'CandiGo',
+  description: 'Informate con CandiGo',
 };
 
 export default function RootLayout({

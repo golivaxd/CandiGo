@@ -1,31 +1,35 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [session, setSession] = useState<any>(null);
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
+    // Verifica si hay una sesión activa y redirige al dashboard
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
         console.error('Error obteniendo la sesión:', error);
-      } else {
-        setSession(session);
+      } else if (session) {
+        router.push('/dashboard'); // Redirige al dashboard si hay sesión
       }
     });
 
     const { data } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      if (session) {
+        router.push('/dashboard'); // Redirige al dashboard si cambia el estado de autenticación
+      }
     });
 
     return () => {
-      data?.subscription?.unsubscribe(); // Acceso correcto a la propiedad subscription
+      data?.subscription?.unsubscribe(); // Limpia la suscripción
     };
-  }, []);
+  }, [router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +44,7 @@ export default function Home() {
         console.error('Error al iniciar sesión:', error);
       } else {
         setMessage('Inicio de sesión exitoso.');
+        router.push('/dashboard'); // Redirige al dashboard directamente
       }
     } catch (err) {
       console.error('Error inesperado:', err);
@@ -49,51 +54,34 @@ export default function Home() {
     }
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setSession(null);
-  };
-
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-4">
       <h1 className="text-3xl font-bold mb-4">Login con Supabase</h1>
-      {session ? (
-        <>
-          <p className="mb-2">Bienvenido, {session.user.email}</p>
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
-            Cerrar sesión
-          </button>
-        </>
-      ) : (
-        <form onSubmit={handleLogin} className="flex flex-col items-center gap-2">
-          <input
-            type="email"
-            placeholder="Tu correo"
-            className="border px-4 py-2 rounded"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Tu contraseña"
-            className="border px-4 py-2 rounded"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión'}
-          </button>
-        </form>
-      )}
+      <form onSubmit={handleLogin} className="flex flex-col items-center gap-2">
+        <input
+          type="email"
+          placeholder="Tu correo"
+          className="border px-4 py-2 rounded"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Tu contraseña"
+          className="border px-4 py-2 rounded"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión'}
+        </button>
+      </form>
       <p className="mt-4">{message}</p>
     </main>
   );
