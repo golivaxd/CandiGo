@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Goliva/Desktop/CandiGo/fronted/src/app/page.tsx"],"sourcesContent":["useEffect(() => {\r\n  supabase.auth.getSession().then(({ data: { session } }) => {\r\n    if (session) {\r\n      router.push('/dashboard');  // comentar o eliminar para forzar login siempre\r\n    }\r\n  });\r\n\r\n  // listener que redirige si cambia la sesión\r\n  const { data } = supabase.auth.onAuthStateChange((_event, session) => {\r\n    if (session) {\r\n      router.push('/dashboard');\r\n    }\r\n  });\r\n\r\n  return () => {\r\n    data?.subscription?.unsubscribe();\r\n  };\r\n}, [router]);\r\n"],"names":[],"mappings":"AAAA,UAAU;IACR,SAAS,IAAI,CAAC,UAAU,GAAG,IAAI,CAAC,CAAC,EAAE,MAAM,EAAE,OAAO,EAAE,EAAE;QACpD,IAAI,SAAS;YACX,OAAO,IAAI,CAAC,eAAgB,gDAAgD;QAC9E;IACF;IAEA,4CAA4C;IAC5C,MAAM,EAAE,IAAI,EAAE,GAAG,SAAS,IAAI,CAAC,iBAAiB,CAAC,CAAC,QAAQ;QACxD,IAAI,SAAS;YACX,OAAO,IAAI,CAAC;QACd;IACF;IAEA,OAAO;QACL,MAAM,cAAc;IACtB;AACF,GAAG;IAAC;CAAO","debugId":null}}]
+}

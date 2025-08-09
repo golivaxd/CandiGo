@@ -1,0 +1,132 @@
+/* Header */
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: #665780; /* azul CandiGo */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  color: rgba(255, 255, 255, 0.781);
+  font-weight: bold;
+  font-size: 1.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  user-select: none;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-right: 50px;
+}
+
+.header-btn {
+  background-color: #683275;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.header-btn:hover {
+  background-color: #0c84df;
+}
+
+/* Main container debajo del header */
+.main-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 80px 20px 40px; /* padding-top para dejar espacio header fijo */
+  min-height: calc(100vh - 60px);
+  gap: 40px;
+  background-color: #f0f4f8;
+  flex-wrap: wrap; /* para responsive */
+}
+
+/* Contenedor login (izquierda) */
+.login-container {
+  flex: 1 1 320px;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* Contenedor derecha */
+.right-container {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 10px;
+}
+
+/* Imagen logo */
+.logo-image {
+  max-width: 400px;
+  width: 100%;
+  
+}
+
+/* Botón descargar */
+.download-btn {
+  padding: 12px 24px;
+  background-color: #1089d3;
+  border: none;
+  color: white;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.download-btn:hover {
+  background-color: #0c84df;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 700px) {
+  .header {
+    font-size: 1.2rem;
+    padding: 0 15px;
+  }
+
+  .header-btn {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .main-container {
+    flex-direction: column;
+    padding: 80px 10px 20px;
+  }
+
+  .login-container,
+  .right-container {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 30px;
+  }
+
+  .logo-image {
+    max-width: 250px;
+  }
+}

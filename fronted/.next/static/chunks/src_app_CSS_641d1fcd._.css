@@ -1,0 +1,228 @@
+/* [project]/src/app/CSS/Login.css [app-client] (css) */
+.container {
+  background: linear-gradient(0deg, #fff 0%, #f4f7fb 100%);
+  border: 5px solid #fff;
+  border-radius: 40px;
+  max-width: 350px;
+  margin: 20px;
+  padding: 25px 35px;
+  box-shadow: 0 30px 30px -20px rgba(133, 189, 215, .88);
+}
+
+.heading {
+  text-align: center;
+  color: #1089d3;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.form .input {
+  border: none;
+  background: #fff;
+  border-left: 2px solid rgba(0, 0, 0, 0);
+  border-right: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 20px;
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px 5px;
+  box-shadow: 0 10px 10px -5px #cff0ff;
+}
+
+.form .input::placeholder {
+  color: #aaa;
+}
+
+.form .input:focus {
+  border-left: 2px solid #12b1d1;
+  border-right: 2px solid #12b1d1;
+  outline: none;
+}
+
+.form .forgot-password {
+  margin-top: 10px;
+  margin-left: 10px;
+  display: block;
+}
+
+.form .forgot-password a, .link-btn {
+  color: #09f;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .2s ease-in-out;
+}
+
+.form .forgot-password a:hover, .link-btn:hover {
+  color: #0d7fc1;
+  text-decoration: underline;
+}
+
+.form .login-button {
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(45deg, #1089d3 0%, #12b1d1 100%);
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  margin: 20px auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+  transition: all .2s ease-in-out;
+  display: block;
+  box-shadow: 0 20px 10px -15px rgba(133, 189, 215, .88);
+}
+
+.form .login-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 23px 10px -20px rgba(133, 189, 215, .88);
+}
+
+.form .login-button:active {
+  transform: scale(.95);
+  box-shadow: 0 15px 10px -10px rgba(133, 189, 215, .88);
+}
+
+p {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* [project]/src/app/CSS/layout.css [app-client] (css) */
+.header {
+  color: rgba(255, 255, 255, .78);
+  z-index: 1000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: #665780;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  padding: 0 30px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .1);
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  flex: 1;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-right: 50px;
+  display: flex;
+}
+
+.header-btn {
+  color: #fff;
+  cursor: pointer;
+  background-color: #683275;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: background-color .2s;
+}
+
+.header-btn:hover {
+  background-color: #0c84df;
+}
+
+.main-container {
+  background-color: #f0f4f8;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  min-height: calc(100vh - 60px);
+  padding: 80px 20px 40px;
+  display: flex;
+}
+
+.login-container {
+  box-sizing: border-box;
+  flex: 320px;
+  justify-content: center;
+  padding: 0 10px;
+  display: flex;
+}
+
+.right-container {
+  flex-direction: column;
+  flex: 320px;
+  align-items: center;
+  gap: 20px;
+  padding: 0 10px;
+  display: flex;
+}
+
+.logo-image {
+  width: 100%;
+  max-width: 400px;
+}
+
+.download-btn {
+  color: #fff;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: #1089d3;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: background-color .3s;
+}
+
+.download-btn:hover {
+  background-color: #0c84df;
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 0 15px;
+    font-size: 1.2rem;
+  }
+
+  .header-btn {
+    padding: 6px 10px;
+    font-size: .9rem;
+  }
+
+  .main-container {
+    flex-direction: column;
+    padding: 80px 10px 20px;
+  }
+
+  .login-container, .right-container {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 30px;
+  }
+
+  .logo-image {
+    max-width: 250px;
+  }
+}
+
+/*# sourceMappingURL=src_app_CSS_641d1fcd._.css.map*/

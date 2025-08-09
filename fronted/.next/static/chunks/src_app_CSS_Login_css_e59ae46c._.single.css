@@ -1,0 +1,99 @@
+/* [project]/src/app/CSS/Login.css [app-client] (css) */
+.container {
+  background: linear-gradient(0deg, #fff 0%, #f4f7fb 100%);
+  border: 5px solid #fff;
+  border-radius: 40px;
+  max-width: 350px;
+  margin: 20px;
+  padding: 25px 35px;
+  box-shadow: 0 30px 30px -20px rgba(133, 189, 215, .88);
+}
+
+.heading {
+  text-align: center;
+  color: #1089d3;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.form .input {
+  border: none;
+  background: #fff;
+  border-left: 2px solid rgba(0, 0, 0, 0);
+  border-right: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 20px;
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px 5px;
+  box-shadow: 0 10px 10px -5px #cff0ff;
+}
+
+.form .input::placeholder {
+  color: #aaa;
+}
+
+.form .input:focus {
+  border-left: 2px solid #12b1d1;
+  border-right: 2px solid #12b1d1;
+  outline: none;
+}
+
+.form .forgot-password {
+  margin-top: 10px;
+  margin-left: 10px;
+  display: block;
+}
+
+.form .forgot-password a, .link-btn {
+  color: #09f;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .2s ease-in-out;
+}
+
+.form .forgot-password a:hover, .link-btn:hover {
+  color: #0d7fc1;
+  text-decoration: underline;
+}
+
+.form .login-button {
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(45deg, #1089d3 0%, #12b1d1 100%);
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  margin: 20px auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: bold;
+  transition: all .2s ease-in-out;
+  display: block;
+  box-shadow: 0 20px 10px -15px rgba(133, 189, 215, .88);
+}
+
+.form .login-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 23px 10px -20px rgba(133, 189, 215, .88);
+}
+
+.form .login-button:active {
+  transform: scale(.95);
+  box-shadow: 0 15px 10px -10px rgba(133, 189, 215, .88);
+}
+
+p {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=src_app_CSS_Login_css_e59ae46c._.single.css.map*/
