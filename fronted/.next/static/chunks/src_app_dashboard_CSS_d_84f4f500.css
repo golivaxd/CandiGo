@@ -1,0 +1,84 @@
+/* [project]/src/app/dashboard/CSS/d.css [app-client] (css) */
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  color: #fff;
+  background-color: #1f2937;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  padding: 24px 0;
+  display: flex;
+}
+
+.sidebar img {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 12px;
+}
+
+.sidebar h2 {
+  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sidebar nav {
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0 16px;
+  display: flex;
+}
+
+.sidebar nav button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #374151;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  transition: background-color .3s;
+}
+
+.sidebar nav button:hover {
+  background-color: #4b5563;
+}
+
+.logout-btn {
+  color: #fff;
+  cursor: pointer;
+  background-color: #ef4444;
+  border: none;
+  border-radius: 6px;
+  margin-top: auto;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  transition: background-color .3s;
+}
+
+.logout-btn:hover {
+  background-color: #dc2626;
+}
+
+.main-content {
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  display: flex;
+}
+
+.main-content h1 {
+  margin-bottom: 16px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=src_app_dashboard_CSS_d_84f4f500.css.map*/
