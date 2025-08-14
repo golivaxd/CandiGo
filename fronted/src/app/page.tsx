@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
+import '/CSS/Login.css';
 
 export default function Home() {
   const [email, setEmail] = useState('');
