@@ -1,195 +1,107 @@
 'use client';
-import { useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import './CSS/Login.css';    // Estilos del login (form)
-import './CSS/layout.css';   // Header y layout
+import { supabase } from '@/lib/supabaseClient';
+import type { User } from '@supabase/supabase-js';
+import Sidebar from '@/components/Sidebar';
+import NewsCarousel from '@/components/NewsCarousel';
+import '../CSS/d.css';
 
-export default function Home() {
+type Article = {
+  title: string;
+  description?: string;
+  url?: string;
+  source?: string;
+  urlToImage?: string;
+  publishedAt?: string;
+};
+
+export default function Dashboard() {
   const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [news, setNews] = useState<Article[]>([]);
+  const [newsLoading, setNewsLoading] = useState(true);
 
-  // Estados para el modo: login o signup o reset
-  const [mode, setMode] = useState<'login' | 'signup' | 'reset'>('login');
+  // Sesión
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) router.push('/login');
+      else setUser(session.user);
+      setLoading(false);
+    };
+    checkSession();
+  }, [router]);
 
-  // Datos del formulario
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState(''); // solo para signup
-  const [message, setMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // Cargar noticias
+  useEffect(() => {
+    let mounted = true;
+    setNewsLoading(true);
 
-  // Función para login
-  const handleLogin = async () => {
-    setIsSubmitting(true);
-    setMessage('');
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) setMessage('Error: ' + error.message);
-    else router.push('/dashboard');
-    setIsSubmitting(false);
-  };
+    fetch('/api/news')
+      .then(async res => {
+        if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err?.error || 'Error al cargar noticias'); }
+        return res.json();
+      })
+      .then(data => {
+        if (!mounted) return;
+        const raw = data.articles || [];
+        const norm = raw.map((a: any) => ({
+          title: a.title || '',
+          description: a.description || '',
+          url: a.url || '',
+          source: (a.source && (a.source.name || a.source)) || a.source || '',
+          urlToImage: a.urlToImage || a.image || ''
+        }));
+        setNews(norm);
+      })
+      .catch(err => console.error('fetch /api/news error', err))
+      .finally(() => { if (mounted) setNewsLoading(false); });
 
-  // Función para crear cuenta
-  const handleSignup = async () => {
-    setIsSubmitting(true);
-    setMessage('');
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { full_name: fullName },
-      },
-    });
-    if (error) setMessage('Error: ' + error.message);
-    else setMessage('Cuenta creada, revisa tu correo para confirmar.');
-    setIsSubmitting(false);
-  };
+    return () => { mounted = false; };
+  }, []);
 
-  // Función para reset password
-  const handleResetPassword = async () => {
-    setIsSubmitting(true);
-    setMessage('');
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: 'https://tu-dominio.com/reset-password', // Cambia esta URL según tu app
-    });
-    if (error) setMessage('Error: ' + error.message);
-    else setMessage('Revisa tu correo para restablecer la contraseña.');
-    setIsSubmitting(false);
-  };
-
-  // Manejador del submit según modo
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (mode === 'login') await handleLogin();
-    else if (mode === 'signup') await handleSignup();
-    else if (mode === 'reset') await handleResetPassword();
-  };
+  if (loading) return <p>Cargando...</p>;
+  if (!user) return null;
 
   return (
-    <>
-      <header className="header">
-        <div className="header-left">CandiGo</div>
-        <div className="header-right">
-          <button className="header-btn">Botón 1</button>
-          <button className="header-btn">Botón 2</button>
-        </div>
-      </header>
+    <div className="dashboard-container">
+      <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
+      <Sidebar user={user} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      <div className="main-container">
-        {/* Login/signup/reset a la izquierda */}
-        <div className="login-container">
-          <div className="container">
-            <div className="heading">
-              {mode === 'login' && '¡Bienvenido!'}
-              {mode === 'signup' && 'Crear Cuenta'}
-              {mode === 'reset' && 'Restablecer Contraseña'}
+      <main className="main-content">
+        <h1>Bienvenido al Dashboard</h1>
+        <p>¡Has iniciado sesión correctamente!</p>
+
+        <section className="novedades-section">
+          <h2>📰 Novedades Políticas (México)</h2>
+          {newsLoading ? <p>Cargando noticias...</p> : news.length > 0 ? <NewsCarousel articles={news} /> : <p>No se encontraron noticias.</p>}
+        </section>
+
+        <section className="candidatos-section">
+          <h2>👤 Candidatos</h2>
+          <div className="candidatos-grid">
+            <div className="candidato">
+              <img src="https://via.placeholder.com/300x200" alt="Candidato 1" />
+              <h3>María López</h3>
+              <p>Partido: Progreso Unido</p>
             </div>
-
-            <form className="form" onSubmit={handleSubmit}>
-              {mode === 'signup' && (
-                <input
-                  placeholder="Nombre completo"
-                  className="input"
-                  required
-                  value={fullName}
-                  onChange={(e) => {
-                    setFullName(e.target.value);
-                    setMessage('');
-                  }}
-                />
-              )}
-
-              <input
-                placeholder="Correo Electrónico"
-                id="email"
-                name="email"
-                type="email"
-                className="input"
-                required
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setMessage('');
-                }}
-              />
-
-              {(mode === 'login' || mode === 'signup') && (
-                <input
-                  placeholder="Contraseña"
-                  id="password"
-                  name="password"
-                  type="password"
-                  className="input"
-                  required
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setMessage('');
-                  }}
-                />
-              )}
-
-              {mode === 'login' && (
-                <span className="forgot-password">
-                  <button
-                    type="button"
-                    className="link-btn"
-                    onClick={() => {
-                      setMode('reset');
-                      setMessage('');
-                    }}
-                  >
-                    ¿Olvidaste tu contraseña?
-                  </button>
-                </span>
-              )}
-
-              <input
-                value={
-                  isSubmitting
-                    ? mode === 'login'
-                      ? 'Iniciando sesión...'
-                      : mode === 'signup'
-                      ? 'Creando cuenta...'
-                      : 'Enviando correo...'
-                    : mode === 'login'
-                    ? 'Iniciar Sesión'
-                    : mode === 'signup'
-                    ? 'Crear Cuenta'
-                    : 'Enviar correo'
-                }
-                type="submit"
-                className="login-button"
-                disabled={isSubmitting}
-              />
-            </form>
-
-            <p style={{ color: 'red', textAlign: 'center' }}>{message}</p>
-
-            <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-              {mode === 'login' && (
-                <button className="link-btn" onClick={() => setMode('signup')}>
-                  Crear una cuenta nueva
-                </button>
-              )}
-              {(mode === 'signup' || mode === 'reset') && (
-                <button className="link-btn" onClick={() => setMode('login')}>
-                  Volver a iniciar sesión
-                </button>
-              )}
+            <div className="candidato">
+              <img src="https://via.placeholder.com/300x200" alt="Candidato 2" />
+              <h3>Carlos Pérez</h3>
+              <p>Partido: Fuerza Ciudadana</p>
+            </div>
+            <div className="candidato">
+              <img src="https://via.placeholder.com/300x200" alt="Candidato 3" />
+              <h3>Ana Torres</h3>
+              <p>Partido: Renovación Nacional</p>
             </div>
           </div>
-        </div>
-
-        {/* Imagen + botón a la derecha */}
-        <div className="right-container">
-          <img
-            src="https://www.pngarts.com/files/10/Whatsapp-Emoji-PNG-Download-Image.png"
-            alt="Thumb up"
-            className="logo-image"
-          />
-          <button className="download-btn">Descargar</button>
-        </div>
-      </div>
-    </>
+        </section>
+      </main>
+    </div>
   );
 }
+
