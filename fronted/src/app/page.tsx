@@ -1,107 +1,90 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
-import type { User } from '@supabase/supabase-js';
-import Sidebar from '@/components/Sidebar';
-import NewsCarousel from '@/components/NewsCarousel';
-import '../CSS/d.css';
+import { useRouter } from 'next/navigation';
 
-type Article = {
-  title: string;
-  description?: string;
-  url?: string;
-  source?: string;
-  urlToImage?: string;
-  publishedAt?: string;
-};
-
-export default function Dashboard() {
+export default function Home() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [news, setNews] = useState<Article[]>([]);
-  const [newsLoading, setNewsLoading] = useState(true);
 
-  // Sesión
   useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) router.push('/login');
-      else setUser(session.user);
-      setLoading(false);
+    // Verifica si hay una sesión activa y redirige al dashboard
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error) {
+        console.error('Error obteniendo la sesión:', error);
+      } else if (session) {
+        router.push('/dashboard'); // Redirige al dashboard si hay sesión
+      }
+    });
+
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        router.push('/dashboard'); // Redirige al dashboard si cambia el estado de autenticación
+      }
+    });
+
+    return () => {
+      data?.subscription?.unsubscribe(); // Limpia la suscripción
     };
-    checkSession();
   }, [router]);
 
-  // Cargar noticias
-  useEffect(() => {
-    let mounted = true;
-    setNewsLoading(true);
-
-    fetch('/api/news')
-      .then(async res => {
-        if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err?.error || 'Error al cargar noticias'); }
-        return res.json();
-      })
-      .then(data => {
-        if (!mounted) return;
-        const raw = data.articles || [];
-        const norm = raw.map((a: any) => ({
-          title: a.title || '',
-          description: a.description || '',
-          url: a.url || '',
-          source: (a.source && (a.source.name || a.source)) || a.source || '',
-          urlToImage: a.urlToImage || a.image || ''
-        }));
-        setNews(norm);
-      })
-      .catch(err => console.error('fetch /api/news error', err))
-      .finally(() => { if (mounted) setNewsLoading(false); });
-
-    return () => { mounted = false; };
-  }, []);
-
-  if (loading) return <p>Cargando...</p>;
-  if (!user) return null;
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        setMessage('Error: ' + error.message);
+        console.error('Error al iniciar sesión:', error);
+      } else {
+        setMessage('Inicio de sesión exitoso.');
+        router.push('/dashboard'); // Redirige al dashboard directamente
+      }
+    } catch (err) {
+      console.error('Error inesperado:', err);
+      setMessage('Ocurrió un error inesperado.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <div className="dashboard-container">
-      <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
-      <Sidebar user={user} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
-      <main className="main-content">
-        <h1>Bienvenido al Dashboard</h1>
-        <p>¡Has iniciado sesión correctamente!</p>
-
-        <section className="novedades-section">
-          <h2>📰 Novedades Políticas (México)</h2>
-          {newsLoading ? <p>Cargando noticias...</p> : news.length > 0 ? <NewsCarousel articles={news} /> : <p>No se encontraron noticias.</p>}
-        </section>
-
-        <section className="candidatos-section">
-          <h2>👤 Candidatos</h2>
-          <div className="candidatos-grid">
-            <div className="candidato">
-              <img src="https://via.placeholder.com/300x200" alt="Candidato 1" />
-              <h3>María López</h3>
-              <p>Partido: Progreso Unido</p>
-            </div>
-            <div className="candidato">
-              <img src="https://via.placeholder.com/300x200" alt="Candidato 2" />
-              <h3>Carlos Pérez</h3>
-              <p>Partido: Fuerza Ciudadana</p>
-            </div>
-            <div className="candidato">
-              <img src="https://via.placeholder.com/300x200" alt="Candidato 3" />
-              <h3>Ana Torres</h3>
-              <p>Partido: Renovación Nacional</p>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
+    <main className="min-h-screen flex flex-col items-center justify-center p-4">
+      <h1 className="text-3xl font-bold mb-4">Login con Supabase</h1>
+      <form onSubmit={handleLogin} className="flex flex-col items-center gap-2">
+        <input
+          type="email"
+          placeholder="Tu correo"
+          className="border px-4 py-2 rounded"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Tu contraseña"
+          className="border px-4 py-2 rounded"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión'}
+        </button>
+      </form>
+      <p className="mt-4">{message}</p>
+    </main>
   );
 }
+
 
