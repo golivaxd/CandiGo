@@ -1,91 +1,195 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
-import '/CSS/Login.css';
+import './CSS/Login.css';    // Estilos del login (form)
+import './CSS/layout.css';   // Header y layout
 
 export default function Home() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    // Verifica si hay una sesión activa y redirige al dashboard
-    supabase.auth.getSession().then(({ data: { session }, error }) => {
-      if (error) {
-        console.error('Error obteniendo la sesión:', error);
-      } else if (session) {
-        router.push('/dashboard'); // Redirige al dashboard si hay sesión
-      }
-    });
+  // Estados para el modo: login o signup o reset
+  const [mode, setMode] = useState<'login' | 'signup' | 'reset'>('login');
 
-    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) {
-        router.push('/dashboard'); // Redirige al dashboard si cambia el estado de autenticación
-      }
-    });
+  // Datos del formulario
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState(''); // solo para signup
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    return () => {
-      data?.subscription?.unsubscribe(); // Limpia la suscripción
-    };
-  }, [router]);
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Función para login
+  const handleLogin = async () => {
     setIsSubmitting(true);
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) {
-        setMessage('Error: ' + error.message);
-        console.error('Error al iniciar sesión:', error);
-      } else {
-        setMessage('Inicio de sesión exitoso.');
-        router.push('/dashboard'); // Redirige al dashboard directamente
-      }
-    } catch (err) {
-      console.error('Error inesperado:', err);
-      setMessage('Ocurrió un error inesperado.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    setMessage('');
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) setMessage('Error: ' + error.message);
+    else router.push('/dashboard');
+    setIsSubmitting(false);
+  };
+
+  // Función para crear cuenta
+  const handleSignup = async () => {
+    setIsSubmitting(true);
+    setMessage('');
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: fullName },
+      },
+    });
+    if (error) setMessage('Error: ' + error.message);
+    else setMessage('Cuenta creada, revisa tu correo para confirmar.');
+    setIsSubmitting(false);
+  };
+
+  // Función para reset password
+  const handleResetPassword = async () => {
+    setIsSubmitting(true);
+    setMessage('');
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: 'https://tu-dominio.com/reset-password', // Cambia esta URL según tu app
+    });
+    if (error) setMessage('Error: ' + error.message);
+    else setMessage('Revisa tu correo para restablecer la contraseña.');
+    setIsSubmitting(false);
+  };
+
+  // Manejador del submit según modo
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (mode === 'login') await handleLogin();
+    else if (mode === 'signup') await handleSignup();
+    else if (mode === 'reset') await handleResetPassword();
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-4">
-      <h1 className="text-3xl font-bold mb-4">Login con Supabase</h1>
-      <form onSubmit={handleLogin} className="flex flex-col items-center gap-2">
-        <input
-          type="email"
-          placeholder="Tu correo"
-          className="border px-4 py-2 rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Tu contraseña"
-          className="border px-4 py-2 rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión'}
-        </button>
-      </form>
-      <p className="mt-4">{message}</p>
-    </main>
+    <>
+      <header className="header">
+        <div className="header-left">CandiGo</div>
+        <div className="header-right">
+          <button className="header-btn">Botón 1</button>
+          <button className="header-btn">Botón 2</button>
+        </div>
+      </header>
+
+      <div className="main-container">
+        {/* Login/signup/reset a la izquierda */}
+        <div className="login-container">
+          <div className="container">
+            <div className="heading">
+              {mode === 'login' && '¡Bienvenido!'}
+              {mode === 'signup' && 'Crear Cuenta'}
+              {mode === 'reset' && 'Restablecer Contraseña'}
+            </div>
+
+            <form className="form" onSubmit={handleSubmit}>
+              {mode === 'signup' && (
+                <input
+                  placeholder="Nombre completo"
+                  className="input"
+                  required
+                  value={fullName}
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                    setMessage('');
+                  }}
+                />
+              )}
+
+              <input
+                placeholder="Correo Electrónico"
+                id="email"
+                name="email"
+                type="email"
+                className="input"
+                required
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setMessage('');
+                }}
+              />
+
+              {(mode === 'login' || mode === 'signup') && (
+                <input
+                  placeholder="Contraseña"
+                  id="password"
+                  name="password"
+                  type="password"
+                  className="input"
+                  required
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setMessage('');
+                  }}
+                />
+              )}
+
+              {mode === 'login' && (
+                <span className="forgot-password">
+                  <button
+                    type="button"
+                    className="link-btn"
+                    onClick={() => {
+                      setMode('reset');
+                      setMessage('');
+                    }}
+                  >
+                    ¿Olvidaste tu contraseña?
+                  </button>
+                </span>
+              )}
+
+              <input
+                value={
+                  isSubmitting
+                    ? mode === 'login'
+                      ? 'Iniciando sesión...'
+                      : mode === 'signup'
+                      ? 'Creando cuenta...'
+                      : 'Enviando correo...'
+                    : mode === 'login'
+                    ? 'Iniciar Sesión'
+                    : mode === 'signup'
+                    ? 'Crear Cuenta'
+                    : 'Enviar correo'
+                }
+                type="submit"
+                className="login-button"
+                disabled={isSubmitting}
+              />
+            </form>
+
+            <p style={{ color: 'red', textAlign: 'center' }}>{message}</p>
+
+            <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+              {mode === 'login' && (
+                <button className="link-btn" onClick={() => setMode('signup')}>
+                  Crear una cuenta nueva
+                </button>
+              )}
+              {(mode === 'signup' || mode === 'reset') && (
+                <button className="link-btn" onClick={() => setMode('login')}>
+                  Volver a iniciar sesión
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Imagen + botón a la derecha */}
+        <div className="right-container">
+          <img
+            src="https://www.pngarts.com/files/10/Whatsapp-Emoji-PNG-Download-Image.png"
+            alt="Thumb up"
+            className="logo-image"
+          />
+          <button className="download-btn">Descargar</button>
+        </div>
+      </div>
+    </>
   );
 }
-
-
