@@ -49,7 +49,7 @@ export default function Home() {
     setIsSubmitting(true);
     setMessage('');
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: 'https://tu-dominio.com/reset-password', // Cambia esta URL según tu app
+      redirectTo: 'http://localhost:3000/reset-password', // Cambia esta URL según tu app
     });
     if (error) setMessage('Error: ' + error.message);
     else setMessage('Revisa tu correo para restablecer la contraseña.');

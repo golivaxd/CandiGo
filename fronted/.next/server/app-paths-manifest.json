@@ -1,5 +1,6 @@
 {
   "/api/news/route": "app/api/news/route.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/reset-password/page": "app/reset-password/page.js"
 }
