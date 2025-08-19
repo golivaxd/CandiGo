@@ -66,13 +66,13 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
-"[project]/src/app/reset-password/page.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
+"[project]/src/app/reset-password/ResetPasswordForm.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
 var { k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "default": ()=>ResetPasswordPage
+    "default": ()=>ResetPasswordForm
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
@@ -89,54 +89,52 @@ function ResetPasswordForm() {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
-    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [confirm, setConfirm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [message, setMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [confirm, setConfirm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [message, setMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [isSubmitting, setIsSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // Chequear si llegó el token de Supabase
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ResetPasswordForm.useEffect": ()=>{
-            const access_token = searchParams.get('access_token');
+            const access_token = searchParams.get("access_token");
             if (!access_token) {
-                setMessage('❌ Token inválido o expirado.');
+                setMessage("Token inválido o expirado.");
             }
         }
     }["ResetPasswordForm.useEffect"], [
         searchParams
     ]);
-    // Función para actualizar la contraseña
     const handleReset = async (e)=>{
         e.preventDefault();
         if (password !== confirm) {
-            setMessage('⚠️ Las contraseñas no coinciden.');
+            setMessage("Las contraseñas no coinciden.");
             return;
         }
         setIsSubmitting(true);
         const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.updateUser({
-            password: password
+            password
         });
         if (error) {
-            setMessage('Error: ' + error.message);
+            setMessage("Error: " + error.message);
         } else {
-            setMessage('✅ Contraseña actualizada con éxito. Redirigiendo...');
-            setTimeout(()=>router.push('/'), 2000);
+            setMessage("✅ Contraseña actualizada con éxito. Ya puedes iniciar sesión.");
+            setTimeout(()=>router.push("/"), 2000);
         }
         setIsSubmitting(false);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "reset-container",
+        className: "container",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                className: "reset-heading",
+                className: "heading",
                 children: "Restablecer Contraseña"
             }, void 0, false, {
-                fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 49,
+                fileName: "[project]/src/app/reset-password/ResetPasswordForm.tsx",
+                lineNumber: 46,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                 onSubmit: handleReset,
-                className: "reset-form",
+                className: "form",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                         type: "password",
@@ -146,8 +144,8 @@ function ResetPasswordForm() {
                         required: true,
                         className: "input"
                     }, void 0, false, {
-                        fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 52,
+                        fileName: "[project]/src/app/reset-password/ResetPasswordForm.tsx",
+                        lineNumber: 48,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -158,76 +156,57 @@ function ResetPasswordForm() {
                         required: true,
                         className: "input"
                     }, void 0, false, {
-                        fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 61,
+                        fileName: "[project]/src/app/reset-password/ResetPasswordForm.tsx",
+                        lineNumber: 56,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "submit",
-                        className: "reset-button",
+                        className: "login-button",
                         disabled: isSubmitting,
-                        children: isSubmitting ? 'Guardando...' : 'Actualizar contraseña'
+                        children: isSubmitting ? "Guardando..." : "Actualizar contraseña"
                     }, void 0, false, {
-                        fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 70,
+                        fileName: "[project]/src/app/reset-password/ResetPasswordForm.tsx",
+                        lineNumber: 64,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
-                fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 51,
+                fileName: "[project]/src/app/reset-password/ResetPasswordForm.tsx",
+                lineNumber: 47,
                 columnNumber: 7
             }, this),
-            message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "reset-message",
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                style: {
+                    color: "red",
+                    marginTop: "1rem"
+                },
                 children: message
             }, void 0, false, {
-                fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 75,
-                columnNumber: 19
+                fileName: "[project]/src/app/reset-password/ResetPasswordForm.tsx",
+                lineNumber: 68,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
-        fileName: "[project]/src/app/reset-password/page.tsx",
-        lineNumber: 48,
+        fileName: "[project]/src/app/reset-password/ResetPasswordForm.tsx",
+        lineNumber: 45,
         columnNumber: 5
     }, this);
 }
-_s(ResetPasswordForm, "1Rv8a47dFqnJC10jt2f8FVQ4I74=", false, function() {
+_s(ResetPasswordForm, "Vx7LiEVDJMQlpeEBuA0HheOVA6E=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"]
     ];
 });
 _c = ResetPasswordForm;
-function ResetPasswordPage() {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
-        fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-            children: "Cargando..."
-        }, void 0, false, {
-            fileName: "[project]/src/app/reset-password/page.tsx",
-            lineNumber: 82,
-            columnNumber: 25
-        }, void 0),
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ResetPasswordForm, {}, void 0, false, {
-            fileName: "[project]/src/app/reset-password/page.tsx",
-            lineNumber: 83,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/src/app/reset-password/page.tsx",
-        lineNumber: 82,
-        columnNumber: 5
-    }, this);
-}
-_c1 = ResetPasswordPage;
-var _c, _c1;
+var _c;
 __turbopack_context__.k.register(_c, "ResetPasswordForm");
-__turbopack_context__.k.register(_c1, "ResetPasswordPage");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
 }]);
 
-//# sourceMappingURL=src_16082ff0._.js.map
+//# sourceMappingURL=src_39cd366c._.js.map
