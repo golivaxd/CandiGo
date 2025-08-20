@@ -9,11 +9,18 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error('supabaseUrl and supabaseKey are required.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true, // 👈 súper importante para reset password / magic links
+  },
+});
 
+// Hook para escuchar cambios de sesión
 export function useAuth(onAuth: (session: any) => void) {
   useEffect(() => {
-    const { data } = supabase.auth.onAuthStateChange(
+    const { data: subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (event === 'SIGNED_IN') {
           onAuth(session);
@@ -24,12 +31,17 @@ export function useAuth(onAuth: (session: any) => void) {
     );
 
     return () => {
-      data?.subscription?.unsubscribe();
+      subscription?.subscription?.unsubscribe();
     };
   }, [onAuth]);
 }
 
-const handleSignUp = async (e: React.FormEvent, email: string, password: string) => {
+// SignUp (ejemplo)
+export const handleSignUp = async (
+  e: React.FormEvent,
+  email: string,
+  password: string
+) => {
   e.preventDefault();
   try {
     const { data, error } = await supabase.auth.signUp({
