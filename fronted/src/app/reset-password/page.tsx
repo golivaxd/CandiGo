@@ -18,15 +18,14 @@ function ResetPasswordForm() {
   const parsed = useMemo(() => {
     const hash = typeof window !== 'undefined' ? window.location.hash : '';
     const hashParams = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : hash);
-
     const out = {
       code: searchParams.get('code') || hashParams.get('code'),
       type: searchParams.get('type') || hashParams.get('type'),
       access_token: searchParams.get('access_token') || hashParams.get('access_token'),
       refresh_token: searchParams.get('refresh_token') || hashParams.get('refresh_token'),
     };
+    console.log('Token extraído:', out);
     return out;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   // Establecer sesión desde la URL (hash o code)
