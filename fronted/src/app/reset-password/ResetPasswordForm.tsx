@@ -15,6 +15,7 @@ export default function ResetPasswordForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
+    console.log(searchParams.toString());
     const access_token = searchParams.get("access_token");
     if (!access_token) {
       setMessage("Token inválido o expirado.");
