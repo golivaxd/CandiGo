@@ -17,19 +17,20 @@ function ResetPasswordForm() {
   // Extrae access_token y refresh_token de query o hash
   const parsed = useMemo(() => {
     if (typeof window === 'undefined') return {};
-    // Primero intenta obtener de query params
-    const access_token = searchParams.get('access_token');
-    const refresh_token = searchParams.get('refresh_token');
-    // Si no están en query, intenta obtener del hash
-    if (access_token && refresh_token) {
-      return { access_token, refresh_token };
+    // Primero intenta obtener de searchParams (query string)
+    let access_token = searchParams.get('access_token');
+    let refresh_token = searchParams.get('refresh_token');
+    let type = searchParams.get('type');
+    // Si no se encontraron, intenta extraer del hash
+    if (!access_token || !refresh_token) {
+      const hash = window.location.hash;
+      const hashParams = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : hash);
+      access_token = access_token || hashParams.get('access_token');
+      refresh_token = refresh_token || hashParams.get('refresh_token');
+      type = type || hashParams.get('type');
     }
-    const hashParams = new URLSearchParams(window.location.hash.slice(1));
-    return {
-      access_token: access_token || hashParams.get('access_token'),
-      refresh_token: refresh_token || hashParams.get('refresh_token'),
-      type: hashParams.get('type'),
-    };
+    console.log('Parsed tokens:', { access_token, refresh_token, type });
+    return { access_token, refresh_token, type };
   }, [searchParams]);
 
   // Establecer sesión desde el token del link

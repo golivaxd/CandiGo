@@ -101,36 +101,43 @@ function ResetPasswordForm() {
     const [message, setMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [isSubmitting, setIsSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [sessionReady, setSessionReady] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // Parseamos también el hash (#access_token=...&refresh_token=...&type=recovery)
+    // Extrae access_token y refresh_token de query o hash
     const parsed = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "ResetPasswordForm.useMemo[parsed]": ()=>{
-            const hash = ("TURBOPACK compile-time truthy", 1) ? window.location.hash : "TURBOPACK unreachable";
-            const hashParams = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : hash);
-            const out = {
-                code: searchParams.get('code') || hashParams.get('code'),
-                type: searchParams.get('type') || hashParams.get('type'),
-                access_token: searchParams.get('access_token') || hashParams.get('access_token'),
-                refresh_token: searchParams.get('refresh_token') || hashParams.get('refresh_token')
+            if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+            ;
+            // Primero intenta obtener de searchParams (query string)
+            let access_token = searchParams.get('access_token');
+            let refresh_token = searchParams.get('refresh_token');
+            let type = searchParams.get('type');
+            // Si no se encontraron, intenta extraer del hash
+            if (!access_token || !refresh_token) {
+                const hash = window.location.hash;
+                const hashParams = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : hash);
+                access_token = access_token || hashParams.get('access_token');
+                refresh_token = refresh_token || hashParams.get('refresh_token');
+                type = type || hashParams.get('type');
+            }
+            console.log('Parsed tokens:', {
+                access_token,
+                refresh_token,
+                type
+            });
+            return {
+                access_token,
+                refresh_token,
+                type
             };
-            console.log('Token extraído:', out);
-            return out;
         }
     }["ResetPasswordForm.useMemo[parsed]"], [
         searchParams
     ]);
-    // Establecer sesión desde la URL (hash o code)
+    // Establecer sesión desde el token del link
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ResetPasswordForm.useEffect": ()=>{
             ({
                 "ResetPasswordForm.useEffect": async ()=>{
                     try {
-                        // 1) Proveedor que retorna `code` (PKCE)
-                        if (parsed.code) {
-                            await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.exchangeCodeForSession(window.location.href);
-                            setSessionReady(true);
-                            return;
-                        }
-                        // 2) Flujo típico de recuperación de Supabase: access + refresh en hash
                         if (parsed.access_token && parsed.refresh_token) {
                             const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.setSession({
                                 access_token: parsed.access_token,
@@ -138,16 +145,9 @@ function ResetPasswordForm() {
                             });
                             if (error) throw error;
                             setSessionReady(true);
-                            return;
+                        } else {
+                            setMessage('❌ Token inválido o expirado.');
                         }
-                        // 3) Si el cliente ya detectó la sesión automáticamente
-                        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.getSession();
-                        if (data.session) {
-                            setSessionReady(true);
-                            return;
-                        }
-                        // Si no hay nada, avisamos
-                        setMessage('❌ Token inválido o expirado.');
                     } catch (err) {
                         setMessage("❌ ".concat(err.message || 'No se pudo validar el enlace.'));
                     }
@@ -171,10 +171,11 @@ function ResetPasswordForm() {
         const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.updateUser({
             password
         });
-        if (error) setMessage('Error: ' + error.message);
-        else {
+        if (error) {
+            setMessage('❌ ' + error.message);
+        } else {
             setMessage('✅ Contraseña actualizada con éxito. Redirigiendo...');
-            setTimeout(()=>router.push('/'), 1800);
+            setTimeout(()=>router.push('/login'), 1500);
         }
         setIsSubmitting(false);
     };
@@ -186,7 +187,7 @@ function ResetPasswordForm() {
                 children: "Restablecer Contraseña"
             }, void 0, false, {
                 fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 90,
+                lineNumber: 85,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -198,11 +199,10 @@ function ResetPasswordForm() {
                         placeholder: "Nueva contraseña",
                         value: password,
                         onChange: (e)=>setPassword(e.target.value),
-                        required: true,
-                        className: "input"
+                        required: true
                     }, void 0, false, {
                         fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 93,
+                        lineNumber: 88,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -210,41 +210,38 @@ function ResetPasswordForm() {
                         placeholder: "Confirmar contraseña",
                         value: confirm,
                         onChange: (e)=>setConfirm(e.target.value),
-                        required: true,
-                        className: "input"
+                        required: true
                     }, void 0, false, {
                         fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 101,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "submit",
-                        className: "reset-button",
                         disabled: isSubmitting,
                         children: isSubmitting ? 'Guardando...' : 'Actualizar contraseña'
                     }, void 0, false, {
                         fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 109,
+                        lineNumber: 102,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 92,
+                lineNumber: 87,
                 columnNumber: 7
             }, this),
             message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "reset-message",
                 children: message
             }, void 0, false, {
                 fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 114,
+                lineNumber: 107,
                 columnNumber: 19
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/reset-password/page.tsx",
-        lineNumber: 89,
+        lineNumber: 84,
         columnNumber: 5
     }, this);
 }
@@ -257,24 +254,21 @@ _s(ResetPasswordForm, "bUWGNKGKcsqDk8gJgIsLreQFEG0=", false, function() {
 _c = ResetPasswordForm;
 function ResetPasswordPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
-        fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-            style: {
-                textAlign: 'center'
-            },
-            children: "Cargando…"
+        fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            children: "Loading..."
         }, void 0, false, {
             fileName: "[project]/src/app/reset-password/page.tsx",
-            lineNumber: 121,
+            lineNumber: 114,
             columnNumber: 25
         }, void 0),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ResetPasswordForm, {}, void 0, false, {
             fileName: "[project]/src/app/reset-password/page.tsx",
-            lineNumber: 122,
+            lineNumber: 115,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/reset-password/page.tsx",
-        lineNumber: 121,
+        lineNumber: 114,
         columnNumber: 5
     }, this);
 }
