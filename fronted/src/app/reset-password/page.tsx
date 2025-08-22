@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
-import '../CSS/reset.css';   // 👈 Importamos estilos
+import './reset.css';   // 👈 Importamos estilos
 
 export default function ResetPasswordPage() {
   const router = useRouter();
