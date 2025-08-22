@@ -1,11 +1,12 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import './reset.css';
 
 export default function ResetPasswordForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
@@ -13,25 +14,32 @@ export default function ResetPasswordForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sessionReady, setSessionReady] = useState(false);
 
-  // Extraemos el hash del link enviado por Supabase
+  // Extrae access_token y refresh_token de query o hash
   const parsed = useMemo(() => {
     if (typeof window === 'undefined') return {};
+    // Primero intenta obtener de query params
+    const access_token = searchParams.get('access_token');
+    const refresh_token = searchParams.get('refresh_token');
+    // Si no están en query, intenta obtener del hash
+    if (access_token && refresh_token) {
+      return { access_token, refresh_token };
+    }
     const hashParams = new URLSearchParams(window.location.hash.slice(1));
     return {
-      access_token: hashParams.get('access_token'),
-      refresh_token: hashParams.get('refresh_token'),
+      access_token: access_token || hashParams.get('access_token'),
+      refresh_token: refresh_token || hashParams.get('refresh_token'),
       type: hashParams.get('type'),
     };
-  }, []);
+  }, [searchParams]);
 
   // Establecer sesión desde el token del link
   useEffect(() => {
     (async () => {
       try {
-        if (parsed.access_token) {
+        if (parsed.access_token && parsed.refresh_token) {
           const { error } = await supabase.auth.setSession({
             access_token: parsed.access_token,
-            refresh_token: parsed.refresh_token ?? null, // null si es undefined
+            refresh_token: parsed.refresh_token,
           });
           if (error) throw error;
           setSessionReady(true);
