@@ -1,4 +1,3 @@
-// src/app/reset-password/page.tsx
 'use client';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -32,7 +31,7 @@ export default function ResetPasswordForm() {
         if (parsed.access_token) {
           const { error } = await supabase.auth.setSession({
             access_token: parsed.access_token,
-            refresh_token: parsed.refresh_token || undefined,
+            refresh_token: parsed.refresh_token ?? null, // null si es undefined
           });
           if (error) throw error;
           setSessionReady(true);
