@@ -106,11 +106,9 @@ function ResetPasswordForm() {
         "ResetPasswordForm.useMemo[parsed]": ()=>{
             if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
             ;
-            // Primero intenta obtener de searchParams (query string)
             let access_token = searchParams.get('access_token');
             let refresh_token = searchParams.get('refresh_token');
             let type = searchParams.get('type');
-            // Si no se encontraron, intenta extraer del hash
             if (!access_token || !refresh_token) {
                 const hash = window.location.hash;
                 const hashParams = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : hash);
@@ -187,7 +185,7 @@ function ResetPasswordForm() {
                 children: "Restablecer Contraseña"
             }, void 0, false, {
                 fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 85,
+                lineNumber: 87,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -199,10 +197,11 @@ function ResetPasswordForm() {
                         placeholder: "Nueva contraseña",
                         value: password,
                         onChange: (e)=>setPassword(e.target.value),
-                        required: true
+                        required: true,
+                        className: "input"
                     }, void 0, false, {
                         fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 88,
+                        lineNumber: 90,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -210,38 +209,41 @@ function ResetPasswordForm() {
                         placeholder: "Confirmar contraseña",
                         value: confirm,
                         onChange: (e)=>setConfirm(e.target.value),
-                        required: true
+                        required: true,
+                        className: "input"
                     }, void 0, false, {
                         fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 95,
+                        lineNumber: 98,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "submit",
                         disabled: isSubmitting,
+                        className: "reset-button",
                         children: isSubmitting ? 'Guardando...' : 'Actualizar contraseña'
                     }, void 0, false, {
                         fileName: "[project]/src/app/reset-password/page.tsx",
-                        lineNumber: 102,
+                        lineNumber: 106,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 87,
+                lineNumber: 89,
                 columnNumber: 7
             }, this),
             message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "reset-message ".concat(message.includes('❌') || message.includes('⚠️') ? 'error' : 'success'),
                 children: message
             }, void 0, false, {
                 fileName: "[project]/src/app/reset-password/page.tsx",
-                lineNumber: 107,
-                columnNumber: 19
+                lineNumber: 112,
+                columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/reset-password/page.tsx",
-        lineNumber: 84,
+        lineNumber: 86,
         columnNumber: 5
     }, this);
 }
@@ -255,20 +257,23 @@ _c = ResetPasswordForm;
 function ResetPasswordPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
         fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            children: "Loading..."
+            style: {
+                textAlign: 'center'
+            },
+            children: "Cargando..."
         }, void 0, false, {
             fileName: "[project]/src/app/reset-password/page.tsx",
-            lineNumber: 114,
+            lineNumber: 126,
             columnNumber: 25
         }, void 0),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ResetPasswordForm, {}, void 0, false, {
             fileName: "[project]/src/app/reset-password/page.tsx",
-            lineNumber: 115,
+            lineNumber: 127,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/reset-password/page.tsx",
-        lineNumber: 114,
+        lineNumber: 126,
         columnNumber: 5
     }, this);
 }

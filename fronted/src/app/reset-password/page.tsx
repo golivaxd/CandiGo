@@ -17,14 +17,14 @@ function ResetPasswordForm() {
   // Extrae access_token y refresh_token de query o hash
   const parsed = useMemo(() => {
     if (typeof window === 'undefined') return {};
-    // Primero intenta obtener de searchParams (query string)
     let access_token = searchParams.get('access_token');
     let refresh_token = searchParams.get('refresh_token');
     let type = searchParams.get('type');
-    // Si no se encontraron, intenta extraer del hash
     if (!access_token || !refresh_token) {
       const hash = window.location.hash;
-      const hashParams = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : hash);
+      const hashParams = new URLSearchParams(
+        hash.startsWith('#') ? hash.slice(1) : hash
+      );
       access_token = access_token || hashParams.get('access_token');
       refresh_token = refresh_token || hashParams.get('refresh_token');
       type = type || hashParams.get('type');
@@ -57,7 +57,9 @@ function ResetPasswordForm() {
     e.preventDefault();
 
     if (!sessionReady) {
-      setMessage('❌ Aún no se ha validado el enlace. Refresca la página o solicita otro correo.');
+      setMessage(
+        '❌ Aún no se ha validado el enlace. Refresca la página o solicita otro correo.'
+      );
       return;
     }
 
@@ -91,6 +93,7 @@ function ResetPasswordForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="input"
         />
         <input
           type="password"
@@ -98,20 +101,29 @@ function ResetPasswordForm() {
           value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
           required
+          className="input"
         />
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting} className="reset-button">
           {isSubmitting ? 'Guardando...' : 'Actualizar contraseña'}
         </button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && (
+        <p
+          className={`reset-message ${
+            message.includes('❌') || message.includes('⚠️') ? 'error' : 'success'
+          }`}
+        >
+          {message}
+        </p>
+      )}
     </div>
   );
 }
 
 export default function ResetPasswordPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div style={{ textAlign: 'center' }}>Cargando...</div>}>
       <ResetPasswordForm />
     </Suspense>
   );
