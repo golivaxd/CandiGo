@@ -7,7 +7,6 @@ import Sidebar from '@/components/Sidebar';
 import NewsCarousel from '@/components/NewsCarousel';
 import './CSS/d.css';
 
-
 type Article = {
   title: string;
   description?: string;
@@ -24,6 +23,8 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [news, setNews] = useState<Article[]>([]);
   const [newsLoading, setNewsLoading] = useState(true);
+  const [cargos, setCargos] = useState<string[]>([]);
+  const [cargosLoading, setCargosLoading] = useState(true);
 
   // Sesión
   useEffect(() => {
@@ -64,11 +65,43 @@ export default function Dashboard() {
     return () => { mounted = false; };
   }, []);
 
+  // Cargar cargos desde Supabase
+  useEffect(() => {
+    const fetchCargos = async () => {
+      setCargosLoading(true);
+      const { data, error } = await supabase
+        .from('Votacion')
+        .select('CARGO'); // solo el campo CARGO
+
+      if (error) {
+        console.error('Error al cargar cargos:', error.message);
+      } else {
+        setCargos(data.map((item: any) => item.CARGO));
+      }
+      setCargosLoading(false);
+    };
+
+    fetchCargos();
+  }, []);
+
   if (loading) return <p>Cargando...</p>;
   if (!user) return null;
 
+  // Procesar cargos únicos y su cantidad
+  const cargosContados = cargos.reduce((acc: Record<string, number>, cargo) => {
+    acc[cargo] = (acc[cargo] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const cargosUnicos = Object.entries(cargosContados); // [[cargo, cantidad], ...]
+
   return (
     <div className="dashboard-container">
+      {/* Header fijo */}
+      <header className="dashboard-header">
+        <h1>Mi Dashboard</h1>
+      </header>
+
       <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
       <Sidebar user={user} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
@@ -76,30 +109,51 @@ export default function Dashboard() {
         <h1>Bienvenido al Dashboard</h1>
         <p>¡Has iniciado sesión correctamente!</p>
 
+        {/* Sección de noticias */}
         <section className="novedades-section">
           <h2>📰 Novedades Políticas (México)</h2>
           {newsLoading ? <p>Cargando noticias...</p> : news.length > 0 ? <NewsCarousel articles={news} /> : <p>No se encontraron noticias.</p>}
         </section>
 
+        {/* Sección de candidatos */}
         <section className="candidatos-section">
           <h2>👤 Candidatos</h2>
           <div className="candidatos-grid">
             <div className="candidato">
-              <img src="https://via.placeholder.com/300x200" alt="Candidato 1" />
+              <img src="/h.jpg" alt="Candidato 1" />
               <h3>María López</h3>
               <p>Partido: Progreso Unido</p>
             </div>
             <div className="candidato">
-              <img src="https://via.placeholder.com/300x200" alt="Candidato 2" />
+              <img src="/homer.gif" alt="Candidato 2" />
               <h3>Carlos Pérez</h3>
               <p>Partido: Fuerza Ciudadana</p>
             </div>
             <div className="candidato">
-              <img src="https://via.placeholder.com/300x200" alt="Candidato 3" />
+              <img src="/h.jpg" alt="Candidato 3" />
               <h3>Ana Torres</h3>
               <p>Partido: Renovación Nacional</p>
             </div>
           </div>
+        </section>
+
+        {/* Sección de cargos */}
+        <section className="votaciones-section">
+          <h2>🗳️ Cargos disponibles</h2>
+          {cargosLoading ? (
+            <p>Cargando cargos...</p>
+          ) : cargosUnicos.length > 0 ? (
+            <div className="cargos-grid">
+              {cargosUnicos.map(([cargo, cantidad], idx) => (
+                <div className="cargo-card" key={idx}>
+                  <h3>{cargo}</h3>
+                  <p>Cantidad: {cantidad}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No hay cargos disponibles.</p>
+          )}
         </section>
       </main>
     </div>

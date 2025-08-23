@@ -1,9 +1,20 @@
-/* --- Estilos existentes: Dashboard y Sidebar --- */
+/* --- Paleta de colores --- */
+.color1 { color: #42374a; }
+.color2 { color: #60475b; }
+.color3 { color: #8d6375; }
+.color4 { color: #cc8c96; }
+.color5 { color: #ffc6be; }
+
+/* --- Dashboard Container --- */
 .dashboard-container {
   display: flex;
   min-height: 100vh;
+  background-color: #f8f8f8;
+  overflow-x: hidden;
+  position: relative;
 }
 
+/* --- Sidebar fijo y responsive --- */
 .sidebar {
   width: 250px;
   background-color: #1f2937;
@@ -12,7 +23,20 @@
   flex-direction: column;
   align-items: center;
   padding: 24px 0;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  height: calc(100% - 60px);
   transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+.sidebar.open {
+  transform: translateX(0);
 }
 
 .sidebar img {
@@ -37,59 +61,88 @@
   padding: 0 16px;
 }
 
-.sidebar nav button {
-  background-color: #374151;
-  padding: 8px;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.sidebar nav button:hover {
-  background-color: #4b5563;
-}
-
+/* --- Botones sidebar --- */
+.sidebar nav button,
 .logout-btn {
-  background-color: #ef4444;
-  padding: 8px 16px;
-  border: none;
+  font-size: 13px;
+  padding: 0.4em 0.8em;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
   border-radius: 6px;
-  color: white;
-  margin-top: auto;
-  margin-bottom: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.logout-btn:hover {
-  background-color: #dc2626;
-}
-
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  padding: 16px;
-}
-
-.main-content h1 {
-  font-size: 28px;
+  border: 2px solid #8d6375;
+  background: transparent;
+  color: #ffc6be;
+  text-transform: uppercase;
   font-weight: bold;
-  margin-bottom: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  display: block;
+  text-align: center;
+  transition: 0.3s ease all;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* --- Responsive Sidebar --- */
+.sidebar nav button:before,
+.logout-btn:before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #8d6375;
+  z-index: -1;
+  border-radius: 6px;
+  transition: 0.5s all ease;
+}
+
+.sidebar nav button:hover:before,
+.logout-btn:hover:before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+/* --- Botón cerrar sesión --- */
+.logout-btn {
+  margin-top: 16px; /* un pequeño espacio arriba */
+  margin-bottom: 16px;
+  border: 2px solid #cc8c96;
+  color: #cc8c96;
+  align-self: center; /* centrado horizontal */
+}
+
+.logout-btn:before {
+  background-color: #cc8c96;
+}
+
+/* --- Header fijo --- */
+.dashboard-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #60475b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* --- Botón toggle para móvil --- */
 .menu-toggle {
   display: none;
   position: fixed;
   top: 16px;
   left: 16px;
-  z-index: 1100;
-  background: #374151;
+  z-index: 1300;
+  background: #60475b;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -97,76 +150,58 @@
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    transform: translateX(-100%);
-    z-index: 1000;
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
-  .main-content {
-    margin-left: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
+/* --- Main Content --- */
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin-top: 70px;
+  transition: margin-left 0.3s ease-in-out;
+  width: calc(100% - 250px);
+  box-sizing: border-box;
 }
 
-/* --- Secciones Novedades y Candidatos --- */
-.novedades-section, .candidatos-section {
+.sidebar.closed ~ .main-content {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* --- Secciones --- */
+.novedades-section,
+.candidatos-section,
+.votaciones-section {
   margin-top: 2rem;
   padding: 1rem;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.novedades-section h2, .candidatos-section h2 {
-  color: #5b3cc4;
+/* --- Títulos secciones --- */
+.novedades-section h2,
+.candidatos-section h2,
+.votaciones-section h2 {
+  color: #8d6375;
   margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-align: left;
 }
 
-.news-item {
-  border-bottom: 1px solid #ddd;
-  padding: 0.5rem 0;
-}
-
-.news-item h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.news-item p {
-  margin: 0.5rem 0;
-  color: #333;
-}
-
-.news-item a {
-  color: #5b3cc4;
-  text-decoration: none;
-}
-
-.news-item a:hover {
-  text-decoration: underline;
-}
-
-/* Candidatos */
-.candidatos-grid {
-  display: flex;
+/* --- Grid candidatos y cargos --- */
+.candidatos-grid,
+.cargos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
-.candidato {
-  flex: 1 1 200px;
+.candidato,
+.cargo-card {
   background: #fafafa;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -175,7 +210,8 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.candidato:hover {
+.candidato:hover,
+.cargo-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
@@ -187,16 +223,18 @@
   object-fit: cover;
 }
 
-.candidato h3 {
+.candidato h3,
+.cargo-card h3 {
   margin: 0.5rem 0;
-  color: #222;
+  color: #42374a;
 }
 
-.candidato p {
+.candidato p,
+.cargo-card p {
   color: #555;
 }
 
-/* --- Carrusel de Noticias (react-slick) --- */
+/* --- Carrusel Noticias --- */
 .news-carousel-container {
   width: 100%;
   max-width: 800px;
@@ -209,10 +247,10 @@
   flex-direction: column;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   cursor: pointer;
   overflow: hidden;
-  padding: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  margin: 0 auto;
 }
 
 .news-slide img {
@@ -225,7 +263,7 @@
 .news-slide h3 {
   font-size: 1.1rem;
   margin: 0.5rem 0;
-  color: #222;
+  color: #42374a;
 }
 
 .news-slide p {
@@ -238,52 +276,39 @@
   color: #777;
 }
 
-/* Slick flechas y puntos */
-.slick-dots li button:before { color: #5b3cc4; }
-.slick-prev:before, .slick-next:before { color: #5b3cc4; }
-/* Ocultar los puntos del carrusel */
-.slick-dots {
-  display: none !important;
-}
-/* Limpiar bordes y sombras del carrusel de noticias */
-.news-slide {
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border-radius: 8px; /* Bordes más suaves */
-  box-shadow: none;   /* Quitar sombras irregulares */
-  overflow: hidden;
-  padding: 0.5rem 0.8rem; /* Espaciado interno uniforme */
-  margin: 0 auto; /* Centrar cada slide */
-}
+/* Slick Carousel */
+.slick-dots li button:before { color: #8d6375; }
+.slick-prev:before, .slick-next:before { color: #8d6375; }
+.slick-dots { display: none !important; }
 
-/* Ajustes de texto y títulos para móviles */
+/* --- Responsive --- */
 @media (max-width: 768px) {
-  .main-content h1 {
-    font-size: 22px;
-  }
-
-  .novedades-section h2,
-  .candidatos-section h2 {
-    font-size: 1.1rem;
-  }
-
-  .news-slide h3 {
-    font-size: 1rem;
-  }
-
-  .news-slide p {
-    font-size: 0.85rem;
-  }
-
   .sidebar {
-    width: 220px;
+    transform: translateX(-100%);
+    top: 0;
+    height: 100%;
   }
 
-  .sidebar img {
-    width: 70px;
-    height: 70px;
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 8px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .novedades-section,
+  .candidatos-section,
+  .votaciones-section {
+    padding: 0.8rem;
+  }
+
+  .candidatos-grid,
+  .cargos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
   }
 }
 
@@ -300,10 +325,9 @@
     font-size: 0.8rem;
   }
 
-  .candidatos-grid {
+  .candidatos-grid,
+  .cargos-grid {
     grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }
-
-
-
