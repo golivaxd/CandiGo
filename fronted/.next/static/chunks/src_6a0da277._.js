@@ -141,7 +141,7 @@ function Home() {
             redirectTo: 'https://candigo.vercel.app/reset-password'
         });
         if (error) setMessage('Error: ' + error.message);
-        else setMessage('Revisa tu correo para restablecer la contraseña.');
+        else setMessage('Revisa tu correo para restablecer blee la contraseña.');
         setIsSubmitting(false);
     };
     // Manejador del submit según modo
@@ -359,8 +359,8 @@ function Home() {
                         className: "right-container",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                src: "https://www.pngarts.com/files/10/Whatsapp-Emoji-PNG-Download-Image.png",
-                                alt: "Thumb up",
+                                src: "/LogoSolo.png",
+                                alt: "Candidato 3",
                                 className: "logo-image"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
@@ -372,7 +372,7 @@ function Home() {
                                 children: "Descargar"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 190,
+                                lineNumber: 186,
                                 columnNumber: 11
                             }, this)
                         ]

@@ -1,0 +1,103 @@
+/* Paleta de colores */
+.color1 { color: #341816; }
+.color2 { color: #5c3327; }
+.color3 { color: #8e5a3c; }
+.color4 { color: #c88f54; }
+.color5 { color: #ffd472; }
+
+/* Estilos generales */
+main {
+  padding: 16px;
+  background-color: #fff;
+  font-family: sans-serif;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  background-color: #8e5a3c; /* color3 */
+}
+
+header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Botón Regresar */
+header button {
+  background-color: #c88f54; /* color4 */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+header button:hover {
+  background-color: #ffd472; /* color5 */
+  color: #341816; /* color1 */
+}
+
+/* Título principal de la sección */
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
+  color: #5c3327; /* color2 */
+}
+
+/* Barra de búsqueda */
+div input[type="text"] {
+  width: 80%;
+  max-width: 400px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* NewsCarousel container */
+.news-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Estilos para cada slide de noticia */
+.news-slide {
+  background-color: #ffd472; /* color5 */
+  color: #341816; /* color1 */
+  padding: 12px;
+  border-radius: 8px;
+  flex: 1 1 300px; /* tamaño base, se adapta según el espacio */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.news-slide:hover {
+  transform: scale(1.03);
+}
+
+.news-slide h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #5c3327; /* color2 */
+}
+
+/* Enlaces dentro de cada noticia */
+.news-slide a {
+  color: #8e5a3c; /* color3 */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.news-slide a:hover {
+  color: #c88f54; /* color4 */
+}

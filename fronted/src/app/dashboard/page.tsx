@@ -99,15 +99,23 @@ export default function Dashboard() {
     <div className="dashboard-container">
       {/* Header fijo */}
       <header className="dashboard-header">
-        <h1>Mi Dashboard</h1>
+        <h1>Cargos y Candidaturas</h1>
+        <button
+          onClick={async () => {
+            await supabase.auth.signOut();
+            router.push("https://candigo.vercel.app/");
+          }}
+          className="logout-btn"
+        >
+          Cerrar sesión
+        </button>
       </header>
 
       <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
       <Sidebar user={user} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       <main className="main-content">
-        <h1>Bienvenido al Dashboard</h1>
-        <p>¡Has iniciado sesión correctamente!</p>
+        
 
         {/* Sección de noticias */}
         <section className="novedades-section">

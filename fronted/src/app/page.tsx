@@ -52,7 +52,7 @@ export default function Home() {
       redirectTo: 'https://candigo.vercel.app/reset-password', // Cambia esta URL según tu app
     });
     if (error) setMessage('Error: ' + error.message);
-    else setMessage('Revisa tu correo para restablecer la contraseña.');
+    else setMessage('Revisa tu correo para restablecer blee la contraseña.');
     setIsSubmitting(false);
   };
 
@@ -182,11 +182,7 @@ export default function Home() {
 
         {/* Imagen + botón a la derecha */}
         <div className="right-container">
-          <img
-            src="https://www.pngarts.com/files/10/Whatsapp-Emoji-PNG-Download-Image.png"
-            alt="Thumb up"
-            className="logo-image"
-          />
+          <img src="/LogoSolo.png" alt="Candidato 3" className="logo-image" />
           <button className="download-btn">Descargar</button>
         </div>
       </div>

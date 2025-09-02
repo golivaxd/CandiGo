@@ -76,7 +76,8 @@ function ResetPasswordForm() {
       setMessage('❌ ' + error.message);
     } else {
       setMessage('✅ Contraseña actualizada con éxito. Redirigiendo...');
-      setTimeout(() => router.push('/login'), 1500);
+      // Redirige a la página principal en lugar de a /login
+      setTimeout(() => router.push('/'), 1500);
     }
 
     setIsSubmitting(false);
