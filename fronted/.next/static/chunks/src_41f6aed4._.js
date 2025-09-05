@@ -30,72 +30,67 @@ function NewsCarousel(param) {
         className: "news-carousel-container",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$slick$2f$lib$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
             ...settings,
-            children: articles.map((article, i)=>{
-                var _article_title_name, _article_title;
-                // Title seguro
-                const title = typeof article.title === 'object' ? (_article_title_name = article.title.name) !== null && _article_title_name !== void 0 ? _article_title_name : JSON.stringify(article.title) : String((_article_title = article.title) !== null && _article_title !== void 0 ? _article_title : '');
-                var _article_source_name, _article_source;
-                // Source seguro
-                const source = article.source && typeof article.source === 'object' ? (_article_source_name = article.source.name) !== null && _article_source_name !== void 0 ? _article_source_name : JSON.stringify(article.source) : String((_article_source = article.source) !== null && _article_source !== void 0 ? _article_source : '');
+            children: articles.map((n, i)=>{
+                const title = typeof n.title === 'object' ? n.title.name : n.title;
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "news-slide",
-                    onClick: ()=>article.url && window.open(article.url, "_blank"),
+                    onClick: ()=>window.open(n.url, "_blank"),
                     children: [
-                        article.urlToImage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                            src: article.urlToImage,
+                        n.urlToImage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: n.urlToImage,
                             alt: title,
                             className: "news-image"
                         }, void 0, false, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 51,
+                            lineNumber: 36,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                             children: title
                         }, void 0, false, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 57,
+                            lineNumber: 38,
                             columnNumber: 15
                         }, this),
-                        article.publishedAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
-                            children: new Date(article.publishedAt).toLocaleDateString("es-MX")
+                        n.publishedAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
+                            children: new Date(n.publishedAt).toLocaleDateString("es-MX")
                         }, void 0, false, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 59,
+                            lineNumber: 40,
                             columnNumber: 17
                         }, this),
-                        article.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: article.description
+                        n.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            children: n.description
                         }, void 0, false, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 61,
-                            columnNumber: 39
+                            lineNumber: 42,
+                            columnNumber: 33
                         }, this),
-                        source && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
+                        n.source && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
                             children: [
                                 " — ",
-                                source
+                                n.source
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 62,
-                            columnNumber: 26
+                            lineNumber: 43,
+                            columnNumber: 28
                         }, this)
                     ]
                 }, i, true, {
                     fileName: "[project]/src/components/NewsCarousel.tsx",
-                    lineNumber: 45,
+                    lineNumber: 34,
                     columnNumber: 13
                 }, this);
             })
         }, void 0, false, {
             fileName: "[project]/src/components/NewsCarousel.tsx",
-            lineNumber: 30,
+            lineNumber: 29,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/NewsCarousel.tsx",
-        lineNumber: 29,
+        lineNumber: 28,
         columnNumber: 5
     }, this);
 }

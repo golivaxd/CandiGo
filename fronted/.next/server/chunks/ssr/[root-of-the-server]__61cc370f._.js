@@ -91,20 +91,17 @@ module.exports = mod;
 "[project]/src/lib/supabaseClient.ts [app-ssr] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
-// src/lib/supabaseClient.ts
 __turbopack_context__.s({
-    "handleSignUp": ()=>handleSignUp,
     "supabase": ()=>supabase,
     "useAuth": ()=>useAuth
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@supabase/supabase-js/dist/module/index.js [app-ssr] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+'use client';
 ;
 ;
 const supabaseUrl = ("TURBOPACK compile-time value", "https://lmfqhbkliugoauxcaprl.supabase.co");
 const supabaseKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtZnFoYmtsaXVnb2F1eGNhcHJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEzNjcyOTAsImV4cCI6MjA1Njk0MzI5MH0.KHCzarygd02MSMRVZ87_sO_Y2GrXCdT_9lNDJJusAxk");
-if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
-;
 const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseKey, {
     auth: {
         persistSession: true,
@@ -121,29 +118,11 @@ function useAuth(onAuth) {
                 onAuth(null);
             }
         });
-        return ()=>{
-            subscription?.subscription?.unsubscribe();
-        };
+        return ()=>subscription?.subscription?.unsubscribe();
     }, [
         onAuth
     ]);
 }
-const handleSignUp = async (e, email, password)=>{
-    e.preventDefault();
-    try {
-        const { data, error } = await supabase.auth.signUp({
-            email,
-            password
-        });
-        if (error) {
-            console.error('Error al registrarse:', error);
-        } else {
-            console.log('Registro exitoso:', data);
-        }
-    } catch (err) {
-        console.error('Error inesperado:', err);
-    }
-};
 }),
 "[project]/src/components/Sidebar.tsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
@@ -201,6 +180,7 @@ function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         className: "nav-btn",
+                        onClick: ()=>router.push('/preguntas'),
                         children: "Preguntas"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
@@ -209,6 +189,7 @@ function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         className: "nav-btn",
+                        onClick: ()=>router.push('/votaciones'),
                         children: "Votar"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
@@ -288,70 +269,67 @@ function NewsCarousel({ articles }) {
         className: "news-carousel-container",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$slick$2f$lib$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
             ...settings,
-            children: articles.map((article, i)=>{
-                // Title seguro
-                const title = typeof article.title === 'object' ? article.title.name ?? JSON.stringify(article.title) : String(article.title ?? '');
-                // Source seguro
-                const source = article.source && typeof article.source === 'object' ? article.source.name ?? JSON.stringify(article.source) : String(article.source ?? '');
+            children: articles.map((n, i)=>{
+                const title = typeof n.title === 'object' ? n.title.name : n.title;
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "news-slide",
-                    onClick: ()=>article.url && window.open(article.url, "_blank"),
+                    onClick: ()=>window.open(n.url, "_blank"),
                     children: [
-                        article.urlToImage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                            src: article.urlToImage,
+                        n.urlToImage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: n.urlToImage,
                             alt: title,
                             className: "news-image"
                         }, void 0, false, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 51,
+                            lineNumber: 36,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                             children: title
                         }, void 0, false, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 57,
+                            lineNumber: 38,
                             columnNumber: 15
                         }, this),
-                        article.publishedAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
-                            children: new Date(article.publishedAt).toLocaleDateString("es-MX")
+                        n.publishedAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
+                            children: new Date(n.publishedAt).toLocaleDateString("es-MX")
                         }, void 0, false, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 59,
+                            lineNumber: 40,
                             columnNumber: 17
                         }, this),
-                        article.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: article.description
+                        n.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            children: n.description
                         }, void 0, false, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 61,
-                            columnNumber: 39
+                            lineNumber: 42,
+                            columnNumber: 33
                         }, this),
-                        source && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
+                        n.source && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
                             children: [
                                 " — ",
-                                source
+                                n.source
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/NewsCarousel.tsx",
-                            lineNumber: 62,
-                            columnNumber: 26
+                            lineNumber: 43,
+                            columnNumber: 28
                         }, this)
                     ]
                 }, i, true, {
                     fileName: "[project]/src/components/NewsCarousel.tsx",
-                    lineNumber: 45,
+                    lineNumber: 34,
                     columnNumber: 13
                 }, this);
             })
         }, void 0, false, {
             fileName: "[project]/src/components/NewsCarousel.tsx",
-            lineNumber: 30,
+            lineNumber: 29,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/NewsCarousel.tsx",
-        lineNumber: 29,
+        lineNumber: 28,
         columnNumber: 5
     }, this);
 }

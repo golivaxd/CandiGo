@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <head>
         {/* Favicon usando bb.webp */}
-        <link rel="icon" type="image/webp" href="/b.webp" />
+        <link rel="icon" type="image/webp" href="/LogooSolo.png" />
       </head>
       <body>{children}</body>
     </html>

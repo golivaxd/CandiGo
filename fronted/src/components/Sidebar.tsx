@@ -17,8 +17,8 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }: {
       <nav className="nav-menu">
         <button className="nav-btn" onClick={() => router.push('/')}>Inicio</button>
         <button className="nav-btn" onClick={() => router.push('/noticias')}>Noticias</button>
-        <button className="nav-btn">Preguntas</button>
-        <button className="nav-btn">Votar</button>
+        <button className="nav-btn" onClick={() => router.push('/preguntas')}>Preguntas</button>
+        <button className="nav-btn" onClick={() => router.push('/votaciones')}>Votar</button>
         <button className="nav-btn">Mapa</button>
         <button className="nav-btn">Calendario</button>
         <button className="nav-btn">Debate</button>

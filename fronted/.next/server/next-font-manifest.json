@@ -1,7 +1,6 @@
 {
   "app": {
-    "[project]/src/app/dashboard/page": [],
-    "[project]/src/app/noticias/page": []
+    "[project]/src/app/dashboard/page": []
   },
   "appUsingSizeAdjust": false,
   "pages": {},
