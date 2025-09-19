@@ -1,9 +1,8 @@
 (globalThis.TURBOPACK_CHUNK_LISTS = globalThis.TURBOPACK_CHUNK_LISTS || []).push({
     script: typeof document === "object" ? document.currentScript : undefined,
     chunks: [
-  "static/chunks/node_modules_7891a442._.js",
-  "static/chunks/src_41f6aed4._.js",
-  "static/chunks/node_modules_slick-carousel_slick_2cb6f297._.css"
+  "static/chunks/_6a5ad44d._.js",
+  "static/chunks/src_app_noticias_CSS_noticias_3e2b286c.css"
 ],
     source: "dynamic"
 });

@@ -1,11 +1,11 @@
-// NoticiasPage.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
-import NewsCarousel from '@/components/NewsCarousel';
+import { useRouter } from 'next/navigation';
+import './CSS/noticias.css';
 
 type Article = {
-  title: string | { id: string; name: string };
+  title: string;
   description?: string;
   url?: string;
   source?: string;
@@ -13,62 +13,101 @@ type Article = {
   publishedAt?: string;
 };
 
-export default function NoticiasPage() {
+export default function NewsPage() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
-    // Asumimos que el endpoint '/api/news' devuelve un objeto { articles: Article[] }
     fetch('/api/news')
-      .then((res) => res.json())
-      .then((data) => {
-        setArticles(data.articles);
-        setLoading(false);
+      .then(async (res) => {
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err?.error || 'Error al cargar noticias');
+        }
+        return res.json();
       })
-      .catch((error) => {
-        console.error('Error al obtener noticias:', error);
-        setLoading(false);
-      });
+      .then((data) => {
+        const raw = data.articles || [];
+        const normalized = raw.map((a: any) => ({
+          title: a.title || '',
+          description: a.description || '',
+          url: a.url || '',
+          source: (a.source && (a.source.name || a.source)) || a.source || '',
+          urlToImage: a.urlToImage || a.image || '',
+          publishedAt: a.publishedAt || ''
+        }));
+        setArticles(normalized);
+      })
+      .catch((err) => console.error('fetch /api/news error', err))
+      .finally(() => setLoading(false));
   }, []);
 
-  // Filtrar artículos según el término de búsqueda en el título
-  const filteredArticles = articles.filter((article) => {
-    const title =
-      typeof article.title === 'object' ? article.title.name : article.title;
-    return title.toLowerCase().includes(searchQuery.toLowerCase());
-  });
+  const filteredArticles = articles.filter((a) =>
+    a.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-  if (loading) {
-    return <div>Cargando noticias...</div>;
-  }
+  if (loading) return <p>Cargando noticias...</p>;
 
   return (
-    <main style={{ padding: '16px' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '16px' }}>Sección de Noticias</h1>
+    <div className="news-page">
+      {/* Header fijo */}
+      <header className="news-header">
+        <button className="back-btn" onClick={() => router.back()}>
+          ← Regresar
+        </button>
+        <h1>Noticias</h1>
+      </header>
 
-      {/* Barra de búsqueda */}
-      <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-        <input
-          type="text"
-          placeholder="Buscar noticias..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{
-            width: '80%',
-            maxWidth: '400px',
-            padding: '8px 12px',
-            borderRadius: '4px',
-            border: '1px solid #ccc'
-          }}
-        />
-      </div>
+      <main className="news-main">
+        {/* Barra de búsqueda */}
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Buscar noticias..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button className="clear-btn" onClick={() => setSearchQuery('')}>
+              ✕
+            </button>
+          )}
+        </div>
 
-      {filteredArticles.length > 0 ? (
-        <NewsCarousel articles={filteredArticles} />
-      ) : (
-        <p style={{ textAlign: 'center' }}>No se encontraron noticias.</p>
-      )}
-    </main>
+        {/* Tarjetas de noticias */}
+        <div className="news-grid">
+          {filteredArticles.length > 0 ? (
+            filteredArticles.map((article, idx) => (
+              <div key={idx} className="news-card">
+                {article.urlToImage && (
+                  <img
+                    src={article.urlToImage}
+                    alt={article.title}
+                    className="news-image"
+                  />
+                )}
+                <h3>{article.title}</h3>
+                {article.description && <p>{article.description}</p>}
+                {article.source && <small>Fuente: {article.source}</small>}
+                {article.url && (
+                  <a href={article.url} target="_blank" rel="noopener noreferrer">
+                    Leer más
+                  </a>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>No se encontraron noticias.</p>
+          )}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="news-footer">
+        <p>© 2025 CandiGo. Todos los derechos reservados.</p>
+      </footer>
+    </div>
   );
 }

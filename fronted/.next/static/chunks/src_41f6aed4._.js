@@ -106,7 +106,6 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 
 var { k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
-// NoticiasPage.tsx
 __turbopack_context__.s({
     "default": ()=>NoticiasPage
 });
@@ -125,39 +124,52 @@ function NoticiasPage() {
     const [searchQuery, setSearchQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "NoticiasPage.useEffect": ()=>{
-            // Asumimos que el endpoint '/api/news' devuelve un objeto { articles: Article[] }
             fetch('/api/news').then({
-                "NoticiasPage.useEffect": (res)=>res.json()
+                "NoticiasPage.useEffect": async (res)=>{
+                    if (!res.ok) {
+                        const err = await res.json().catch({
+                            "NoticiasPage.useEffect": ()=>({})
+                        }["NoticiasPage.useEffect"]);
+                        throw new Error((err === null || err === void 0 ? void 0 : err.error) || 'Error al cargar noticias');
+                    }
+                    return res.json();
+                }
             }["NoticiasPage.useEffect"]).then({
                 "NoticiasPage.useEffect": (data)=>{
-                    setArticles(data.articles);
-                    setLoading(false);
+                    const raw = data.articles || [];
+                    // 🔹 Normalizamos los artículos igual que en Dashboard
+                    const normalized = raw.map({
+                        "NoticiasPage.useEffect.normalized": (a)=>({
+                                title: a.title || '',
+                                description: a.description || '',
+                                url: a.url || '',
+                                source: a.source && (a.source.name || a.source) || a.source || '',
+                                urlToImage: a.urlToImage || a.image || '',
+                                publishedAt: a.publishedAt || ''
+                            })
+                    }["NoticiasPage.useEffect.normalized"]);
+                    setArticles(normalized);
                 }
             }["NoticiasPage.useEffect"]).catch({
-                "NoticiasPage.useEffect": (error)=>{
-                    console.error('Error al obtener noticias:', error);
-                    setLoading(false);
-                }
+                "NoticiasPage.useEffect": (err)=>console.error('fetch /api/news error', err)
+            }["NoticiasPage.useEffect"]).finally({
+                "NoticiasPage.useEffect": ()=>setLoading(false)
             }["NoticiasPage.useEffect"]);
         }
     }["NoticiasPage.useEffect"], []);
-    // Filtrar artículos según el término de búsqueda en el título
-    const filteredArticles = articles.filter((article)=>{
-        const title = typeof article.title === 'object' ? article.title.name : article.title;
-        return title.toLowerCase().includes(searchQuery.toLowerCase());
-    });
-    if (loading) {
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            children: "Cargando noticias..."
-        }, void 0, false, {
-            fileName: "[project]/src/app/noticias/page.tsx",
-            lineNumber: 43,
-            columnNumber: 12
-        }, this);
-    }
+    // Filtrar artículos por título
+    const filteredArticles = articles.filter((article)=>article.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        children: "Cargando noticias..."
+    }, void 0, false, {
+        fileName: "[project]/src/app/noticias/page.tsx",
+        lineNumber: 51,
+        columnNumber: 23
+    }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
         style: {
-            padding: '16px'
+            padding: '16px',
+            position: 'relative'
         },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -168,7 +180,7 @@ function NoticiasPage() {
                 children: "Sección de Noticias"
             }, void 0, false, {
                 fileName: "[project]/src/app/noticias/page.tsx",
-                lineNumber: 48,
+                lineNumber: 55,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -190,19 +202,66 @@ function NoticiasPage() {
                     }
                 }, void 0, false, {
                     fileName: "[project]/src/app/noticias/page.tsx",
-                    lineNumber: 52,
+                    lineNumber: 59,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/noticias/page.tsx",
-                lineNumber: 51,
+                lineNumber: 58,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    position: 'relative',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    marginBottom: '16px'
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        style: {
+                            padding: '10px 20px',
+                            backgroundColor: '#6b5b95',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer'
+                        },
+                        onClick: ()=>console.log('Botón 1 clic'),
+                        children: "Botón 1"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/noticias/page.tsx",
+                        lineNumber: 84,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        style: {
+                            padding: '10px 20px',
+                            backgroundColor: '#feb236',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer'
+                        },
+                        onClick: ()=>console.log('Botón 2 clic'),
+                        children: "Botón 2"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/noticias/page.tsx",
+                        lineNumber: 97,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/noticias/page.tsx",
+                lineNumber: 75,
                 columnNumber: 7
             }, this),
             filteredArticles.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$NewsCarousel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 articles: filteredArticles
             }, void 0, false, {
                 fileName: "[project]/src/app/noticias/page.tsx",
-                lineNumber: 68,
+                lineNumber: 114,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 style: {
@@ -211,13 +270,13 @@ function NoticiasPage() {
                 children: "No se encontraron noticias."
             }, void 0, false, {
                 fileName: "[project]/src/app/noticias/page.tsx",
-                lineNumber: 70,
+                lineNumber: 116,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/noticias/page.tsx",
-        lineNumber: 47,
+        lineNumber: 54,
         columnNumber: 5
     }, this);
 }

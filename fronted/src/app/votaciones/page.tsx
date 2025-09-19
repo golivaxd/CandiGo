@@ -42,9 +42,9 @@ export default function VotacionesPage() {
           }}
         >
           {loading ? 'Analizando...' : 'Analizar votos'}
-        </button>
+        </button>  
       </div>
-
+    
       {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
 
       {result && (
@@ -82,3 +82,4 @@ export default function VotacionesPage() {
     </div>
   );
 }
+

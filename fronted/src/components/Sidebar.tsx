@@ -19,10 +19,10 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }: {
         <button className="nav-btn" onClick={() => router.push('/noticias')}>Noticias</button>
         <button className="nav-btn" onClick={() => router.push('/preguntas')}>Preguntas</button>
         <button className="nav-btn" onClick={() => router.push('/votaciones')}>Votar</button>
-        <button className="nav-btn">Mapa</button>
+        <button className="nav-btn" onClick={() => router.push('/mapa')}>Mapa</button>
         <button className="nav-btn">Calendario</button>
-        <button className="nav-btn">Debate</button>
-        <button className="nav-btn">Guía</button>
+        <button className="nav-btn" onClick={() => router.push('/foro')}>Debate</button>
+        <button className="nav-btn" onClick={() => router.push('/guia')}></button>
       </nav>
     </aside>
   );

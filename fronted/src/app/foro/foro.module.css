@@ -1,0 +1,159 @@
+/* foro.module.css */
+
+/* Contenedor principal */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.header button {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* BOTON NUEVO DEBATE */
+.newDebateButton {
+  padding: 0.5rem 1rem;
+  background: #0070f3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+
+/* BOTON VOLVER */
+.backButton {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background: #0070f3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* LISTA DE DEBATES */
+.debateList {
+  list-style: none;
+  padding: 0;
+}
+
+/* ITEM DEBATE */
+.debateItem {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+  background: #fff;
+}
+
+.debateItem:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: #f0f8ff;
+}
+
+/* TITULO Y DESCRIPCION */
+.debateTitle {
+  margin: 0;
+  color: #0070f3;
+}
+
+.debateDescription {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.debateAuthor {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* DETALLE DE DEBATE */
+.debateDetail {
+  margin-top: 1rem;
+}
+
+/* LISTA DE COMENTARIOS */
+.comentariosList {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comentario {
+  border: 1px solid #eee;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  background: #fff;
+}
+
+.comentario strong {
+  margin-right: 0.5rem;
+}
+
+.comentario small {
+  color: #888;
+}
+
+/* TEXTO DE COMENTARIO */
+.textareaComentario {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 0.5rem;
+  min-height: 80px;
+}
+
+/* BOTON ENVIAR COMENTARIO */
+.buttonComentario {
+  padding: 0.5rem 1rem;
+  background: #0070f3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  color: #888;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .backButton,
+  .buttonComentario,
+  .newDebateButton {
+    width: 100%;
+  }
+}
+
