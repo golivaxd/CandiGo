@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link'; // 👈 agregado
 import { supabase } from '@/lib/supabaseClient';
 import type { User } from '@supabase/supabase-js';
 import Sidebar from '@/components/Sidebar';
@@ -20,7 +21,7 @@ export default function Dashboard() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // por defecto cerrado
   const [news, setNews] = useState<Article[]>([]);
   const [newsLoading, setNewsLoading] = useState(true);
   const [cargos, setCargos] = useState<string[]>([]);
@@ -99,7 +100,14 @@ export default function Dashboard() {
     <div className="dashboard-container">
       {/* Header fijo */}
       <header className="dashboard-header">
-        <h1>Cargos y Candidaturas</h1>
+        <button
+          className="menu-toggle"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          aria-label="Abrir menú"
+        >
+          ☰
+        </button>
+        <h1 className="header-title">Dashboard</h1>
         <button
           onClick={async () => {
             await supabase.auth.signOut();
@@ -111,12 +119,9 @@ export default function Dashboard() {
         </button>
       </header>
 
-      <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
       <Sidebar user={user} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       <main className="main-content">
-        
-
         {/* Sección de noticias */}
         <section className="novedades-section">
           <h2>📰 Novedades Políticas (México)</h2>
@@ -153,10 +158,12 @@ export default function Dashboard() {
           ) : cargosUnicos.length > 0 ? (
             <div className="cargos-grid">
               {cargosUnicos.map(([cargo, cantidad], idx) => (
-                <div className="cargo-card" key={idx}>
-                  <h3>{cargo}</h3>
-                  <p>Cantidad: {cantidad}</p>
-                </div>
+                <Link href={`/cargos/${encodeURIComponent(cargo)}`} key={idx}>
+                  <div className="cargo-card">
+                    <h3>{cargo}</h3>
+                    <p>Cantidad: {cantidad}</p>
+                  </div>
+                </Link>
               ))}
             </div>
           ) : (
