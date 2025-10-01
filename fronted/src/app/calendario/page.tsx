@@ -7,7 +7,7 @@ import '@/app/calendario/calendario.css';
 import { useRouter } from 'next/navigation';
 
 export default function CalendarioPage() {
-  const [value, setValue] = useState(new Date());
+  const [value, setValue] = useState<Date | null>(new Date());
   const router = useRouter();
 
   return (
@@ -22,10 +22,10 @@ export default function CalendarioPage() {
       </header>
       <main className="main">
         <Calendar
-          onChange={setValue}
+          onChange={(val) => setValue(val as Date)}
           value={value}
         />
-        <p>Fecha seleccionada: {value.toDateString()}</p>
+        <p>Fecha seleccionada: {value ? value.toDateString() : 'No hay fecha seleccionada'}</p>
       </main>
       <footer className="footer">
         © 2025 - Mi Aplicación

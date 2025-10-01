@@ -1,0 +1,188 @@
+/* [project]/node_modules/react-calendar/dist/Calendar.css [app-client] (css) */
+.react-calendar {
+  background: #fff;
+  border: 1px solid #a0a096;
+  width: 350px;
+  max-width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+}
+
+.react-calendar--doubleView {
+  width: 700px;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer {
+  margin: -.5em;
+  display: flex;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: .5em;
+}
+
+.react-calendar, .react-calendar *, .react-calendar :before, .react-calendar :after {
+  box-sizing: border-box;
+}
+
+.react-calendar button {
+  border: 0;
+  outline: none;
+  margin: 0;
+}
+
+.react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+
+.react-calendar__navigation {
+  height: 44px;
+  margin-bottom: 1em;
+  display: flex;
+}
+
+.react-calendar__navigation button {
+  background: none;
+  min-width: 44px;
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font: inherit;
+  font-size: .75em;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: .5em;
+}
+
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+  font: inherit;
+  justify-content: center;
+  align-items: center;
+  font-size: .75em;
+  font-weight: bold;
+  display: flex;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #d10000;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth, .react-calendar__decade-view__years__year--neighboringDecade, .react-calendar__century-view__decades__decade--neighboringCentury {
+  color: #757575;
+}
+
+.react-calendar__year-view .react-calendar__tile, .react-calendar__decade-view .react-calendar__tile, .react-calendar__century-view .react-calendar__tile {
+  padding: 2em .5em;
+}
+
+.react-calendar__tile {
+  text-align: center;
+  max-width: 100%;
+  font: inherit;
+  background: none;
+  padding: 10px 6.6667px;
+  font-size: .833em;
+}
+
+.react-calendar__tile:disabled {
+  color: #ababab;
+  background-color: #f0f0f0;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth:disabled, .react-calendar__decade-view__years__year--neighboringDecade:disabled, .react-calendar__century-view__decades__decade--neighboringCentury:disabled {
+  color: #cdcdcd;
+}
+
+.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+.react-calendar__tile--now {
+  background: #ffff76;
+}
+
+.react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus {
+  background: #ffffa9;
+}
+
+.react-calendar__tile--hasActive {
+  background: #76baff;
+}
+
+.react-calendar__tile--hasActive:enabled:hover, .react-calendar__tile--hasActive:enabled:focus {
+  background: #a9d4ff;
+}
+
+.react-calendar__tile--active {
+  color: #fff;
+  background: #006edc;
+}
+
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+  background: #1087ff;
+}
+
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #e6e6e6;
+}
+
+/* [project]/src/app/calendario/calendario.css [app-client] (css) */
+.calendar-page {
+  flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+}
+
+.header {
+  color: #fff;
+  z-index: 1000;
+  background-color: #60475b;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  padding: 0 1rem;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.header .back-button {
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.main {
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  margin-top: 60px;
+  padding: 1rem;
+  display: flex;
+}
+
+.footer {
+  color: #fff;
+  text-align: center;
+  background-color: #1f2937;
+  padding: 1rem;
+}
+
+/*# sourceMappingURL=_2185a5e6._.css.map*/
