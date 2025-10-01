@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <head>
         {/* Favicon usando Logo.Solo.png */}
-        <link rel="icon" type="image/png" href="/Logo.Solo.png" />
+        <link rel="icon" type="image/png" href="/LogoSolo.png" />
       </head>
       <body>{children}</body>
     </html>
