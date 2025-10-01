@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+
+import React, { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -18,8 +19,10 @@ type Candidato = {
   entidad: string;
 };
 
-export default function Comparativa() {
+function ComparativaContent() {
   const searchParams = useSearchParams();
+  
+  // Por ejemplo, obteniendo un parámetro:
   const idsParam = searchParams.get('ids');
   const ids = idsParam ? idsParam.split(',').map(Number) : [];
 
@@ -111,5 +114,13 @@ export default function Comparativa() {
         })}
       </div>
     </div>
+  );
+}
+
+export default function ComparativaPage() {
+  return (
+    <Suspense fallback={<div>Cargando comparativa...</div>}>
+      <ComparativaContent />
+    </Suspense>
   );
 }
