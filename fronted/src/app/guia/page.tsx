@@ -54,9 +54,7 @@ export default function Guia() {
         ))}
       </div>
 
-      <footer className={styles.footer}>
-        Guía del Votante &copy; 2025
-      </footer>
+
     </div>
   );
 }

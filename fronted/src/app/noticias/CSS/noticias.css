@@ -1,10 +1,10 @@
-/* Contenedor principal */
+/* --- Contenedor principal de noticias --- */
 .news-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f5f5, #e0e4f1); /* gris claro + azul suave */
   color: #333;
 }
 
@@ -14,45 +14,53 @@
   top: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  background: linear-gradient(90deg, #1e3a8a, #4dd0b0); /* azul elegante + verde agua */
   color: white;
   padding: 12px 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  justify-content: center; /* centra el título */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 1000;
+  backdrop-filter: blur(4px);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
+/* Título centrado */
 .news-header h1 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   margin: 0;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
+/* Botón a la derecha absoluto */
 .back-btn {
-  background-color: white;
-  color: #2575fc;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #648ed3; /* verde agua */
+  color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 10px 18px;
+  border-radius: 24px;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .back-btn:hover {
-  background-color: #f1f1f1;
-  transform: translateY(-2px);
-}
-
-/* Placeholder para balancear layout si quieres centrar el título */
-.header-placeholder {
-  width: 90px;
+  background-color: #1e3a8a; /* azul elegante al hover */
+  transform: translateY(-50%) translateY(-2px);
 }
 
 /* Main */
 .news-main {
-  padding: 100px 24px 24px; /* padding-top para header */
+  padding: 100px 24px 24px;
   flex: 1;
 }
 
@@ -66,7 +74,7 @@
 .search-bar input {
   width: 90%;
   max-width: 500px;
-  padding: 12px 16px;
+  padding: 12px 18px;
   border-radius: 30px;
   border: 1px solid #ccc;
   font-size: 1rem;
@@ -75,14 +83,14 @@
 }
 
 .search-bar input:focus {
-  border-color: #2575fc;
-  box-shadow: 0 0 8px rgba(37, 117, 252, 0.4);
+  border-color: #1e3a8a;
+  box-shadow: 0 0 10px rgba(30, 58, 138, 0.3);
 }
 
 /* Botón de limpiar búsqueda */
 .clear-btn {
   position: absolute;
-  right: 340px; /* espacio fijo desde el borde del input */
+  right: 340px;
   top: 50%;
   transform: translateY(-50%);
   padding: 6px 10px;
@@ -99,7 +107,6 @@
   background-color: #ff1e1e;
 }
 
-
 /* Grid de noticias */
 .news-grid {
   display: grid;
@@ -109,11 +116,11 @@
 
 /* Tarjetas */
 .news-card {
-  background-color: white;
+  background-color: rgb(249, 246, 246);
   border-radius: 12px;
   overflow: hidden;
   padding: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -122,7 +129,7 @@
 
 .news-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .news-card img {
@@ -132,48 +139,55 @@
 }
 
 .news-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin: 12px 16px 8px 16px;
-  color: #222;
+  color: #1e3a8a;
+  font-weight: 600;
 }
 
 .news-card p {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   margin: 0 16px 12px 16px;
   color: #555;
+  line-height: 1.4;
 }
 
 .news-card a {
   display: inline-block;
   margin: 0 16px 12px 16px;
-  padding: 8px 12px;
-  background-color: #2575fc;
+  padding: 8px 14px;
+  background-color: #4dd0b0;
   color: white;
   text-decoration: none;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 500;
   transition: all 0.2s ease-in-out;
 }
 
 .news-card a:hover {
-  background-color: #6a11cb;
+  background-color: #1e3a8a;
 }
 
 /* Fuente de la noticia */
 .news-source {
-  font-size: 0.8rem;
-  color: #888;
-  margin: 0 16px 12px 16px;
+  font-size: 0.85rem;        /* un poco más grande que small */
+  color: #555;               /* gris suave, discreto */
+  margin: 0 0 12px 0;        /* margen inferior para separación */
+  text-align: center;        /* centrado */
+  font-style: italic;        /* opcional: da un toque elegante */
 }
+
 
 /* Footer */
 .news-footer {
-  background-color: #2575fc;
+  background-color: #1e3a8a;
   color: white;
   text-align: center;
   padding: 16px 0;
   margin-top: auto;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 
 /* Loading */

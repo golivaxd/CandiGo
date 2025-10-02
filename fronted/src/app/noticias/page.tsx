@@ -55,7 +55,7 @@ export default function NewsPage() {
       {/* Header fijo */}
       <header className="news-header">
         <button className="back-btn" onClick={() => router.back()}>
-          ← Regresar
+          Regresar
         </button>
         <h1>Noticias</h1>
       </header>
@@ -90,7 +90,9 @@ export default function NewsPage() {
                 )}
                 <h3>{article.title}</h3>
                 {article.description && <p>{article.description}</p>}
-                {article.source && <small>Fuente: {article.source}</small>}
+                {article.source && (
+                  <p className="news-source">Fuente: {article.source}</p>)}
+
                 {article.url && (
                   <a href={article.url} target="_blank" rel="noopener noreferrer">
                     Leer más

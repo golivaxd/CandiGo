@@ -1,62 +1,86 @@
+/* Paleta de colores profesional */
+:root {
+  --color-azul-elegante: #0b6fa4;
+  --color-verde-aqua: #20c997;
+  --color-gris-elegante: #e1e6eb;
+  --color-gris-suave: #f7f9fa;
+  --color-blanco: #fff;
+  --color-rojo-elegante: #d9534f;
+  --color-fondo: linear-gradient(135deg, var(--color-gris-elegante) 0%, #cfd9de 100%);
+}
+
 /* Página completa */
 .faq-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fafafa;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: var(--color-fondo);
   color: #333;
 }
 
-/* Header fijo */
+/* Header profesional y elegante */
 .faq-header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-  color: white;
-  padding: 1rem 2rem;
+  width: 100vw;
+  min-width: 100vw;
+  background: linear-gradient(90deg, var(--color-azul-elegante), var(--color-verde-aqua));
+  color: var(--color-blanco);
+  padding: 1.2rem 2.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 12px rgba(11, 111, 164, 0.15);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .faq-header h1 {
   flex-grow: 1;
   text-align: center;
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--color-blanco);
 }
 
 /* Botón volver */
 .back-btn {
-  background: white;
-  color: #2575fc;
+  background: var(--color-verde-aqua);
+  color: var(--color-blanco);
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(32, 201, 151, 0.15);
   transition: all 0.3s ease-in-out;
 }
 .back-btn:hover {
-  background: #f1f1f1;
-  transform: translateY(-2px);
+  background: var(--color-azul-elegante);
+  transform: translateY(-2px) scale(1.04);
 }
 
 /* Contenedor principal */
 .faq-container {
-  margin-top: 80px; /* espacio para el header fijo */
-  padding: 2rem;
+  margin-top: 90px;
+  padding: 2.5rem 1.5rem;
   flex: 1;
-  overflow: visible; /* quitamos scroll */
+  overflow: visible;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
   align-items: center;
+  background: var(--color-gris-suave);
+  border-radius: 30px;
+  box-shadow: 0 4px 24px rgba(11, 111, 164, 0.08);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Lista de FAQs */
@@ -82,14 +106,31 @@
 }
 
 .faq-question {
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  cursor: pointer;
+  background: var(--color-blanco);
+  border: 2px solid var(--color-gris-borde);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(32, 201, 151, 0.07);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
   width: 100%;
-  text-align: left;
-  color: #2575fc;
+  max-width: 700px;
+  transition: box-shadow 0.3s;
+}
+.faq-question:hover {
+  box-shadow: 0 6px 18px rgba(32, 201, 151, 0.15);
+  border-color: var(--color-verde-aqua);
+}
+
+.faq-question h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-azul-elegante);
+  margin-bottom: 0.7rem;
+}
+
+.faq-question p {
+  font-size: 1rem;
+  color: #333;
 }
 
 .faq-answer {
@@ -101,45 +142,27 @@
 
 /* Footer */
 .faq-footer {
-  background: #2575fc;
-  color: white;
+  background: var(--color-azul-elegante);
+  color: var(--color-blanco);
   text-align: center;
   padding: 1rem;
-  font-size: 0.9rem;
+  border-radius: 0 0 30px 30px;
   margin-top: 2rem;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  box-shadow: 0 2px 8px rgba(11, 111, 164, 0.08);
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .faq-header h1 {
+@media (max-width: 700px) {
+  .faq-header {
+    padding: 1rem 0.5rem;
     font-size: 1.2rem;
   }
-  .back-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
+  .faq-container {
+    padding: 1rem 0.5rem;
+    border-radius: 15px;
   }
   .faq-question {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
-  .faq-container {
-    padding: 2rem 3rem;
-  }
-  .faq-header h1 {
-    font-size: 1.4rem;
-  }
-}
-
-@media (min-width: 1025px) {
-  .faq-container {
-    max-width: 900px;
-    margin: 100px auto 0 auto;
-  }
-  .faq-header h1 {
-    font-size: 1.6rem;
+    padding: 1rem;
+    border-radius: 12px;
   }
 }

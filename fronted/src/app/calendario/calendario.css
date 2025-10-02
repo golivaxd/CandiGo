@@ -1,48 +1,278 @@
-/* Contenedor principal para la página de calendario */
+:root {
+  --color-azul-elegante: #0b6fa4;
+  --color-verde-aqua: #20c997;
+  --color-gris-elegante: #e1e6eb;
+  --color-gris-suave: #f7f9fa;
+  --color-blanco: #fff;
+  --color-rojo-elegante: #d9534f;
+  --color-fondo: linear-gradient(135deg, var(--color-gris-elegante) 0%, #cfd9de 100%);
+}
+
+/* Contenedor principal */
 .calendar-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background: var(--color-fondo);
+  padding: 1rem;
 }
 
-/* Header fijo con botón para volver al menú */
+/* Header fijo */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
-  background-color: #60475b;
-  color: #fff;
+  height: 70px;
+  background: var(--color-azul-elegante);
+  color: var(--color-blanco);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
+  justify-content: center;
+  padding: 0 1.5rem;
   z-index: 1000;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
+/* Botón regresar a la derecha */
 .header .back-button {
-  background: none;
+  position: absolute;
+  right: 1.5rem;
+  background: var(--color-verde-aqua);
+  color: var(--color-blanco);
   border: none;
-  color: #fff;
-  font-size: 1.5rem;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
 
-/* Área principal con margen superior para evitar el header */
+.header .back-button:hover {
+  background: #0b6fa4;
+  transform: translateY(-2px);
+}
+
+/* Main area */
 .main {
   flex: 1;
-  margin-top: 60px; /* Igual que la altura del header */
-  padding: 1rem;
+  margin-top: 80px; /* espacio para header */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Footer fijo al final de la página */
+/* Calendario principal */
+.react-calendar {
+  width: 100%;
+  max-width: 500px;
+  background: var(--color-blanco);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Header del calendario */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.react-calendar__navigation button {
+  background: var(--color-azul-elegante);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.react-calendar__navigation button:hover {
+  background: var(--color-verde-aqua);
+  transform: translateY(-2px);
+}
+
+/* Nombre del mes */
+.react-calendar__navigation__label {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-azul-elegante);
+}
+
+/* Días de la semana */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-azul-elegante);
+}
+
+/* Días del mes */
+.react-calendar__tile {
+  text-align: center;
+  padding: 0.6rem 0;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Hover días */
+.react-calendar__tile:hover {
+  background: var(--color-verde-aqua);
+  color: var(--color-blanco);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Día seleccionado */
+.react-calendar__tile--active {
+  background: var(--color-azul-elegante);
+  color: var(--color-blanco);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Días con eventos (agregar clase event-day dinámicamente desde React) */
+.react-calendar__tile.event-day {
+  background: var(--color-verde-aqua);
+  color: var(--color-blanco);
+  font-weight: 600;
+  position: relative;
+}
+
+.react-calendar__tile.event-day::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--color-blanco);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Tarjeta de eventos del día */
+.eventos-dia {
+  background: var(--color-blanco);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.eventos-dia h3 {
+  color: var(--color-azul-elegante);
+  margin-bottom: 0.5rem;
+}
+
+.eventos-dia ul {
+  padding-left: 1.2rem;
+}
+
+.eventos-dia li {
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+/* Footer */
 .footer {
   background-color: #1f2937;
-  color: #fff;
+  color: var(--color-blanco);
   text-align: center;
   padding: 1rem;
+  margin-top: 2rem;
 }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .react-calendar {
+    padding: 0.8rem;
+  }
+
+ /* Botones de navegación más separados y grandes */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem; /* separación entre botones y label */
+}
+
+.react-calendar__navigation button {
+  background: var(--color-azul-elegante);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.6rem 1.2rem; /* botones más grandes */
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.react-calendar__navigation button:hover {
+  background: var(--color-verde-aqua);
+  transform: translateY(-2px);
+}
+
+/* Día con evento más visible */
+.react-calendar__tile.event-day {
+  background: var(--color-verde-aqua);
+  color: var(--color-blanco);
+  font-weight: 600;
+  position: relative;
+  font-size: 1.05rem;
+}
+
+/* Punto indicador de evento más grande y más visible */
+.react-calendar__tile.event-day::after {
+  content: '';
+  width: 10px;   /* más grande */
+  height: 10px;  /* más grande */
+  background: var(--color-blanco);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 4px rgba(0,0,0,0.3); /* resaltar más */
+}
+
+
+  .eventos-dia {
+    padding: 0.8rem;
+  }
+
+  .header {
+    height: 60px;
+    padding: 0 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .header .back-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+

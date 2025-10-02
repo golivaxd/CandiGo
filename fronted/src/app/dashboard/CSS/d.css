@@ -1,9 +1,19 @@
-/* --- Paleta de colores --- */
-.color1 { color: #1e3a8a; } /* azul elegante */
-.color2 { color: #2563eb; }
-.color3 { color: #3b82f6; }
-.color4 { color: #60a5fa; }
-.color5 { color: #93c5fd; }
+/* --- Importar tipografía elegante --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* --- Paleta de colores variada y elegante --- */
+:root {
+  --color-azul-oscuro: #1e3a8a;
+  --color-azul-elegante: #0b6fa4;
+  --color-azul-claro: #3b82f6;
+  --color-verde-aqua: #20c997;
+  --color-morado-elegante: #6c5ce7;
+  --color-gris-elegante: #e1e6eb;
+  --color-gris-suave: #f7f9fa;
+  --color-blanco: #fff;
+  --color-rojo-elegante: #d9534f;
+  --color-fondo: linear-gradient(135deg, var(--color-gris-elegante) 0%, #cfd9de 100%);
+}
 
 /* ===== RESET Y BASE ===== */
 * {
@@ -13,87 +23,39 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-azul-oscuro);
 }
 
-
-
-/* --- Dashboard Container --- */
+/* --- Dashboard Container elegante y discreto --- */
 .dashboard-container {
   display: flex;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background: var(--color-gris-suave);
   overflow-x: hidden;
   position: relative;
+  transition: background 0.4s ease-in-out;
 }
+
 
 /* ===== HEADER ===== */
-.dashboard-header {
-  position: fixed;
-  top: 0;
-  left: 280px; /* ancho de la sidebar en desktop */
-  width: calc(100% - 280px);
-  height: 60px;
-  background-color: #60475b;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-
-/* Elementos del header */
-.dashboard-header .header-title {
-  font-size: 1.6rem;
-  font-weight: bold;
-}
-
-.dashboard-header .logout-btn {
-  font-size: 1rem;
-  padding: 0.5em 0.8em;
-  background-color: transparent;
-  border: 2px solid #cc8c96;
-  border-radius: 6px;
-  color: #cc8c96;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.dashboard-header .logout-btn:hover {
-  background-color: #cc8c96;
-  color: #fff;
-}
-
-/* Botón hamburguesa: inicialmente oculto en desktop */
-.menu-toggle {
-  display: block;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* --- Header --- */
 .dashboard-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;              
   height: 60px;
-  background-color: #2563eb;
-  color: white;
+  background: linear-gradient(90deg, var(--color-azul-oscuro), var(--color-morado-elegante), var(--color-verde-aqua));
+  color: var(--color-blanco);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* menú izquierda, título centro, logout derecha */
+  justify-content: space-between;
   padding: 0 16px;                
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1200;
   box-sizing: border-box;
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
 /* Botón menú hamburguesa (izquierda) */
@@ -102,7 +64,7 @@ body {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: white;
+  color: var(--color-blanco);
 }
 
 /* Título centrado */
@@ -110,226 +72,151 @@ body {
   flex: 1;
   text-align: center;
   font-size: 1.5rem;
+  font-weight: 600;
   margin: 0 16px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--color-blanco);
 }
 
-/* Botón cerrar sesión (derecha) */
+/* --- Botón cerrar sesión estilo moderno sin destello --- */
 .dashboard-header .logout-btn {
-  border: 2px solid #60a5fa;
-  color: #60a5fa;
-  background: transparent;
-  padding: 0.4em 0.8em;
-  border-radius: 6px;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
   font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-  position: relative;
-  transition: 0.3s ease all;
-  flex-shrink: 0;
-}
-
-/* Efecto hover */
-.dashboard-header .logout-btn:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  right: 50%;
-  bottom: 0;
-  opacity: 0;
-  background-color: #60a5fa;
-  z-index: -1;
-  border-radius: 6px;
-  transition: 0.5s all ease;
-}
-
-.dashboard-header .logout-btn:hover:before {
-  left: 0;
-  right: 0;
-  opacity: 1;
-}
-
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .dashboard-header {
-    height: 50px;
-    padding: 0 12px;
-  }
-  .dashboard-header .header-title {
-    font-size: 1.3rem;
-    margin: 0 8px;
-  }
-  .dashboard-header .logout-btn {
-    font-size: 12px;
-    padding: 0.4em 0.6em;
-  }
-  .menu-toggle {
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .dashboard-header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 12px;
-    height: 50px;
-  }
-  .dashboard-header .header-title {
-    font-size: 1.2rem;
-    margin: 0 auto;
-  }
-  .dashboard-header .logout-btn {
-    font-size: 11px;
-    padding: 0.3em 0.5em;
-    margin: 0;
-  }
-  .menu-toggle {
-    font-size: 1.4rem;
-  }
-}
-
-
-/* Botón menú hamburguesa (izquierda) */
-.dashboard-header .menu-toggle {
-  background: none;
+  padding: 0.55em 1.2em;
+  border-radius: 30px; /* bordes tipo píldora */
   border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: white;
-}
-
-/* Título centrado */
-.dashboard-header .header-title {
-  flex: 1;
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 0 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Botón cerrar sesión (derecha) */
-.dashboard-header .logout-btn {
-  border: 2px solid #60a5fa;
-  color: #60a5fa;
-  background: transparent;
-  padding: 0.4em 0.8em;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: bold;
+  color: var(--color-blanco);
+  background: linear-gradient(135deg, var(--color-morado-elegante), var(--color-azul-claro), var(--color-verde-aqua));
+  background-size: 200% 200%; /* para animar el gradiente al hover */
   cursor: pointer;
   position: relative;
-  transition: 0.3s ease all;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Efecto hover */
-.dashboard-header .logout-btn:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  right: 50%;
-  bottom: 0;
-  opacity: 0;
-  background-color: #60a5fa;
-  z-index: -1;
-  border-radius: 6px;
-  transition: 0.5s all ease;
+/* Hover: degradado animado y ligero movimiento */
+.dashboard-header .logout-btn:hover {
+  background-position: right center; /* movimiento del degradado */
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(50, 130, 250, 0.4);
 }
 
-.dashboard-header .logout-btn:hover:before {
-  left: 0;
-  right: 0;
-  opacity: 1;
+/* Presionar el botón */
+.dashboard-header .logout-btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 6px 15px rgba(50, 130, 250, 0.3);
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .dashboard-header {
-    height: 50px;
-    padding: 0 16px; /* mismo margen lateral */
-  }
-  .dashboard-header .header-title {
-    font-size: 1.3rem;
-    margin: 0 8px;
-  }
-  .dashboard-header .logout-btn {
-    font-size: 12px;
-    padding: 0.4em 0.6em;
-  }
-  .menu-toggle {
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .dashboard-header {
-    flex-direction: column;
-    justify-content: center;
-    padding: 8px 16px; /* márgenes iguales */
-    gap: 8px;
-    text-align: center;
-    height: auto;
-  }
-  .dashboard-header .header-title {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-  .dashboard-header .logout-btn {
-    font-size: 11px;
-    padding: 0.3em 0.5em;
-    margin: 0 auto;
-  }
-  .menu-toggle {
-    align-self: flex-start;
-  }
-}
-
-
-/* --- Sidebar --- */
+/* --- Sidebar Mejorado --- */
 .sidebar {
   position: fixed;
   top: 60px;
   left: 0;
-  width: 280px; /* más ancho */
+  width: 280px;
   height: calc(100% - 60px);
-  background-color: #1e293b;
-  color: #fff;
+  background: linear-gradient(180deg, var(--color-morado-elegante), var(--color-azul-elegante), var(--color-verde-aqua)); /* degradado elegante azul */
+  color: var(--color-blanco);
   padding: 24px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
   z-index: 1100;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.15);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
-.sidebar.closed {
-  transform: translateX(-100%);
+.sidebar.closed { 
+  transform: translateX(-100%); 
 }
 
-.sidebar.open {
-  transform: translateX(0);
+.sidebar.open { 
+  transform: translateX(0); 
 }
 
 .sidebar img.profile-img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-verde-aqua); /* borde azul suave */
   margin-bottom: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar img.profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
 .sidebar h2.username {
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 24px;
+  color: var(--color-blanco);
+  text-align: center;
+}
+
+/* --- Links / botones del sidebar --- */
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.sidebar nav a,
+.sidebar nav button {
+  display: block;
+  width: 100%;
+  padding: 0.6em 1rem;
+  border-radius: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-blanco);
+  font-weight: 500;
+  font-size: 1rem;
+  background: linear-gradient(45deg, var(--color-azul-claro), var(--color-morado-elegante), var(--color-verde-aqua));
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar nav a:hover,
+.sidebar nav button:hover {
+  background: linear-gradient(45deg, var(--color-verde-aqua), var(--color-morado-elegante), var(--color-azul-claro));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 220px;
+    padding: 20px 12px;
+    height: calc(100% - 50px);
+    top: 50px;
+    border-radius: 0 15px 15px 0;
+  }
+
+  .sidebar img.profile-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .sidebar h2.username {
+    font-size: 1.1rem;
+  }
+
+  .sidebar nav a,
+  .sidebar nav button {
+    font-size: 0.95rem;
+    padding: 0.5em 0.8em;
+  }
 }
 
 /* Navegación en sidebar */
@@ -341,129 +228,358 @@ body {
 }
 
 .nav-btn {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 500;
   font-size: 1rem;
-  padding: 0.5em 1em;
+  padding: 0.6em 1.2em;
   width: 100%;
   text-align: center;
-  border: 2px solid #3b82f6;
-  border-radius: 6px;
-  background: transparent;
-  color: #93c5fd;
-  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(45deg, var(--color-azul-claro), var(--color-morado-elegante), var(--color-verde-aqua));
+  color: var(--color-blanco);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease-in-out;
 }
 
 .nav-btn:hover {
-  background-color: #3b82f6;
-  color: #fff;
+  background: linear-gradient(45deg, var(--color-verde-aqua), var(--color-azul-claro));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(32, 201, 151, 0.3);
 }
 
 /* ===== CONTENIDO PRINCIPAL ===== */
 .main-content {
   flex: 1;
-  margin: 70px 16px 16px 280px; /* espacio para header y sidebar en desktop */
+  margin: 70px 16px 16px 280px;
   padding: 1.5rem;
   max-width: 1200px;
   transition: margin-left 0.3s ease-in-out;
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
-/* --- Main Content Centrado --- */
-.main-content {
-  flex: 1;
-  margin: 70px 16px 16px 6px; /* margen top, right, bottom, left */
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  transition: margin-left 0.3s ease-in-out;
-  width: auto; /* ahora ocupa todo el espacio disponible menos los márgenes */
-  max-width: 1200px; /* opcional, para que no se vea gigante */
-  box-sizing: border-box;
+/* --- Secciones con paleta variada --- */
+.novedades-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--color-azul-claro), var(--color-morado-elegante), var(--color-verde-aqua));
+  color: var(--color-blanco);
+  border-radius: 20px; /* bordes más redondeados */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* sombra suave y elegante */
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Si sidebar abierto en escritorio, dejamos margen suficiente a la izquierda */
-@media(min-width: 769px) {
-  .sidebar.open ~ .main-content {
-    margin-left: 300px; /* espacio para el sidebar */
-    margin-right: 16px; /* margen derecho igual que izquierdo */
-  }
-  .sidebar.closed ~ .main-content {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
+/* Hover dinámico */
+.novedades-section:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, var(--color-morado-elegante), var(--color-azul-claro), var(--color-verde-aqua)); /* cambio de degradado suave */
 }
 
-/* Sidebar móvil sigue ocupando todo cuando se abre */
-@media (max-width: 768px) {
-  .main-content {
-    margin: 70px 16px 16px 16px; /* mismo margen a ambos lados */
-    width: auto;
-  }
+/* Animación sutil de brillo */
+.novedades-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 60%);
+  transform: rotate(45deg) translate(-100%, -100%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
 }
 
-/* --- Secciones --- */
-.novedades-section,
-.candidatos-section,
+.novedades-section:hover::before {
+  transform: rotate(45deg) translate(0, 0);
+}
+
+/* Imágenes dentro de novedades-section */
+/* Imágenes dentro de novedades-section */
+.novedades-section img {
+  width: 100%;
+  max-width: 100%;
+  height: auto; /* mantiene proporción */
+  max-height: none; /* eliminamos límite de altura para que se adapte */
+  object-fit: cover; /* se adapta al contenedor sin deformarse */
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+}
+
+/* Hover: imagen se agranda ligeramente */
+.novedades-section:hover img {
+  transform: scale(1.05);
+}
+
+
+
+
+/* --- Tipografía Montserrat --- */
+
+/* Sección Candidatos estilo unificado */
+.candidatos-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--color-morado-elegante), var(--color-azul-elegante), var(--color-verde-aqua)); /* degradado azul elegante */
+  color: var(--color-blanco);
+  border-radius: 20px; /* bordes más redondeados */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* sombra elegante */
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Montserrat', Arial, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* Hover dinámico con cambio de color */
+.candidatos-section:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, var(--color-verde-aqua), var(--color-morado-elegante), var(--color-azul-elegante)); /* cambio de degradado */
+}
+
+/* Animación de brillo sutil */
+.candidatos-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 60%);
+  transform: rotate(45deg) translate(-100%, -100%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.candidatos-section:hover::before {
+  transform: rotate(45deg) translate(0, 0);
+}
+
+/* Títulos */
+.candidatos-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Contenedor de imagen adaptativo */
+.img-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* Imagen dentro del contenedor */
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+/* Hover: imagen se agranda suavemente */
+.img-container:hover img {
+  transform: scale(1.05);
+}
+
+
+/* Sección Votaciones estilo unificado */
 .votaciones-section {
   margin-top: 2rem;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--color-azul-elegante), var(--color-morado-elegante), var(--color-verde-aqua)); /* degradado azul elegante */
+  color: var(--color-blanco);
+  border-radius: 20px; /* bordes más redondeados */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* sombra elegante */
   width: 100%;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Montserrat', Arial, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
+
+/* Hover dinámico con cambio de color */
+.votaciones-section:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, var(--color-morado-elegante), var(--color-verde-aqua), var(--color-azul-elegante)); /* degradado cambia al hover */
+}
+
+/* Animación de brillo sutil */
+.votaciones-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 60%);
+  transform: rotate(45deg) translate(-100%, -100%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.votaciones-section:hover::before {
+  transform: rotate(45deg) translate(0, 0);
+}
+
+/* Títulos */
+.votaciones-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Contenedor de imagen adaptativo */
+.img-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* Imagen dentro del contenedor */
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+/* Hover: imagen se agranda suavemente */
+.img-container:hover img {
+  transform: scale(1.05);
+}
+
 
 .novedades-section h2,
 .candidatos-section h2,
 .votaciones-section h2 {
-  color: #3b82f6;
   margin-bottom: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
   text-align: left;
 }
 
 /* --- Grid candidatos y cargos --- */
+/* Contenedor de tarjetas */
 .candidatos-grid,
 .cargos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 300px)); /* tamaño mínimo y máximo de tarjeta */
+  gap: 1.5rem; /* espacio más equilibrado */
   width: 100%;
+  max-width: 1200px; /* evita que se vea muy ancho en pantallas grandes */
+  margin: 1rem auto 0 auto; /* centramos la grilla */
+  justify-content: center; /* centrado horizontal sin huecos enormes */
 }
 
+/* Tarjetas individuales */
 .candidato,
 .cargo-card {
-  background: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #e0f2fe, #f0f4ff);
+  border-radius: 20px;
   padding: 1rem;
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* para respetar el tamaño máximo del grid */
 }
 
+/* Hover / selección elegante */
 .candidato:hover,
 .cargo-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-10px) scale(1.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  background: linear-gradient(135deg, #bfdbfe, #93c5fd);
 }
 
-.candidato img {
-  width: 100%;
-  border-radius: 8px;
-  max-height: 200px;
-  object-fit: cover;
+/* Imagen dentro de la tarjeta */
+.candidato img,
+.cargo-card img {
+  width: 100%;       /* ocupa todo el ancho de la tarjeta */
+  height: auto;      /* mantiene proporción */
+  max-height: 200px; /* opcional: límite de altura */
+  object-fit: contain; /* no recorta, se ajusta completo */
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
 }
 
+.candidato:hover img,
+.cargo-card:hover img {
+  transform: scale(1.05); /* sigue agrandando suavemente al hover */
+}
+
+
+/* Títulos */
 .candidato h3,
 .cargo-card h3 {
-  margin: 0.5rem 0;
+  margin: 0.4rem 0;
   color: #1e3a8a;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: transform 0.4s ease, color 0.4s ease;
 }
 
+.candidato:hover h3,
+.cargo-card:hover h3 {
+  transform: translateY(-2px);
+  color: #0f172a;
+}
+
+/* Texto adicional */
 .candidato p,
 .cargo-card p {
-  color: #555;
+  color: #374151;
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  transition: transform 0.4s ease, color 0.4s ease;
 }
+
+.candidato:hover p,
+.cargo-card:hover p {
+  transform: translateY(-1px);
+  color: #1e40af;
+}
+
+/* Animación de aparición inicial */
+.candidato,
+.cargo-card {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInCard 0.6s forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes fadeInCard {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* --- Carrusel Noticias --- */
 .news-carousel-container {
@@ -477,24 +593,30 @@ body {
   display: flex;
   flex-direction: column;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 15px;
   cursor: pointer;
   overflow: hidden;
   padding: 0.5rem 0.8rem;
   margin: 0 auto;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.news-slide:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .news-slide img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .news-slide h3 {
   font-size: 1.1rem;
   margin: 0.5rem 0;
-  color: #1e3a8a;
+  font-weight: 600;
 }
 
 .news-slide p {
@@ -512,112 +634,28 @@ body {
 .slick-prev:before, .slick-next:before { color: #3b82f6; }
 .slick-dots { display: none !important; }
 
-/* ===== BREAKPOINTS RESPONSIVOS ===== */
-
-/* ------ Tabletas (max-width: 1023px) ------ */
+/* ===== MEDIA QUERIES ===== */
 @media (max-width: 1023px) {
-  .dashboard-container {
-    flex-direction: column;
-  }
-  
-  .dashboard-header {
-    left: 0;
-    width: 100%;
-    padding: 0.8rem 1rem;
-  }
-  
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    top: 0;
-    transform: translateX(0);
-    box-shadow: none;
-  }
-  
-  .main-content {
-    margin: 70px 16px 16px 0;
-    width: 100%;
-  }
-  
-  /* Esconde el menú hamburguesa en tabletas (si no se necesita) o lo muestra y controla la sidebar por JS */
-  .menu-toggle {
-    display: block;
-  }
+  .dashboard-container { flex-direction: column; }
+  .dashboard-header { left: 0; width: 100%; padding: 0.8rem 1rem; }
+  .sidebar { position: relative; width: 100%; height: auto; top: 0; transform: translateX(0); box-shadow: none; }
+  .main-content { margin: 70px 16px 16px 0; width: 100%; }
 }
 
-/* ------ Móviles (max-width: 768px) ------ */
 @media (max-width: 768px) {
-  .dashboard-header {
-    height: 50px;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.5rem 12px;
-  }
-  
-  .header-title {
-    font-size: 1.4rem;
-  }
-  
-  .logout-btn {
-    font-size: 0.9rem;
-    padding: 0.4em 0.7em;
-  }
-  
-  /* En móviles, el menú hamburguesa se muestra y la sidebar se oculta por defecto */
-  .menu-toggle {
-    display: block;
-  }
-  
-  .sidebar {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    width: 280px;
-    height: calc(100% - 50px);
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    transform: translateX(-100%);
-    z-index: 1100;
-  }
-  
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
-  .main-content {
-    margin: 70px 16px 16px 0;
-    width: 100%;
-    padding: 1rem;
-  }
+  .dashboard-header { height: 50px; padding: 0.5rem 12px; flex-direction: row; justify-content: space-between; }
+  .header-title { font-size: 1.4rem; }
+  .logout-btn { font-size: 0.9rem; padding: 0.4em 0.7em; }
+  .menu-toggle { display: block; }
+  .sidebar { position: fixed; top: 50px; left: 0; width: 280px; height: calc(100% - 50px); transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main-content { margin: 70px 16px 16px 0; width: 100%; padding: 1rem; }
 }
 
-/* ------ Móviles pequeños (max-width: 480px) ------ */
 @media (max-width: 480px) {
-  .dashboard-header {
-    flex-direction: column;
-    gap: 8px;
-    padding: 8px 12px;
-    height: auto;
-    text-align: center;
-  }
-  
-  .header-title {
-    font-size: 1.2rem;
-  }
-  
-  .logout-btn {
-    font-size: 0.8rem;
-    padding: 0.3em 0.5em;
-    margin: 0 auto;
-  }
-  
-  .menu-toggle {
-    align-self: flex-start;
-    font-size: 1.6rem;
-  }
-  
-  .main-content {
-    padding: 0.8rem;
-  }
+  .dashboard-header { flex-direction: column; gap: 8px; padding: 8px 12px; height: auto; text-align: center; }
+  .header-title { font-size: 1.2rem; }
+  .logout-btn { font-size: 0.8rem; padding: 0.3em 0.5em; margin: 0 auto; }
+  .menu-toggle { align-self: flex-start; font-size: 1.6rem; }
+  .main-content { padding: 0.8rem; }
 }

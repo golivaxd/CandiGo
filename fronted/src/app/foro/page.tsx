@@ -192,9 +192,7 @@ export default function Foro() {
         </div>
       )}
 
-      <footer className={styles.footer}>
-        Foro de Debates &copy; 2025
-      </footer>
+
     </div>
   );
 }

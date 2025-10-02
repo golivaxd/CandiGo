@@ -38,7 +38,7 @@ export default function PreguntasPage() {
       {/* Header fijo */}
       <header className="faq-header">
         <button className="back-btn" onClick={() => router.push('/dashboard')}>
-          ⬅ Volver
+          Regresar
         </button>
         <h1>Preguntas Frecuentes</h1>
       </header>
