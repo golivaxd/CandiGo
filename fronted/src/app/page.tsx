@@ -66,11 +66,20 @@ export default function Home() {
 
   return (
     <>
+      {/* Header fijo */}
       <header className="header">
         <div className="header-left">CandiGo</div>
         <div className="header-right">
-          <button className="header-btn">Botón 1</button>
-          <button className="header-btn">Botón 2</button>
+          <button
+            className="header-btn"
+            onClick={() => router.push('/nosotros')}
+          >Nosotros
+          </button>
+          <button
+            className="header-btn"
+            onClick={() => router.push('/contactanos')}
+          >Contactanos
+          </button>
         </div>
       </header>
 

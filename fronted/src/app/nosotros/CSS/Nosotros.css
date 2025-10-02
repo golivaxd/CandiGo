@@ -1,0 +1,113 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.nosotros-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* Header fijo */
+.nosotros-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #6c5ce7; /* morado pastel */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nosotros-header h1 {
+  font-size: 1.8rem;
+}
+
+.back-button {
+  background-color: white;
+  color: #6c5ce7;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #dfe2ff;
+}
+
+/* Main content */
+.nosotros-content {
+  flex: 1;
+  padding: 100px 20px 40px 20px; /* padding-top para compensar header fijo */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.intro h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.intro p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* Footer */
+.nosotros-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nosotros-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .back-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .intro h2 {
+    font-size: 1.6rem;
+  }
+
+  .nosotros-content {
+    padding: 90px 15px 30px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nosotros-header {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  .back-button {
+    margin-top: 5px;
+    width: 100%;
+  }
+}
