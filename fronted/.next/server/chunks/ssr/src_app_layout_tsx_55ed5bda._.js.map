@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Goliva/Desktop/CandiGo/fronted/src/app/layout.tsx"],"sourcesContent":["export const metadata = {\r\n  title: 'CandiGo',\r\n  description: 'Infórmate con CandiGo',\r\n  openGraph: {\r\n    title: 'CandiGo',\r\n    description: 'Infórmate con CandiGo',\r\n    url: 'https://candigo.vercel.app', // pon tu dominio real de Vercel\r\n    siteName: 'CandiGo',\r\n    images: [\r\n      {\r\n        url: '/LogoSolo.png', // tu imagen en public\r\n        width: 1200,\r\n        height: 630,\r\n        alt: 'CandiGo Logo',\r\n      },\r\n    ],\r\n    locale: 'es_ES',\r\n    type: 'website',\r\n  },\r\n};\r\n"],"names":[],"mappings":";;;AAAO,MAAM,WAAW;IACtB,OAAO;IACP,aAAa;IACb,WAAW;QACT,OAAO;QACP,aAAa;QACb,KAAK;QACL,UAAU;QACV,QAAQ;YACN;gBACE,KAAK;gBACL,OAAO;gBACP,QAAQ;gBACR,KAAK;YACP;SACD;QACD,QAAQ;QACR,MAAM;IACR;AACF","debugId":null}}]
-}
