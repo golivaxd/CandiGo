@@ -1,25 +1,35 @@
 /* login.css */
 /* From Uiverse.io by jeel-sardhara */
+
+/* Importar tipografía elegante */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #e1e6eb 0%, #cfd9de 100%); /* Gris elegante con toque azul */
+}
+
 .container {
   max-width: 350px;
-  background: #F4F7FB; /* Gris claro (fondo) */
+  background: #f7f9fa; /* Gris muy suave para el container */
   background: linear-gradient(
     0deg,
-    #FFFFFF 0%,
-    #F4F7FB 100%
+    #ffffff 0%,
+    #f7f9fa 100%
   );
   border-radius: 40px;
   padding: 25px 35px;
-  border: 5px solid #FFFFFF;
-  box-shadow: rgba(16, 137, 211, 0.3) 0px 30px 30px -20px; /* Azul brillante más suave */
-  margin: 20px;
+  border: 2px solid #d6e9ec; /* borde gris elegante */
+  box-shadow: rgba(11, 111, 164, 0.25) 0px 30px 30px -20px; /* Azul elegante */
+  margin: 20px auto;
 }
 
 .heading {
   text-align: center;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 30px;
-  color: #1089D3; /* Azul brillante */
+  color: #0b6fa4; /* Azul elegante */
+  letter-spacing: 1px;
 }
 
 .form {
@@ -29,25 +39,23 @@
 .form .input {
   width: 100%;
   background: #FFFFFF;
-  border: none;
-  padding: 15px 5px;
+  border: 2px solid #d6e9ec;
+  padding: 15px 10px;
   border-radius: 20px;
   margin-top: 15px;
-  box-shadow: #4AB3FF 0px 10px 10px -5px; /* Azul cielo */
+  box-shadow: inset 0px 2px 5px rgba(0, 128, 128, 0.1);
   border-inline: 2px solid transparent;
-}
-
-.form .input::-moz-placeholder {
-  color: #222222; /* Negro suave para contraste */
+  transition: all 0.3s ease-in-out;
 }
 
 .form .input::placeholder {
-  color: #222222; /* Negro suave */
+  color: #555555; /* Gris elegante */
 }
 
 .form .input:focus {
   outline: none;
-  border-inline: 2px solid #6A0DAD; /* Morado intenso */
+  border-inline: 2px solid #20c997; /* Verde aqua */
+  box-shadow: 0 0 6px rgba(32, 201, 151, 0.4);
 }
 
 .form .forgot-password {
@@ -58,8 +66,8 @@
 
 .form .forgot-password a,
 .link-btn {
-  font-size: 11px;
-  color: #F4A300; /* Naranja cálido */
+  font-size: 12px;
+  color: #0b6fa4; /* Azul elegante */
   text-decoration: none;
   background: none;
   border: none;
@@ -71,7 +79,7 @@
 
 .form .forgot-password a:hover,
 .link-btn:hover {
-  color: #FF4B6E; /* Rosa vibrante */
+  color: #20c997; /* Verde aqua al hover */
   text-decoration: underline;
 }
 
@@ -81,33 +89,32 @@
   font-weight: bold;
   background: linear-gradient(
     45deg,
-    #1089D3 0%, /* Azul brillante */
-    #4AB3FF 100% /* Azul cielo */
+    #0b6fa4 0%, /* Azul elegante */
+    #20c997 100% /* Verde aqua */
   );
   color: #FFFFFF;
   padding-block: 15px;
   margin: 20px auto;
   border-radius: 20px;
-  box-shadow: rgba(16, 137, 211, 0.5) 0px 20px 10px -15px;
+  box-shadow: rgba(11, 111, 164, 0.4) 0px 20px 10px -15px;
   border: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s ease-in-out;
   cursor: pointer;
 }
 
 .form .login-button:hover {
   transform: scale(1.03);
-  box-shadow: rgba(106, 13, 173, 0.5) 0px 23px 10px -20px; /* Morado intenso */
+  box-shadow: rgba(32, 201, 151, 0.5) 0px 23px 10px -20px; /* Verde aqua */
 }
 
 .form .login-button:active {
   transform: scale(0.95);
-  box-shadow: rgba(244, 163, 0, 0.6) 0px 15px 10px -10px; /* Naranja cálido */
+  box-shadow: rgba(11, 111, 164, 0.4) 0px 15px 10px -10px; /* Azul elegante */
 }
 
-/* Si quieres agregar algo para mensajes de error */
+/* Mensajes de error */
 p {
   font-weight: 600;
   margin-top: 10px;
-  color: #FF4B6E; /* Rosa vibrante para errores */
+  color: #d9534f; /* Rojo elegante y sobrio */
 }
-
