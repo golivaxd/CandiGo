@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
-import styles from './foro.module.css';
+import './CSS/nosotros.css';
 
 interface Debate {
   id: number;
