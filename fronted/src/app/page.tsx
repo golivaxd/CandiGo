@@ -88,7 +88,7 @@ export default function Home() {
         <div className="login-container">
           <div className="container">
             <div className="heading">
-              {mode === 'login' && '¡Bienvenido!'}
+              {mode === 'login' && '¡Bienvenid@!'}
               {mode === 'signup' && 'Crear Cuenta'}
               {mode === 'reset' && 'Restablecer Contraseña'}
             </div>
