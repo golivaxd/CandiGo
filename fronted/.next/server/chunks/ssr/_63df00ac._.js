@@ -56,7 +56,7 @@ function NewsPage() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         className: "back-btn",
                         onClick: ()=>router.back(),
-                        children: "← Regresar"
+                        children: "Regresar"
                     }, void 0, false, {
                         fileName: "[project]/src/app/noticias/page.tsx",
                         lineNumber: 57,
@@ -134,15 +134,16 @@ function NewsPage() {
                                         lineNumber: 92,
                                         columnNumber: 41
                                     }, this),
-                                    article.source && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
+                                    article.source && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "news-source",
                                         children: [
                                             "Fuente: ",
                                             article.source
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/noticias/page.tsx",
-                                        lineNumber: 93,
-                                        columnNumber: 36
+                                        lineNumber: 94,
+                                        columnNumber: 19
                                     }, this),
                                     article.url && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                         href: article.url,
@@ -151,7 +152,7 @@ function NewsPage() {
                                         children: "Leer más"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/noticias/page.tsx",
-                                        lineNumber: 95,
+                                        lineNumber: 97,
                                         columnNumber: 19
                                     }, this)
                                 ]
@@ -163,7 +164,7 @@ function NewsPage() {
                             children: "No se encontraron noticias."
                         }, void 0, false, {
                             fileName: "[project]/src/app/noticias/page.tsx",
-                            lineNumber: 102,
+                            lineNumber: 104,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
@@ -183,12 +184,12 @@ function NewsPage() {
                     children: "© 2025 CandiGo. Todos los derechos reservados."
                 }, void 0, false, {
                     fileName: "[project]/src/app/noticias/page.tsx",
-                    lineNumber: 109,
+                    lineNumber: 111,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/noticias/page.tsx",
-                lineNumber: 108,
+                lineNumber: 110,
                 columnNumber: 7
             }, this)
         ]
