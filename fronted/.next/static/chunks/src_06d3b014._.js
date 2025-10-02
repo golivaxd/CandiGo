@@ -120,7 +120,7 @@ function Mapa() {
                     entidadesData.forEach({
                         "Mapa.useEffect.initializeMap": (entidad)=>{
                             const marker = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mapbox$2d$gl$2f$dist$2f$mapbox$2d$gl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].Marker({
-                                color: 'blue'
+                                color: '#0070f3'
                             }).setLngLat([
                                 entidad.lng,
                                 entidad.lat
@@ -150,7 +150,8 @@ function Mapa() {
             position: 'relative',
             width: '100%',
             height: '100vh',
-            fontFamily: 'Arial, sans-serif'
+            fontFamily: 'Montserrat, Arial, sans-serif',
+            background: 'linear-gradient(135deg, #f5f5f5, #e0e4f1)'
         },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
@@ -159,42 +160,51 @@ function Mapa() {
                     top: 0,
                     left: 0,
                     width: '100%',
-                    background: 'rgba(52,58,64,0.9)',
+                    background: 'linear-gradient(90deg, #1e3a8a, #4dd0b0)',
                     color: '#fff',
-                    padding: '1rem 1.5rem',
+                    padding: '1rem 2rem',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     zIndex: 1000,
                     backdropFilter: 'blur(6px)',
-                    boxSizing: 'border-box'
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+                    borderBottomLeftRadius: '12px',
+                    borderBottomRightRadius: '12px'
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         style: {
                             margin: 0,
-                            fontSize: '1.5rem'
+                            fontSize: '1.6rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.5px'
                         },
                         children: "Mapa de Candidatos"
                     }, void 0, false, {
                         fileName: "[project]/src/app/mapa/page.tsx",
-                        lineNumber: 110,
+                        lineNumber: 112,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: ()=>window.location.href = '/dashboard',
                         style: {
-                            padding: '0.5rem 1rem',
-                            background: '#0070f3',
+                            padding: '0.6rem 1.4rem',
+                            background: '#318422ff',
                             color: '#fff',
                             border: 'none',
-                            borderRadius: '6px',
-                            cursor: 'pointer'
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            fontSize: '1rem',
+                            fontWeight: 500,
+                            transition: 'all 0.3s ease'
                         },
+                        onMouseEnter: (e)=>e.target.style.background = '#1e3a8a',
+                        onMouseLeave: (e)=>e.target.style.background = '#318422ff',
                         children: "Regresar"
                     }, void 0, false, {
                         fileName: "[project]/src/app/mapa/page.tsx",
-                        lineNumber: 111,
+                        lineNumber: 115,
                         columnNumber: 9
                     }, this)
                 ]
@@ -213,7 +223,7 @@ function Mapa() {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/app/mapa/page.tsx",
-                lineNumber: 127,
+                lineNumber: 136,
                 columnNumber: 7
             }, this),
             selectedEntidad && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -224,9 +234,9 @@ function Mapa() {
                     bottom: 0,
                     width: '350px',
                     maxWidth: '90%',
-                    background: '#fff',
-                    boxShadow: '-3px 0 20px rgba(0,0,0,0.3)',
-                    borderLeft: '2px solid #0070f3',
+                    background: '#f9f9f9',
+                    boxShadow: '-3px 0 20px rgba(0,0,0,0.15)',
+                    borderLeft: '2px solid #4dd0b0',
                     borderRadius: '12px 0 0 12px',
                     padding: '1rem',
                     overflowY: 'auto',
@@ -239,19 +249,20 @@ function Mapa() {
                         style: {
                             display: 'flex',
                             justifyContent: 'space-between',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            marginBottom: '1rem'
                         },
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                 style: {
                                     margin: 0,
                                     fontSize: '1.4rem',
-                                    color: '#0070f3'
+                                    color: '#1e3a8a'
                                 },
                                 children: selectedEntidad.nombre
                             }, void 0, false, {
                                 fileName: "[project]/src/app/mapa/page.tsx",
-                                lineNumber: 159,
+                                lineNumber: 168,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -266,13 +277,13 @@ function Mapa() {
                                 children: "✕"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/mapa/page.tsx",
-                                lineNumber: 160,
+                                lineNumber: 169,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/mapa/page.tsx",
-                        lineNumber: 158,
+                        lineNumber: 167,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -281,17 +292,18 @@ function Mapa() {
                         value: search,
                         onChange: (e)=>setSearch(e.target.value),
                         style: {
-                            margin: '1rem 0',
+                            margin: '0 0 1rem 0',
                             padding: '0.5rem 0.75rem',
-                            borderRadius: '8px',
+                            borderRadius: '30px',
                             border: '1px solid #ccc',
                             fontSize: '1rem',
                             width: '100%',
-                            boxSizing: 'border-box'
+                            boxSizing: 'border-box',
+                            outline: 'none'
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/app/mapa/page.tsx",
-                        lineNumber: 175,
+                        lineNumber: 184,
                         columnNumber: 11
                     }, this),
                     filteredCandidatos.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -304,73 +316,109 @@ function Mapa() {
                             var _candidato_partido;
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                 style: {
-                                    padding: '0.5rem 0',
-                                    borderBottom: '1px solid #eee'
+                                    padding: '0.75rem 1rem',
+                                    borderBottom: '1px solid #dfe3ee',
+                                    transition: 'all 0.2s ease-in-out',
+                                    borderRadius: '8px',
+                                    marginBottom: '0.5rem',
+                                    background: 'white',
+                                    boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    cursor: 'pointer'
                                 },
+                                onClick: ()=>window.location.href = "/candidatos/".concat(candidato.id),
+                                title: "Ver detalles del candidato",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                        style: {
-                                            display: 'block',
-                                            fontSize: '1.1rem',
-                                            color: '#333'
-                                        },
-                                        children: candidato.nombre
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                style: {
+                                                    display: 'block',
+                                                    fontSize: '1.1rem',
+                                                    color: '#1e3a8a',
+                                                    marginBottom: '0.2rem'
+                                                },
+                                                children: candidato.nombre
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/mapa/page.tsx",
+                                                lineNumber: 223,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                style: {
+                                                    color: '#555',
+                                                    fontSize: '0.95rem'
+                                                },
+                                                children: candidato.cargo
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/mapa/page.tsx",
+                                                lineNumber: 226,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                                fileName: "[project]/src/app/mapa/page.tsx",
+                                                lineNumber: 227,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                style: {
+                                                    color: '#4dd0b0',
+                                                    fontStyle: 'italic',
+                                                    fontSize: '0.9rem'
+                                                },
+                                                children: ((_candidato_partido = candidato.partido) === null || _candidato_partido === void 0 ? void 0 : _candidato_partido.nombre) || candidato.partido_id
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/mapa/page.tsx",
+                                                lineNumber: 228,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/src/app/mapa/page.tsx",
-                                        lineNumber: 201,
+                                        lineNumber: 222,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         style: {
-                                            color: '#555'
+                                            fontSize: '1.2rem',
+                                            color: '#318422',
+                                            fontWeight: 600
                                         },
-                                        children: candidato.cargo
+                                        children: "→"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/mapa/page.tsx",
-                                        lineNumber: 204,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
-                                        fileName: "[project]/src/app/mapa/page.tsx",
-                                        lineNumber: 205,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        style: {
-                                            color: '#555',
-                                            fontStyle: 'italic'
-                                        },
-                                        children: ((_candidato_partido = candidato.partido) === null || _candidato_partido === void 0 ? void 0 : _candidato_partido.nombre) || candidato.partido_id
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/mapa/page.tsx",
-                                        lineNumber: 206,
+                                        lineNumber: 232,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, candidato.id, true, {
                                 fileName: "[project]/src/app/mapa/page.tsx",
-                                lineNumber: 194,
+                                lineNumber: 204,
                                 columnNumber: 17
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/app/mapa/page.tsx",
-                        lineNumber: 192,
+                        lineNumber: 202,
                         columnNumber: 13
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         style: {
-                            color: '#666'
+                            color: '#666',
+                            textAlign: 'center',
+                            marginTop: '1rem'
                         },
                         children: "No hay candidatos que coincidan."
                     }, void 0, false, {
                         fileName: "[project]/src/app/mapa/page.tsx",
-                        lineNumber: 213,
+                        lineNumber: 237,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/mapa/page.tsx",
-                lineNumber: 139,
+                lineNumber: 148,
                 columnNumber: 9
             }, this)
         ]

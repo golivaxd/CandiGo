@@ -27,7 +27,7 @@ export default function CalendarioPage() {
   return (
     <div className="calendar-page">
       <header className="header">
-        <button className="back-button" onClick={() => router.push('/das')}>
+        <button className="back-button" onClick={() => router.push('/dashboard')}>
           Regresar
         </button>
         <h1>Calendario</h1>
@@ -57,9 +57,7 @@ export default function CalendarioPage() {
           </div>
         )}
       </main>
-      <footer className="footer">
-         © 2025 CandiGo. Todos los derechos reservados.
-      </footer>
+      
     </div>
   );
 }

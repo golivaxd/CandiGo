@@ -17,8 +17,8 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 const supabaseUrl = ("TURBOPACK compile-time value", "https://lmfqhbkliugoauxcaprl.supabase.co");
-const supabaseKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtZnFoYmtsaXVnb2F1eGNhcHJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEzNjcyOTAsImV4cCI6MjA1Njk0MzI5MH0.KHCzarygd02MSMRVZ87_sO_Y2GrXCdT_9lNDJJusAxk");
-const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseKey, {
+const supabaseAnonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtZnFoYmtsaXVnb2F1eGNhcHJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEzNjcyOTAsImV4cCI6MjA1Njk0MzI5MH0.KHCzarygd02MSMRVZ87_sO_Y2GrXCdT_9lNDJJusAxk");
+const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseAnonKey, {
     auth: {
         persistSession: true,
         autoRefreshToken: true,
@@ -64,7 +64,6 @@ __turbopack_context__.v({
   "container": "foro-module__h9DDxW__container",
   "debateAuthor": "foro-module__h9DDxW__debateAuthor",
   "debateDescription": "foro-module__h9DDxW__debateDescription",
-  "debateDetail": "foro-module__h9DDxW__debateDetail",
   "debateItem": "foro-module__h9DDxW__debateItem",
   "debateList": "foro-module__h9DDxW__debateList",
   "debateTitle": "foro-module__h9DDxW__debateTitle",
@@ -436,14 +435,6 @@ function Foro() {
                 fileName: "[project]/src/app/foro/page.tsx",
                 lineNumber: 167,
                 columnNumber: 9
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
-                className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$foro$2f$foro$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].footer,
-                children: "Foro de Debates © 2025"
-            }, void 0, false, {
-                fileName: "[project]/src/app/foro/page.tsx",
-                lineNumber: 195,
-                columnNumber: 7
             }, this)
         ]
     }, void 0, true, {

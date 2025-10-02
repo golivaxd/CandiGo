@@ -1,5 +1,12 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/api/news/route": "app/api/news/route.js",
+  "/calendario/page": "app/calendario/page.js",
+  "/candidatos/[id]/page": "app/candidatos/[id]/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/noticias/page": "app/noticias/page.js"
+  "/foro/page": "app/foro/page.js",
+  "/guia/page": "app/guia/page.js",
+  "/mapa/page": "app/mapa/page.js",
+  "/noticias/page": "app/noticias/page.js",
+  "/preguntas/page": "app/preguntas/page.js"
 }
