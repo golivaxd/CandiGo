@@ -1,6 +1,6 @@
 /* foro.module.css */
 
-:root {
+:global(:root) {
   --color-azul-elegante: #0b6fa4;
   --color-verde-aqua: #20c997;
   --color-gris-suave: #f7f9fa;
