@@ -1,0 +1,24 @@
+/* 🎨 VARIABLES GLOBALES */
+:root {
+  --color-azul-elegante: #0b6fa4;
+  --color-verde-aqua: #20c997;
+  --color-gris-suave: #f7f9fa;
+  --color-blanco: #fff;
+  --color-gris-borde: #d6e9ec;
+  --color-gris-texto: #555;
+  --color-gris-secundario: #888;
+}
+
+/* ✨ ESTILOS BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--color-gris-suave);
+  color: var(--color-gris-texto);
+  line-height: 1.5;
+}

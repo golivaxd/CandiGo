@@ -1,3 +1,5 @@
+import './globals.css';
+
 export const metadata = {
   title: 'CandiGo',
   description: 'Infórmate con CandiGo',
