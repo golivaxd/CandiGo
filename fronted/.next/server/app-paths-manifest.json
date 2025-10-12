@@ -1,0 +1,7 @@
+{
+  "/api/news/route": "app/api/news/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/foro/page": "app/foro/page.js",
+  "/noticias/page": "app/noticias/page.js",
+  "/page": "app/page.js"
+}

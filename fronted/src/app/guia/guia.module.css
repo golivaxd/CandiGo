@@ -1,168 +1,133 @@
-/* Paleta de colores profesional y uniforme */
-:root {
-  --color-azul-elegante: #0b6fa4;
-  --color-verde-aqua: #20c997;
-  --color-gris-suave: #f7f9fa;
-  --color-blanco: #fff;
-  --color-gris-borde: #d6e9ec;
-  --color-gris-texto: #555;
-  --color-gris-secundario: #888;
+/* 🌟 Contenedor principal */
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  color: #2c2c2c;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-body, .container {
-  font-family: 'Montserrat', Arial, sans-serif;
-  background: #f7f9fa;
-  color: var(--color-azul-elegante);
-  min-height: 100vh;
-}
-
+/* 🔹 Header */
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 70px;
-  background: linear-gradient(90deg, var(--color-azul-elegante), var(--color-verde-aqua));
-  color: var(--color-blanco);
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: 0 2rem;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(11, 111, 164, 0.12);
+  margin-bottom: 2rem;
 }
 
 .header h1 {
-  flex: 1;
-  text-align: center;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin: 0;
-  color: var(--color-blanco);
+  color: #5a4bff;
 }
 
 .header button {
-  position: absolute;
-  right: 2rem;
-  background:rebeccapurple;
-  color: var(--color-blanco);
+  background: transparent;
   border: none;
-  border-radius: 30px;
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  font-weight: 600;
+  color: #5a4bff;
   font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(32, 201, 151, 0.15);
-  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
+
 .header button:hover {
-  background: var(--color-azul-elegante);
-  transform: translateY(-2px) scale(1.04);
+  text-decoration: underline;
 }
 
-.container {
-  max-width: 1000px;
-  margin: 90px auto 0 auto;
-  padding: 1rem;
-  background: var(--color-gris-suave);
-  border-radius: 20px;
-  box-shadow: 0 4px 24px rgba(11, 111, 164, 0.08);
-}
-
+/* 🧩 Grid de tarjetas */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
+/* 💳 Tarjeta */
 .card {
-  padding: 1.5rem 1.7rem;
-  border-radius: 30px 8px 30px 8px;
-  background: linear-gradient(120deg, #f7f9fa 0%, #e1e6eb 100%);
-  color: var(--color-azul-elegante);
-  box-shadow: 0 8px 32px rgba(11, 111, 164, 0.12);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 200px;
-  border: 2px solid var(--color-verde-aqua);
-  transition: transform 0.25s, box-shadow 0.25s, background 0.25s, border-radius 0.25s;
-  position: relative;
-  overflow: hidden;
-}
-.card:hover {
-  transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 16px 40px rgba(32, 201, 151, 0.18);
-  background: linear-gradient(120deg, #e1e6eb 0%, #f7f9fa 100%);
-  border-radius: 8px 30px 8px 30px;
+  background: #f8f9ff;
+  border-radius: 14px;
+  padding: 1.2rem;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 2px 8px rgba(90, 75, 255, 0.05);
+  border: 1px solid #e0e4f0;
+  color: #2c2c2c;
 }
 
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(90, 75, 255, 0.15);
+  background: #ffffff;
+}
+
+/* 🔘 Icono */
+.icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.icon img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+/* 📘 Texto */
 .card h3 {
   margin: 0.5rem 0;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--color-verde-aqua);
-  letter-spacing: 1.5px;
-  text-shadow: 0 2px 8px rgba(32, 201, 151, 0.12);
-  border-bottom: 2px solid var(--color-azul-elegante);
-  padding-bottom: 6px;
+  color: #4038cc;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .card p {
-  flex: 1;
-  color: var(--color-gris-texto);
-  font-size: 1.05rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 1px 4px rgba(11, 111, 164, 0.08);
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
 }
 
-/* Elimina el icono de las cards */
-.card .icon {
-  display: none;
-}
-
+/* 🏷️ Tipo */
 .tipo {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  margin-top: 0.7rem;
-  color: var(--color-verde-aqua);
+  display: inline-block;
+  background: rgba(90, 75, 255, 0.1);
+  color: #5a4bff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
-.footer {
-  text-align: center;
-  margin-top: 2rem;
-  padding: 1rem;
-  background: var(--color-azul-elegante);
-  color: var(--color-blanco);
-  border-radius: 0 0 20px 20px;
-  box-shadow: 0 2px 8px rgba(11, 111, 164, 0.08);
-  font-size: 0.95rem;
-}
-
+/* 📱 Responsive */
 @media (max-width: 768px) {
-  .header {
-    padding: 0.8rem 1rem;
-    height: 60px;
-  }
-  .header h1 {
-    font-size: 1.3rem;
-  }
-  .header button {
-    right: 1rem;
-    font-size: 0.95rem;
-    padding: 0.5rem 1rem;
-  }
   .container {
-    padding: 0.5rem;
-    margin-top: 70px;
-    border-radius: 12px;
-  }
-  .card {
     padding: 1rem;
-    border-radius: 10px;
   }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1rem;
   }
 }
