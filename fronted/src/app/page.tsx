@@ -1,24 +1,19 @@
 'use client';
+
 import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
-import './CSS/Login.css';    // Estilos del login (form)
-import './CSS/layout.css';   // Header y layout
+import './CSS/Login.css'; // Estilos del login (form)
 
 export default function Home() {
   const router = useRouter();
-
-  // Estados para el modo: login o signup o reset
   const [mode, setMode] = useState<'login' | 'signup' | 'reset'>('login');
-
-  // Datos del formulario
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState(''); // solo para signup
+  const [fullName, setFullName] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Función para login
   const handleLogin = async () => {
     setIsSubmitting(true);
     setMessage('');
@@ -28,7 +23,6 @@ export default function Home() {
     setIsSubmitting(false);
   };
 
-  // Función para crear cuenta
   const handleSignup = async () => {
     setIsSubmitting(true);
     setMessage('');
@@ -36,7 +30,9 @@ export default function Home() {
       email,
       password,
       options: {
-        data: { full_name: fullName },
+        data: {
+          full_name: fullName,
+        },
       },
     });
     if (error) setMessage('Error: ' + error.message);
@@ -44,7 +40,6 @@ export default function Home() {
     setIsSubmitting(false);
   };
 
-  // Función para reset password
   const handleResetPassword = async () => {
     setIsSubmitting(true);
     setMessage('');
@@ -52,11 +47,10 @@ export default function Home() {
       redirectTo: 'https://candigo.vercel.app/reset-password', // Cambia esta URL según tu app
     });
     if (error) setMessage('Error: ' + error.message);
-    else setMessage('Revisa tu correo para restablecer blee la contraseña.');
+    else setMessage('Revisa tu correo para restablecer la contraseña.');
     setIsSubmitting(false);
   };
 
-  // Manejador del submit según modo
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (mode === 'login') await handleLogin();
@@ -70,29 +64,24 @@ export default function Home() {
       <header className="header">
         <div className="header-left">CandiGo</div>
         <div className="header-right">
-          <button
-            className="header-btn"
-            onClick={() => router.push('/nosotros')}
-          >Nosotros
+          <button className="header-btn" onClick={() => router.push('/nosotros')}>
+            Nosotros
           </button>
-          <button
-            className="header-btn"
-            onClick={() => router.push('/contactanos')}
-          >Contactanos
+          <button className="header-btn" onClick={() => router.push('/contactanos')}>
+            Contactanos
           </button>
         </div>
       </header>
 
-      <div className="main-container">
+      <div className="main-content-area"> {/* Cambiado de main-container a main-content-area para mejor semántica */}
         {/* Login/signup/reset a la izquierda */}
-        <div className="login-container">
-          <div className="container">
+        <div className="auth-form-container"> {/* Cambiado a auth-form-container */}
+          <div className="form-card"> {/* Agregado form-card para el estilo de la tarjeta del formulario */}
             <div className="heading">
               {mode === 'login' && '¡Bienvenido!'}
               {mode === 'signup' && 'Crear Cuenta'}
               {mode === 'reset' && 'Restablecer Contraseña'}
             </div>
-
             <form className="form" onSubmit={handleSubmit}>
               {mode === 'signup' && (
                 <input
@@ -106,7 +95,6 @@ export default function Home() {
                   }}
                 />
               )}
-
               <input
                 placeholder="Correo Electrónico"
                 id="email"
@@ -120,7 +108,6 @@ export default function Home() {
                   setMessage('');
                 }}
               />
-
               {(mode === 'login' || mode === 'signup') && (
                 <input
                   placeholder="Contraseña"
@@ -136,7 +123,6 @@ export default function Home() {
                   }}
                 />
               )}
-
               {mode === 'login' && (
                 <span className="forgot-password">
                   <button
@@ -151,7 +137,6 @@ export default function Home() {
                   </button>
                 </span>
               )}
-
               <input
                 value={
                   isSubmitting
@@ -167,13 +152,11 @@ export default function Home() {
                     : 'Enviar correo'
                 }
                 type="submit"
-                className="login-button"
+                className="submit-button" 
                 disabled={isSubmitting}
               />
             </form>
-
-            <p style={{ color: 'red', textAlign: 'center' }}>{message}</p>
-
+            <p style={{ color: '#E74C3C', textAlign: 'center', marginTop: '1rem' }}>{message}</p> {/* Color rojo más específico */}
             <div style={{ marginTop: '1rem', textAlign: 'center' }}>
               {mode === 'login' && (
                 <button className="link-btn" onClick={() => setMode('signup')}>
@@ -189,10 +172,18 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Imagen + botón a la derecha */}
-        <div className="right-container">
-          <img src="/LogoSolo.png" alt="Candidato 3" className="logo-image" />
-          <button className="download-btn">Descargar</button>
+        {/* Sección de Bienvenida Visual a la derecha */}
+        <div className="welcome-visual-container"> {/* Cambiado a welcome-visual-container */}
+          <div className="welcome-content">
+            <h1 className="welcome-title">Tu Voz, Tu Futuro</h1>
+            <p className="welcome-subtitle">
+              Participa en elecciones transparentes y seguras.
+            </p>
+            {/* Puedes mantener tu logo si encaja, o usar una ilustración general */}
+            <img src="/LogoSolo.png" alt="CandiGo Logo" className="welcome-image" /> 
+            {/* El botón de descarga ahora es más un CTA complementario */}
+            <button className="welcome-cta-button">Descargar Nuestra App</button>
+          </div>
         </div>
       </div>
     </>
