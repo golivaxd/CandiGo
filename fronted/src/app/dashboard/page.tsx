@@ -27,6 +27,19 @@ export default function Dashboard() {
   const [cargos, setCargos] = useState<string[]>([]);
   const [cargosLoading, setCargosLoading] = useState(true);
 
+  // Estado para candidatos con los campos reales de la tabla (incluye id)
+  const [candidatos, setCandidatos] = useState<
+    Array<{
+      id?: number;
+      nombre?: string;
+      partido_id?: number;
+      cargo?: string;
+      pagina_web?: string;
+      activo?: boolean;
+    }>
+  >([]);
+  const [candidatosLoading, setCandidatosLoading] = useState(true);
+
   // Sesión
   useEffect(() => {
     const checkSession = async () => {
@@ -85,6 +98,34 @@ export default function Dashboard() {
     fetchCargos();
   }, []);
 
+  // Cargar candidatos: solo los 3 con cargo "PRESIDENCIA DE LA REPÚBLICA"
+  useEffect(() => {
+    const fetchCandidatos = async () => {
+      setCandidatosLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from('candidatos')
+          .select('id, nombre, partido_id, cargo, pagina_web, activo') // <-- añadí id
+          .eq('cargo', 'PRESIDENCIA DE LA REPÚBLICA')
+          .limit(3);
+
+        if (error) {
+          console.error('Error al cargar candidatos:', error);
+          setCandidatos([]);
+        } else {
+          setCandidatos(data || []);
+        }
+      } catch (err) {
+        console.error('fetch candidatos error', err);
+        setCandidatos([]);
+      } finally {
+        setCandidatosLoading(false);
+      }
+    };
+
+    fetchCandidatos();
+  }, []);
+
   if (loading) return <p>Cargando...</p>;
   if (!user) return null;
 
@@ -95,6 +136,15 @@ export default function Dashboard() {
   }, {} as Record<string, number>);
 
   const cargosUnicos = Object.entries(cargosContados); // [[cargo, cantidad], ...]
+
+  const getPresidenteImage = (nombre?: string, pagina_web?: string) => {
+    if (!nombre) return pagina_web && pagina_web.endsWith('.jpg') ? pagina_web : '/placeholder.jpg';
+    const n = nombre.toLowerCase();
+    if (n.includes('xochi') || n.includes('xochityh')) return '/images/presidente_xochi.jpg';
+    if (n.includes('cl') && n.includes('aud') || n.includes('claudia') || n.includes('claaudia')) return '/images/presidente_claudia.jpg';
+    if (n.includes('cl') && !n.includes('claudia')) return '/images/presidente_cl.jpg';
+    return pagina_web && pagina_web.endsWith('.jpg') ? pagina_web : '/placeholder.jpg';
+  }
 
   return (
     <div className="dashboard-container">
@@ -130,24 +180,74 @@ export default function Dashboard() {
 
         {/* Sección de candidatos */}
         <section className="candidatos-section">
-          <h2>👤 Candidatos</h2>
-          <div className="candidatos-grid">
-            <div className="candidato">
-              <img src="/h.jpg" alt="Candidato 1" />
-              <h3>María López</h3>
-              <p>Partido: Progreso Unido</p>
+          <h2>👤 Candidatos a la Presidencia</h2>
+
+          {candidatosLoading ? (
+            <p>Cargando candidatos...</p>
+          ) : candidatos.length > 0 ? (
+            <div className="candidatos-grid">
+              {candidatos.map((candidato, index) => (
+                <Link
+                  href={`/candidatos/${candidato.id}`}
+                  key={candidato.id ?? index}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <div
+                    className="candidato"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSidebarOpen(false)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        (e.currentTarget as HTMLElement).click();
+                      }
+                    }}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <img
+                      src={
+                        candidato.cargo === 'PRESIDENCIA DE LA REPÚBLICA'
+                          ? '/images/presidente.jpg'
+                          : getPresidenteImage(candidato.nombre, candidato.pagina_web)
+                      }
+                      alt={candidato.nombre || 'Candidato'}
+                    />
+                    <h3>{candidato.nombre || '—'}</h3>
+                    <p>Cargo: {candidato.cargo || '—'}</p>
+                    <p>Partido ID: {candidato.partido_id ?? '—'}</p>
+
+                    {/* Botón para abrir sitio externo sin crear <a> anidado */}
+                    {candidato.pagina_web ? (
+                      <p>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            window.open(candidato.pagina_web, '_blank', 'noopener,noreferrer');
+                          }}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            color: 'var(--color-azul-elegante)',
+                            textDecoration: 'underline',
+                            cursor: 'pointer',
+                            padding: 0,
+                            font: 'inherit'
+                          }}
+                          aria-label={`Abrir sitio de ${candidato.nombre}`}
+                        >
+                          Sitio
+                        </button>
+                      </p>
+                    ) : null}
+                  </div>
+                </Link>
+              ))}
             </div>
-            <div className="candidato">
-              <img src="/homer.gif" alt="Candidato 2" />
-              <h3>Carlos Pérez</h3>
-              <p>Partido: Fuerza Ciudadana</p>
-            </div>
-            <div className="candidato">
-              <img src="/h.jpg" alt="Candidato 3" />
-              <h3>Ana Torres</h3>
-              <p>Partido: Renovación Nacional</p>
-            </div>
-          </div>
+          ) : (
+            <p>No se encontraron candidatos para la Presidencia de la República.</p>
+          )}
         </section>
 
         {/* Sección de cargos */}
@@ -158,8 +258,12 @@ export default function Dashboard() {
           ) : cargosUnicos.length > 0 ? (
             <div className="cargos-grid">
               {cargosUnicos.map(([cargo, cantidad], idx) => (
-                <Link href={`/cargos/${encodeURIComponent(cargo)}`} key={idx}>
-                  <div className="cargo-card">
+                <Link
+                  href={`/cargos/${encodeURIComponent(cargo)}`}
+                  key={idx}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <div className="cargo-card" role="button" style={{ cursor: 'pointer' }}>
                     <h3>{cargo}</h3>
                     <p>Cantidad: {cantidad}</p>
                   </div>

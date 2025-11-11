@@ -1,113 +1,224 @@
-/* Reset básico */
-* {
+/* Estilos generales del cuerpo */
+body {
+  font-family: 'Montserrat', sans-serif; /* Fuente más moderna y elegante */
+  line-height: 1.7;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  background-color: #f0f4f8; /* Un azul grisáceo muy claro para el fondo */
+  color: #334e68; /* Azul oscuro para el texto principal */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Contenedor principal */
+/* Contenedor principal de la página */
 .nosotros-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: #333;
-  background-color: #f9f9f9;
+  overflow-x: hidden; /* Evita desbordamientos horizontales */
 }
 
-/* Header fijo */
+/* Header */
 .nosotros-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  background-color: #6c5ce7; /* morado pastel */
-  color: white;
+  background-color: #2a4158; /* Azul oscuro profundo */
+  color: #e0e6ed; /* Azul claro para el texto */
+  padding: 1rem 3rem; /* Más padding para una sensación premium */
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más definida */
+  position: sticky;
+  top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.nosotros-header h1 {
-  font-size: 1.8rem;
+.header-left {
+  font-family: 'Poppins', sans-serif; /* Una fuente diferente para el logo */
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #6daee1; /* Azul brillante para el logo */
+  text-transform: uppercase;
 }
 
-.back-button {
-  background-color: white;
-  color: #6c5ce7;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+.header-btn {
+  background-color: transparent;
+  color: #e0e6ed;
+  border: 2px solid #6daee1; /* Borde de color de acento */
+  padding: 0.75rem 2rem;
+  border-radius: 30px; /* Bordes más redondeados para elegancia */
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.2s ease;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.back-button:hover {
-  background-color: #dfe2ff;
+.header-btn:hover {
+  background-color: #6daee1;
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(109, 174, 225, 0.4); /* Sombra al pasar el ratón */
+  transform: translateY(-2px); /* Pequeño efecto de elevación */
 }
 
-/* Main content */
+/* Contenido Principal */
 .nosotros-content {
-  flex: 1;
-  padding: 100px 20px 40px 20px; /* padding-top para compensar header fijo */
-  max-width: 900px;
-  margin: 0 auto;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 1000px; /* Aumento del ancho máximo */
+  margin: 4rem auto; /* Más espacio vertical */
+  padding: 0 3rem; /* Más padding lateral */
+  box-sizing: border-box;
+}
+
+.intro {
+  background-color: #ffffff;
+  padding: 4rem; /* Más padding interno */
+  border-radius: 15px; /* Bordes más suaves */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra más profunda y suave */
+  text-align: left; /* Alineación a la izquierda para un estilo de lectura */
+  position: relative;
+  overflow: hidden; /* Para los posibles elementos de fondo decorativos */
+}
+
+.intro::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(109, 174, 225, 0.1); /* Elemento decorativo sutil */
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.intro::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 100px;
+  height: 100px;
+  background: rgba(42, 65, 88, 0.05);
+  border-radius: 50%;
+  z-index: 0;
 }
 
 .intro h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.5rem; /* Tamaño de título más grande */
+  color: #2a4158;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  position: relative; /* Para que el texto quede por encima de los ::before/::after */
+  z-index: 1;
 }
 
 .intro p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  font-size: 1.25rem; /* Tamaño de párrafo más grande */
+  color: #4a6582; /* Azul grisáceo para el texto del párrafo */
+  margin-bottom: 1.5rem;
+  line-height: 1.9;
+  max-width: 800px; /* Límite de ancho para mejor legibilidad */
+  margin-left: 0; /* Asegura alineación a la izquierda */
+  position: relative;
+  z-index: 1;
 }
 
-/* Footer */
+.intro p strong {
+  color: #6daee1;
+  font-weight: 700;
+}
+
+/* Pie de página */
 .nosotros-footer {
+  background-color: #2a4158;
+  color: #e0e6ed;
   text-align: center;
-  padding: 1rem;
-  background-color: #f1f1f1;
-  color: #666;
-  font-size: 0.9rem;
+  padding: 2rem 3rem; /* Más padding */
+  margin-top: 5rem; /* Más espacio */
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.02em;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .nosotros-header h1 {
-    font-size: 1.4rem;
+/* Media Queries para Responsividad */
+@media (max-width: 992px) {
+  .nosotros-header {
+    padding: 1rem 2rem;
   }
-
-  .back-button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
-
-  .intro h2 {
+  .header-left {
     font-size: 1.6rem;
   }
-
+  .header-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
   .nosotros-content {
-    padding: 90px 15px 30px 15px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+  }
+  .intro {
+    padding: 3rem;
+  }
+  .intro h2 {
+    font-size: 2.8rem;
+  }
+  .intro p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nosotros-header {
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+  }
+  .header-left {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+  .header-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  .nosotros-content {
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  .intro {
+    padding: 2rem;
+    text-align: center;
+  }
+  .intro h2 {
+    font-size: 2.2rem;
+  }
+  .intro p {
+    font-size: 1rem;
+  }
+  .intro::before, .intro::after {
+    display: none; /* Oculta los elementos decorativos en móviles */
+  }
+  .nosotros-footer {
+    padding: 1.5rem 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .nosotros-header {
-    flex-direction: column;
-    height: auto;
-    padding: 10px 15px;
+  .header-left {
+    font-size: 1.2rem;
   }
-
-  .back-button {
-    margin-top: 5px;
-    width: 100%;
+  .header-btn {
+    font-size: 0.85rem;
+  }
+  .intro h2 {
+    font-size: 1.8rem;
+  }
+  .intro p {
+    font-size: 0.95rem;
   }
 }
