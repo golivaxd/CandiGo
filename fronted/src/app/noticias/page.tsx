@@ -54,10 +54,10 @@ export default function NewsPage() {
     <div className="news-page">
       {/* Header fijo */}
       <header className="news-header">
+        <h1>Noticias</h1>
         <button className="back-btn" onClick={() => router.back()}>
           Regresar
         </button>
-        <h1>Noticias</h1>
       </header>
 
       <main className="news-main">
