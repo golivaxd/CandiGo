@@ -59,6 +59,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 __turbopack_context__.v({
   "backButton": "foro-module__h9DDxW__backButton",
   "buttonComentario": "foro-module__h9DDxW__buttonComentario",
+  "buttonGroup": "foro-module__h9DDxW__buttonGroup",
   "comentario": "foro-module__h9DDxW__comentario",
   "comentariosList": "foro-module__h9DDxW__comentariosList",
   "container": "foro-module__h9DDxW__container",
@@ -420,11 +421,29 @@ function Foro() {
                         lineNumber: 185,
                         columnNumber: 11
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$foro$2f$foro$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].buttonComentario,
-                        onClick: handleAddComentario,
-                        children: "Enviar comentario"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$foro$2f$foro$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].buttonGroup,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$foro$2f$foro$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].backButton,
+                                onClick: ()=>setSelectedDebate(null),
+                                children: "← Volver al debate"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/foro/page.tsx",
+                                lineNumber: 192,
+                                columnNumber: 3
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$foro$2f$foro$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].buttonComentario,
+                                onClick: handleAddComentario,
+                                children: "Enviar comentario"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/foro/page.tsx",
+                                lineNumber: 193,
+                                columnNumber: 3
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/app/foro/page.tsx",
                         lineNumber: 191,
                         columnNumber: 11

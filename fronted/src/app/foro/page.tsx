@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
-import styles from './foro.module.css';
+import './foro.css';
 
 interface Debate {
   id: number;
@@ -32,13 +32,9 @@ export default function Foro() {
 
   useEffect(() => {
     fetchDebates();
-
-    // Obtener usuario autenticado
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) setUser(data.session.user);
     });
-
-    // Escuchar cambios de auth
     supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user || null);
     });
@@ -69,7 +65,10 @@ export default function Foro() {
   const handleAddComentario = async () => {
     if (!newComentario.trim() || !selectedDebate || !user) return;
 
-    const displayName = user.user_metadata?.full_name || user.user_metadata?.display_name || 'Usuario';
+    const displayName =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.display_name ||
+      'Usuario';
 
     const { data } = await supabase
       .from('comentarios')
@@ -85,14 +84,17 @@ export default function Foro() {
 
     if (data) {
       setComentarios([...comentarios, data]);
-      setNewComentario(''); // Limpiar textarea
+      setNewComentario('');
     }
   };
 
   const handleAddDebate = async () => {
     if (!newDebateTitle.trim() || !newDebateDescription.trim() || !user) return;
 
-    const displayName = user.user_metadata?.full_name || user.user_metadata?.display_name || 'Usuario';
+    const displayName =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.display_name ||
+      'Usuario';
 
     const { data } = await supabase
       .from('debates')
@@ -106,94 +108,120 @@ export default function Foro() {
       .single();
 
     if (data) {
-      setDebates([data, ...debates]); // Mostrar nuevo debate de inmediato
+      setDebates([data, ...debates]);
       setShowNewDebateForm(false);
-      setNewDebateTitle('');       // Limpiar campo
-      setNewDebateDescription(''); // Limpiar campo
+      setNewDebateTitle('');
+      setNewDebateDescription('');
     }
   };
 
   return (
-    <div className={styles.container}>
+    <div className="foro-container">
       {/* HEADER */}
-      <header className={styles.header}>
+      <header className="foro-header">
         <h1>Foro de Debates</h1>
-        <button onClick={() => window.location.href = '/dashboard'}>← Regresar</button>
-      </header>
-
-      {/* LISTA DE DEBATES */}
-      {!selectedDebate && !showNewDebateForm && (
-        <>
-          <button className={styles.newDebateButton} onClick={() => setShowNewDebateForm(true)}>
+        <div className="foro-header-buttons">
+          <button
+            className="header-btn new"
+            onClick={() => setShowNewDebateForm(true)}
+          >
             + Nuevo Debate
           </button>
-          <ul className={styles.debateList}>
+          <button
+            className="header-btn back"
+            onClick={() => (window.location.href = '/dashboard')}
+          >
+            ← Regresar
+          </button>
+        </div>
+      </header>
+
+      <main className="foro-main">
+        {/* LISTA DE DEBATES */}
+        {!selectedDebate && !showNewDebateForm && (
+          <ul className="debate-list">
             {debates.map((debate) => (
-              <li key={debate.id} className={styles.debateItem} onClick={() => handleDebateClick(debate)}>
-                <h3 className={styles.debateTitle}>{debate.title}</h3>
-                <p className={styles.debateDescription}>{debate.description}</p>
-                <small className={styles.debateAuthor}>
-                  Por {debate.author} - {new Date(debate.created_at).toLocaleString()}
+              <li
+                key={debate.id}
+                className="debate-item"
+                onClick={() => handleDebateClick(debate)}
+              >
+                <h3>{debate.title}</h3>
+                <p>{debate.description}</p>
+                <small>
+                  Por {debate.author} • {new Date(debate.created_at).toLocaleString()}
                 </small>
               </li>
             ))}
           </ul>
-        </>
-      )}
+        )}
 
-      {/* FORMULARIO NUEVO DEBATE */}
-      {showNewDebateForm && (
-        <div>
-          <button className={styles.backButton} onClick={() => setShowNewDebateForm(false)}>← Volver</button>
-          <h2>Crear nuevo debate</h2>
-          <input
-            placeholder="Título del debate"
-            value={newDebateTitle}
-            onChange={(e) => setNewDebateTitle(e.target.value)}
-            style={{ width: '100%', marginBottom: '0.5rem', padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc' }}
-          />
-          <textarea
-            placeholder="Descripción"
-            value={newDebateDescription}
-            onChange={(e) => setNewDebateDescription(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc', minHeight: '80px', marginBottom: '0.5rem' }}
-          />
-          <button className={styles.newDebateButton} onClick={handleAddDebate}>Crear Debate</button>
-        </div>
-      )}
-
-      {/* DETALLE DE DEBATE */}
-      {selectedDebate && (
-        <div>
-          <button className={styles.backButton} onClick={() => setSelectedDebate(null)}>← Volver a debates</button>
-          <h2 className={styles.debateTitle}>{selectedDebate.title}</h2>
-          <p className={styles.debateDescription}>{selectedDebate.description}</p>
-          <small className={styles.debateAuthor}>
-            Por {selectedDebate.author} - {new Date(selectedDebate.created_at).toLocaleString()}
-          </small>
-
-          <h3>Comentarios</h3>
-          <div className={styles.comentariosList}>
-            {comentarios.map((c) => (
-              <div key={c.id} className={styles.comentario}>
-                <strong>{c.autor}</strong> <small>{new Date(c.created_at).toLocaleString()}</small>
-                <p>{c.contenido}</p>
-              </div>
-            ))}
+        {/* NUEVO DEBATE */}
+        {showNewDebateForm && (
+          <div className="new-debate">
+            <button
+              className="back-btn"
+              onClick={() => setShowNewDebateForm(false)}
+            >
+              ← Volver
+            </button>
+            <h2>Crear nuevo debate</h2>
+            <input
+              placeholder="Título del debate"
+              value={newDebateTitle}
+              onChange={(e) => setNewDebateTitle(e.target.value)}
+            />
+            <textarea
+              placeholder="Descripción del debate"
+              value={newDebateDescription}
+              onChange={(e) => setNewDebateDescription(e.target.value)}
+            />
+            <button className="send-btn" onClick={handleAddDebate}>
+              Crear Debate
+            </button>
           </div>
+        )}
 
-          <textarea
-            className={styles.textareaComentario}
-            placeholder="Escribe tu comentario..."
-            value={newComentario}
-            onChange={(e) => setNewComentario(e.target.value)}
-          />
-          <button className={styles.buttonComentario} onClick={handleAddComentario}>Enviar comentario</button>
-        </div>
-      )}
+        {/* DETALLE DEL DEBATE */}
+        {selectedDebate && (
+          <div className="debate-detalle">
+            <h2>{selectedDebate.title}</h2>
+            <p>{selectedDebate.description}</p>
+            <small>
+              Por {selectedDebate.author} • {new Date(selectedDebate.created_at).toLocaleString()}
+            </small>
 
+            <h3>Comentarios</h3>
+            <div className="comentarios">
+              {comentarios.map((c) => (
+                <div key={c.id} className="comentario">
+                  <strong>{c.autor}</strong>{' '}
+                  <small>{new Date(c.created_at).toLocaleString()}</small>
+                  <p>{c.contenido}</p>
+                </div>
+              ))}
+            </div>
 
+            <textarea
+              className="comentario-input"
+              placeholder="Escribe tu comentario..."
+              value={newComentario}
+              onChange={(e) => setNewComentario(e.target.value)}
+            />
+            <div className="comentario-buttons">
+              <button className="send-btn" onClick={handleAddComentario}>
+                Enviar Comentario
+              </button>
+              <button
+                className="back-btn inline"
+                onClick={() => setSelectedDebate(null)}
+              >
+                Volver a debates
+              </button>
+            </div>
+          </div>
+        )}
+      </main>
     </div>
   );
 }
-

@@ -1,172 +1,215 @@
 /* [project]/src/app/foro/foro.module.css [app-client] (css) */
-.foro-module__h9DDxW__container {
-  color: #2b2b2b;
-  background: #fff;
-  border-radius: 16px;
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, .05);
-}
-
 .foro-module__h9DDxW__header {
+  color: #fff;
+  z-index: 1000;
+  background: #0b2447;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-family: Montserrat, sans-serif;
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
 }
 
 .foro-module__h9DDxW__header h1 {
-  color: #5a4bff;
-  font-size: 1.8rem;
-  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0;
+  font-size: 1.5rem;
 }
 
 .foro-module__h9DDxW__header button {
-  color: #5a4bff;
+  color: #fff;
   cursor: pointer;
-  background: none;
+  background-color: #1d4ed8;
   border: none;
-  font-size: 1rem;
-  transition: all .2s;
+  border-radius: 8px;
+  padding: .6rem 1.2rem;
+  font-weight: 500;
+  transition: background .2s, transform .2s;
 }
 
 .foro-module__h9DDxW__header button:hover {
-  text-decoration: underline;
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.foro-module__h9DDxW__container {
+  background: #f9fafc;
+  border-radius: 16px;
+  max-width: 900px;
+  margin: 8rem auto 3rem;
+  padding: 2rem;
+  font-family: Montserrat, sans-serif;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .1);
 }
 
 .foro-module__h9DDxW__debateList {
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1rem 0;
+  margin: 2rem 0;
   padding: 0;
   list-style: none;
-  display: flex;
 }
 
 .foro-module__h9DDxW__debateItem {
   cursor: pointer;
-  background: #f8f9ff;
-  border: 1px solid #e0e4f0;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 1rem;
-  transition: all .25s;
+  margin-bottom: 1rem;
+  padding: 1.2rem 1.5rem;
+  transition: all .2s;
 }
 
 .foro-module__h9DDxW__debateItem:hover {
-  background: #fff;
+  border-color: #1e3a8a;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(90, 75, 255, .15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
 }
 
 .foro-module__h9DDxW__debateTitle {
-  color: #5a4bff;
-  margin-bottom: .4rem;
-  font-size: 1.2rem;
-  font-weight: 600;
+  color: #0b2447;
+  margin-bottom: .3rem;
+  font-size: 1.3rem;
 }
 
 .foro-module__h9DDxW__debateDescription {
-  color: #444;
-  margin-bottom: .4rem;
-  font-size: .95rem;
+  color: #475569;
+  margin-bottom: .5rem;
 }
 
 .foro-module__h9DDxW__debateAuthor {
-  color: #666;
-  font-size: .8rem;
+  color: #64748b;
+  font-size: .85rem;
 }
 
-.foro-module__h9DDxW__newDebateButton, .foro-module__h9DDxW__backButton, .foro-module__h9DDxW__buttonComentario {
+.foro-module__h9DDxW__newDebateButton {
   color: #fff;
   cursor: pointer;
-  background: #5a4bff;
+  background-color: #0b2447;
   border: none;
   border-radius: 10px;
-  margin-top: .5rem;
-  padding: .6rem 1.2rem;
-  font-weight: 500;
-  transition: all .3s;
+  padding: .8rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background .2s, transform .2s;
   display: inline-block;
 }
 
-.foro-module__h9DDxW__newDebateButton:hover, .foro-module__h9DDxW__backButton:hover, .foro-module__h9DDxW__buttonComentario:hover {
-  background: #7b6fff;
+.foro-module__h9DDxW__newDebateButton:hover {
+  background-color: #102d5c;
   transform: translateY(-2px);
 }
 
 .foro-module__h9DDxW__backButton {
-  color: #5a4bff;
-  background: #ecebfd;
+  color: #1d4ed8;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
   margin-bottom: 1rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color .2s;
+}
+
+.foro-module__h9DDxW__backButton:hover {
+  color: #2563eb;
+}
+
+input, textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: .8rem 1rem;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+input:focus, textarea:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .2);
+}
+
+textarea {
+  resize: none;
+  min-height: 100px;
 }
 
 .foro-module__h9DDxW__comentariosList {
-  flex-direction: column;
-  gap: .8rem;
+  margin-top: 1.5rem;
+}
+
+.foro-module__h9DDxW__comentario {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  transition: box-shadow .2s;
+}
+
+.foro-module__h9DDxW__comentario:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .07);
+}
+
+.foro-module__h9DDxW__comentario strong {
+  color: #0b2447;
+  font-weight: 600;
+}
+
+.foro-module__h9DDxW__comentario p {
+  color: #334155;
+  margin: .3rem 0 0;
+}
+
+.foro-module__h9DDxW__textareaComentario {
+  resize: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 90px;
+  margin-top: 1.5rem;
+  padding: .9rem 1rem;
+  font-family: Montserrat, sans-serif;
+}
+
+.foro-module__h9DDxW__buttonGroup {
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
   margin-top: 1rem;
   display: flex;
 }
 
-.foro-module__h9DDxW__comentario {
-  background: #f2f3ff;
-  border: 1px solid #ddd;
+.foro-module__h9DDxW__buttonComentario {
+  color: #fff;
+  cursor: pointer;
+  background-color: #1d4ed8;
+  border: none;
+  border-radius: 8px;
+  padding: .8rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background .2s, transform .2s;
+}
+
+.foro-module__h9DDxW__buttonComentario:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.foro-module__h9DDxW__container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.foro-module__h9DDxW__container::-webkit-scrollbar-thumb {
+  background-color: #a0aec0;
   border-radius: 10px;
-  padding: .8rem;
-}
-
-.foro-module__h9DDxW__comentario strong {
-  color: #5a4bff;
-}
-
-.foro-module__h9DDxW__comentario p {
-  color: #333;
-  margin: .3rem 0 0;
-  font-size: .95rem;
-}
-
-.foro-module__h9DDxW__textareaComentario {
-  resize: vertical;
-  border: 1px solid #cfd4e2;
-  border-radius: 10px;
-  width: 100%;
-  min-height: 80px;
-  margin-top: 1rem;
-  padding: .8rem;
-  font-size: .95rem;
-  transition: border .2s;
-}
-
-.foro-module__h9DDxW__textareaComentario:focus {
-  border-color: #5a4bff;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(90, 75, 255, .15);
-}
-
-@media (max-width: 768px) {
-  .foro-module__h9DDxW__container {
-    border-radius: 12px;
-    padding: 1rem;
-  }
-
-  .foro-module__h9DDxW__header h1 {
-    font-size: 1.5rem;
-  }
-
-  .foro-module__h9DDxW__newDebateButton, .foro-module__h9DDxW__backButton, .foro-module__h9DDxW__buttonComentario {
-    text-align: center;
-    width: 100%;
-  }
-
-  .foro-module__h9DDxW__debateItem {
-    padding: .9rem;
-  }
-
-  .foro-module__h9DDxW__debateTitle {
-    font-size: 1.1rem;
-  }
 }
 
 /*# sourceMappingURL=src_app_foro_foro_module_352eb0da.css.map*/
