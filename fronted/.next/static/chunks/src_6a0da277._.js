@@ -90,7 +90,7 @@ function Home() {
             password
         });
         if (error) setMessage('Error: ' + error.message);
-        else router.push('/dashboard');
+        else router.push('/d3h7m1p4');
         setIsSubmitting(false);
     };
     const handleSignup = async ()=>{

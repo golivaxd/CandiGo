@@ -1,85 +1,72 @@
 'use client';
+
 import { useState } from 'react';
-import ResultadosChart from '../../components/ResultadosChart';
 
-export default function VotacionesPage() {
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+const preguntas = [
+  { pregunta: "Estado de residencia", opciones: [
+    "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas",
+    "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México",
+    "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit",
+    "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí",
+    "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
+  ]},
+  { pregunta: "Género", opciones: ["Masculino", "Femenino", "Otro / Prefiero no decirlo"] },
+  { pregunta: "Edad", opciones: ["18-25", "26-35", "36-45", "46-60", "60+"] },
+  { pregunta: "Tema que más te importa", opciones: ["Economía", "Salud", "Educación", "Seguridad", "Medio ambiente"] },
+  { pregunta: "Valor que esperas en un candidato", opciones: ["Honestidad","Experiencia","Empatía","Carisma","Capacidad técnica"] },
+  { pregunta: "Frecuencia de votación", opciones: ["Siempre","Casi siempre","A veces","Rara vez","Nunca"] },
+  { pregunta: "Nivel de gobierno que te interesa", opciones: ["Presidencia","Gobernador","Diputado federal","Alcalde / Presidente municipal"] },
+  { pregunta: "Postura económica", opciones: ["Fomento a emprendimiento privado","Mayor gasto social","Reducción de impuestos","Regulación estatal estricta"] },
+  { pregunta: "Postura sobre seguridad", opciones: ["Mano dura","Prevención y educación","Reformas","Más tecnología"] },
+  { pregunta: "Prioridad en política social", opciones: ["Salud pública","Educación","Igualdad de género","Medio ambiente"] },
+  { pregunta: "Medio de información confiable", opciones: ["Televisión","Redes sociales","Periódicos digitales","Amigos y familia"] },
+  { pregunta: "Importancia de la experiencia del candidato", opciones: ["Muy importante","Algo importante","Poco importante","Nada importante"] },
+  { pregunta: "Tendencia ideológica", opciones: ["Conservadora","Liberal","Progresista","Neutral / Independiente"] },
+];
 
-  const analizarVotos = async () => {
-    setLoading(true);
-    setError(null);
+export default function HomePage() {
+  const [respuestas, setRespuestas] = useState(Array(preguntas.length).fill(0));
+  const [resultado, setResultado] = useState<string>("");
+
+  const handleChange = (index: number, value: number) => {
+    const newRespuestas = [...respuestas];
+    newRespuestas[index] = value;
+    setRespuestas(newRespuestas);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      const res = await fetch('/api/votos/analizar');
-      if (!res.ok) throw new Error('Error al analizar votos');
-
+      const res = await fetch("http://127.0.0.1:8000/predecir", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ datos: respuestas })
+      });
       const data = await res.json();
-      console.log('Datos recibidos del endpoint:', data);
-
-      setResult(data);
-    } catch (err: any) {
-      setError(err.message || 'Error desconocido');
-    } finally {
-      setLoading(false);
+      setResultado(`${data.candidato} - ${data.partido}`);
+    } catch (err) {
+      console.error(err);
+      setResultado("Error al obtener la predicción.");
     }
   };
 
   return (
-    <div style={{ padding: '1rem', maxWidth: '900px', margin: '0 auto' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Votaciones</h1>
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <button
-          onClick={analizarVotos}
-          disabled={loading}
-          style={{
-            padding: '0.5rem 1rem',
-            backgroundColor: '#665780',
-            color: 'white',
-            border: 'none',
-            borderRadius: '0.3rem',
-            cursor: 'pointer',
-          }}
-        >
-          {loading ? 'Analizando...' : 'Analizar votos'}
-        </button>  
-      </div>
-    
-      {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
-
-      {result && (
-        <>
-          <p style={{ textAlign: 'center' }}>Total votos: {result.totalVotos}</p>
-
-          <h2 style={{ marginTop: '2rem' }}>Tabla de probabilidades</h2>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>Candidato</th>
-                <th style={{ border: '1px solid #ccc', padding: '0.5rem' }}>% Probabilidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              {result.probabilidades.map((p: any, idx: number) => (
-                <tr key={idx}>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>{p.candidato}</td>
-                  <td style={{ border: '1px solid #ccc', padding: '0.5rem' }}>
-                    {(p.probabilidad * 100).toFixed(2)}%
-                  </td>
-                </tr>
+    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
+      <h1>Encuesta Política</h1>
+      <form onSubmit={handleSubmit}>
+        {preguntas.map((p, i) => (
+          <div key={i} style={{ marginBottom: "1rem" }}>
+            <label>{p.pregunta}</label>
+            <select value={respuestas[i]} onChange={e => handleChange(i, Number(e.target.value))}>
+              {p.opciones.map((opt, idx) => (
+                <option key={idx} value={idx}>{opt}</option>
               ))}
-            </tbody>
-          </table>
-
-          <div style={{ marginTop: '2rem' }}>
-            <ResultadosChart
-              labels={result.probabilidades.map((p: any) => p.candidato)}
-              data={result.probabilidades.map((p: any) => (p.probabilidad * 100).toFixed(2))}
-            />
+            </select>
           </div>
-        </>
-      )}
+        ))}
+        <button type="submit">Predecir candidato</button>
+      </form>
+      {resultado && <p>Predicción: {resultado}</p>}
     </div>
   );
 }
-
