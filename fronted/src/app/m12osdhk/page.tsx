@@ -118,7 +118,7 @@ export default function Mapa() {
     fontFamily: "'Montserrat', sans-serif",
   }}>Mapa de Candidatos</h1>
   <button
-    onClick={() => (window.location.href = '/dashboard')}
+    onClick={() => (window.location.href = '/d3h7m1p4')}
     style={{
       padding: '0.6rem 1.4rem',
       background: '#415a77',

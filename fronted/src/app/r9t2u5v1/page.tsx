@@ -126,7 +126,7 @@ export default function CalendarioPage() {
     <div className="calendar-page">
       <header className="header">
         <h1>Calendario</h1>
-        <button className="back-button" onClick={() => router.push('/dashboard')}>
+        <button className="back-button" onClick={() => router.push('/d3h7m1p4')}>
           Regresar
         </button>
         <div style={{ width: '1.5rem' }} />

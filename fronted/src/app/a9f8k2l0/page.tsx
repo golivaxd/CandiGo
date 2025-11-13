@@ -129,7 +129,7 @@ export default function Foro() {
           </button>
           <button
             className="header-btn back"
-            onClick={() => (window.location.href = '/dashboard')}
+            onClick={() => (window.location.href = '/d3h7m1p4')}
           >
             ← Regresar
           </button>

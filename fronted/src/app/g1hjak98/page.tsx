@@ -34,7 +34,7 @@ export default function Guia() {
     <div className={styles.container}>
       <header className={styles.header}>
         <h1>Guía del Votante</h1>
-        <button onClick={() => window.location.href = '/dashboard'}>← Regresar</button>
+        <button onClick={() => window.location.href = '/d3h7m1p4'}>← Regresar</button>
       </header>
 
       <div className={styles.grid}>
