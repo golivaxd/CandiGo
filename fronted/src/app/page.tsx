@@ -19,7 +19,7 @@ export default function Home() {
     setMessage('');
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) setMessage('Error: ' + error.message);
-    else router.push('/dashboard');
+    else router.push('/d3h7m1p4');
     setIsSubmitting(false);
   };
 
