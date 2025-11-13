@@ -1,43 +1,27 @@
-import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import * as dfd from 'danfojs-node';
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const datasetPath = path.join(process.cwd(), 'public', 'data', 'dataset.csv');
-    const df = await dfd.readCSV(datasetPath);
 
-    // Variables de entrada
-    const {
-      Genero,
-      Edad,
-      Tema,
-      ValorCandidato,
-      Frecuencia,
-      VotoGobierno,
-      Economia,
-      Seguridad,
-      PoliticaSocial,
-      MedioInformacion,
-      Experiencia,
-      Corriente,
-    } = body;
-
-    // Simulación de modelo simple basado en coincidencias de "tema"
-    const result = df
-      .query(df['Tema'].eq(Tema))
-      .sample(1)
-      .iloc({ rows: [0] })
-      .toJSON()[0];
-
-    return NextResponse.json({
-      candidato: result['Candidato'],
-      partido: result['Partido'],
+    // Enviar datos al backend de FastAPI
+    const res = await fetch("http://127.0.0.1:8000/predecir", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
     });
-  } catch (error: any) {
-    console.error('Error en predicción:', error);
-    return NextResponse.json({ error: 'Error en el servidor' }, { status: 500 });
+
+    if (!res.ok) {
+      throw new Error(`Error del servidor FastAPI: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error("Error en predicción:", error);
+    return NextResponse.json(
+      { error: "Error interno al procesar la predicción" },
+      { status: 500 }
+    );
   }
 }
