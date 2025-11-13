@@ -22,13 +22,43 @@ function getISODate(date: Date) {
   return date.toISOString().slice(0, 10);
 }
 
-export default function CalendarioPage({ userId }: { userId: string }) {
+export default function CalendarioPage() {
+  const [userId, setUserId] = useState<string | null>(null);
   const [value, setValue] = useState<Date | null>(new Date());
   const [eventos, setEventos] = useState<Evento[]>([]);
   const [nuevoTitulo, setNuevoTitulo] = useState('');
   const [nuevoDescripcion, setNuevoDescripcion] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingUser, setLoadingUser] = useState(true);
   const router = useRouter();
+
+  // Obtener usuario actual
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const { data, error } = await supabase.auth.getUser();
+        if (error) {
+          console.error('Error al obtener usuario:', error.message);
+          setUserId(null);
+        } else if (data.user) {
+          setUserId(data.user.id);
+        }
+      } catch (err) {
+        console.error('Error inesperado:', err);
+      } finally {
+        setLoadingUser(false);
+      }
+    };
+
+    fetchUser();
+
+    // Escuchar cambios de sesión
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUserId(session?.user?.id ?? null);
+    });
+
+    return () => listener.subscription.unsubscribe();
+  }, []);
 
   // Obtener eventos desde Supabase
   const fetchEventos = async () => {
@@ -53,8 +83,8 @@ export default function CalendarioPage({ userId }: { userId: string }) {
 
   // Agregar evento
   const agregarEvento = async () => {
-    if (!value || !nuevoTitulo) {
-      alert('Completa todos los campos');
+    if (!value || !nuevoTitulo || !userId) {
+      alert('Completa todos los campos y asegúrate de estar logueado');
       return;
     }
 
@@ -72,7 +102,7 @@ export default function CalendarioPage({ userId }: { userId: string }) {
           user_id: userId,
         },
       ])
-      .select() as any; // <-- importante para devolver el registro insertado
+      .select() as any;
 
     setLoading(false);
 
@@ -88,6 +118,9 @@ export default function CalendarioPage({ userId }: { userId: string }) {
       setNuevoDescripcion('');
     }
   };
+
+  if (loadingUser) return <div>Cargando usuario...</div>;
+  if (!userId) return <div>No hay usuario logueado</div>;
 
   return (
     <div className="calendar-page">
@@ -112,9 +145,16 @@ export default function CalendarioPage({ userId }: { userId: string }) {
         />
 
         <p>
-  Fecha seleccionada: {value ? value.toLocaleDateString('es-MX', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'No hay fecha seleccionada'}
-</p>
-
+          Fecha seleccionada:{' '}
+          {value
+            ? value.toLocaleDateString('es-MX', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            : 'No hay fecha seleccionada'}
+        </p>
 
         {eventosDelDia.length > 0 && (
           <div className="eventos-dia">
@@ -122,7 +162,8 @@ export default function CalendarioPage({ userId }: { userId: string }) {
             <ul>
               {eventosDelDia.map((ev) => (
                 <li key={ev.id}>
-                  <strong>{ev.titulo}</strong>: {ev.descripcion} {ev.user_id === userId && '(Tuyo)'}
+                  <strong>{ev.titulo}</strong>: {ev.descripcion}{' '}
+                  {ev.user_id === userId && '(Tuyo)'}
                 </li>
               ))}
             </ul>
