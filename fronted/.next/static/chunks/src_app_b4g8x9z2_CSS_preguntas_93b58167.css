@@ -1,0 +1,228 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600;700&display=swap";
+/* [project]/src/app/b4g8x9z2/CSS/preguntas.css [app-client] (css) */
+body {
+  color: #1b1b1b;
+  background: linear-gradient(#e9edf4 0%, #f4f6f9 100%);
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+  overflow-x: hidden;
+}
+
+.faq-page {
+  flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+}
+
+.faq-header {
+  color: #fff;
+  z-index: 1000;
+  background-color: #0d1b2a;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+.faq-header h1 {
+  letter-spacing: .5px;
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.faq-header .back-btn {
+  color: #fff;
+  cursor: pointer;
+  background-color: #1b263b;
+  border: none;
+  border-radius: 8px;
+  padding: .6rem 1.2rem;
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  transition: background .3s, transform .2s;
+}
+
+.faq-header .back-btn:hover {
+  background-color: #415a77;
+  transform: scale(1.03);
+}
+
+.faq-container {
+  flex: 1;
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 7rem 2rem 3rem;
+}
+
+.faq-list {
+  background: linear-gradient(#fff 0%, #f8faff 100%);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+}
+
+.faq-list:before {
+  content: "";
+  z-index: 0;
+  background: radial-gradient(circle, rgba(43, 94, 168, .12), rgba(0, 0, 0, 0) 70%);
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: -50px;
+  right: -50px;
+}
+
+.faq-list:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .1);
+}
+
+.faq-item {
+  z-index: 1;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.faq-answer {
+  animation: .35s fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-question {
+  text-align: left;
+  color: #0d1b2a;
+  cursor: pointer;
+  background: none;
+  border: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: .8rem 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: all .3s;
+  display: flex;
+}
+
+.faq-question:hover {
+  color: #2b5ea8;
+  transform: translateX(2px);
+}
+
+.faq-icon {
+  color: #6b7c93;
+  font-size: 1.3rem;
+  transition: transform .3s;
+}
+
+.faq-question:hover .faq-icon {
+  color: #2b5ea8;
+}
+
+.faq-answer {
+  opacity: 1;
+  transition: max-height .4s, opacity .3s;
+  overflow: hidden;
+}
+
+.faq-answer p {
+  color: #333;
+  border-left: 3px solid #2b5ea8;
+  margin: .6rem 0 1.2rem;
+  padding-left: .5rem;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.no-faq {
+  text-align: center;
+  color: #6b7c93;
+  padding: 2rem 0;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.faq-footer {
+  text-align: center;
+  color: #dce3f1;
+  letter-spacing: .5px;
+  background-color: #0d1b2a;
+  margin-top: auto;
+  padding: 1.5rem;
+  font-size: .9rem;
+}
+
+@media (max-width: 768px) {
+  .faq-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .faq-header h1 {
+    margin-top: .4rem;
+    font-size: 1.4rem;
+  }
+
+  .faq-container {
+    padding: 6.5rem 1rem 2rem;
+  }
+
+  .faq-list {
+    padding: 1.8rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-container {
+    padding: 6rem .8rem 2rem;
+  }
+
+  .faq-list {
+    padding: 1.5rem;
+  }
+
+  .faq-footer {
+    font-size: .8rem;
+  }
+}
+
+/*# sourceMappingURL=src_app_b4g8x9z2_CSS_preguntas_93b58167.css.map*/

@@ -1,0 +1,236 @@
+/* ==== TIPOGRAFÍA Y COLORES ==== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #e9edf4 0%, #f4f6f9 100%);
+  color: #1b1b1b;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ==== CONTENEDOR PRINCIPAL ==== */
+.faq-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==== HEADER ==== */
+.faq-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0d1b2a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+}
+
+.faq-header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ==== BOTÓN REGRESAR ==== */
+.faq-header .back-btn {
+  background-color: #1b263b;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.faq-header .back-btn:hover {
+  background-color: #415a77;
+  transform: scale(1.03);
+}
+
+/* ==== CONTENIDO PRINCIPAL ==== */
+.faq-container {
+  flex: 1;
+  padding: 7rem 2rem 3rem;
+  max-width: 950px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==== LISTA DE PREGUNTAS (Mejorada) ==== */
+.faq-list {
+  background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 3rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto decorativo sutil */
+.faq-list::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(43, 94, 168, 0.12), transparent 70%);
+  z-index: 0;
+}
+
+.faq-list:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Espaciado entre items */
+.faq-item {
+  position: relative;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  z-index: 1;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Animación al expandir */
+.faq-answer {
+  animation: fadeIn 0.35s ease;
+}
+
+/* Sombra interior ligera */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ==== PREGUNTA ==== */
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0d1b2a;
+  cursor: pointer;
+  padding: 0.8rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #2b5ea8;
+  transform: translateX(2px);
+}
+
+/* ==== ICONO EXPANDIR ==== */
+.faq-icon {
+  font-size: 1.3rem;
+  color: #6b7c93;
+  transition: transform 0.3s ease;
+}
+
+.faq-question:hover .faq-icon {
+  color: #2b5ea8;
+}
+
+/* ==== RESPUESTA ==== */
+.faq-answer {
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.faq-answer p {
+  margin: 0.6rem 0 1.2rem;
+  color: #333;
+  line-height: 1.65;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+  border-left: 3px solid #2b5ea8;
+}
+
+/* ==== SIN PREGUNTAS ==== */
+.no-faq {
+  text-align: center;
+  color: #6b7c93;
+  font-style: italic;
+  font-size: 1rem;
+  padding: 2rem 0;
+}
+
+/* ==== FOOTER ==== */
+.faq-footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #0d1b2a;
+  color: #dce3f1;
+  font-size: 0.9rem;
+  margin-top: auto;
+  letter-spacing: 0.5px;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .faq-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .faq-header h1 {
+    font-size: 1.4rem;
+    margin-top: 0.4rem;
+  }
+
+  .faq-container {
+    padding: 6.5rem 1rem 2rem;
+  }
+
+  .faq-list {
+    padding: 1.8rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-container {
+    padding: 6rem 0.8rem 2rem;
+  }
+
+  .faq-list {
+    padding: 1.5rem;
+  }
+
+  .faq-footer {
+    font-size: 0.8rem;
+  }
+}

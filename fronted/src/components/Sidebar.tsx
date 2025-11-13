@@ -25,14 +25,13 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }: {
       />
       <h2 className="username">{user.user_metadata?.full_name || "Usuario"}</h2>
       <nav className="nav-menu">
-             
-        <button className="nav-btn" onClick={() => router.push('/noticias')}>Noticias</button>
-        <button className="nav-btn" onClick={() => router.push('/preguntas')}>Preguntas</button>
+        <button className="nav-btn" onClick={() => router.push('/nug1270o')}>Noticias</button>
+        <button className="nav-btn" onClick={() => router.push('/b4g8x9z2')}>Preguntas</button>
         <button className="nav-btn" onClick={() => router.push('/votaciones')}>Votar</button>
-        <button className="nav-btn" onClick={() => router.push('/mapa')}>Mapa</button>
-        <button className="nav-btn" onClick={() => router.push('/calendario')}>Calendario</button>
-        <button className="nav-btn" onClick={() => router.push('/foro')}>Debate</button>
-        <button className="nav-btn" onClick={() => router.push('/guia')}>Guia</button>
+        <button className="nav-btn" onClick={() => router.push('/m12osdhk')}>Mapa</button>
+        <button className="nav-btn" onClick={() => router.push('/r9t2u5v1')}>Calendario</button>
+        <button className="nav-btn" onClick={() => router.push('/a9f8k2l0')}>Debate</button>
+        <button className="nav-btn" onClick={() => router.push('/g1hjak98')}>Guía</button>
       </nav>
     </aside>
   );
