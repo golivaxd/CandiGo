@@ -1,8 +1,9 @@
 {
-  "/a9f8k2l0/page": "app/a9f8k2l0/page.js",
   "/api/news/route": "app/api/news/route.js",
   "/candidatos/[id]/page": "app/candidatos/[id]/page.js",
+  "/cargos/[cargo]/page": "app/cargos/[cargo]/page.js",
+  "/comparativa/page": "app/comparativa/page.js",
   "/d3h7m1p4/page": "app/d3h7m1p4/page.js",
   "/m12osdhk/page": "app/m12osdhk/page.js",
-  "/page": "app/page.js"
+  "/r9t2u5v1/page": "app/r9t2u5v1/page.js"
 }

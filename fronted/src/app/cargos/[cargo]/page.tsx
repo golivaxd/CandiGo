@@ -87,7 +87,7 @@ export default function CargoDetalle() {
         <h1 className="titulo-header">Cargo: {cargo}</h1>
 
         <button className="header-back" onClick={() => router.back()}>
-          ⬅ Regresar
+          Regresar
         </button>
       </header>
 

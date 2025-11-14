@@ -98,7 +98,7 @@ export default function CandidatoPage() {
   return (
     <div className="perfil-container">
       <header className="perfil-header">
-        <h1>CandiGo</h1>
+        <h1>Perfil del candidato</h1>
         <button onClick={() => router.back()} className="back-btn">
           Regresar
         </button>

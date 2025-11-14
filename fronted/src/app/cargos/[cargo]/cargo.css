@@ -13,7 +13,7 @@
 .cargo-container {
   background: var(--fondo);
   min-height: 100vh;
-  padding-top: 80px; /* espacio para header fijo */
+  padding-top: 70px; /* header fijo */
 }
 
 /* ===== HEADER FIJO ===== */
@@ -24,7 +24,7 @@
   width: 100%;
   background: var(--azul-marino);
   color: var(--blanco);
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,7 +34,7 @@
 
 .titulo-header {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
@@ -42,9 +42,9 @@
 .header-back {
   background: var(--azul-claro);
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.9rem;
   color: var(--blanco);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s ease;
@@ -56,13 +56,13 @@
 
 /* ===== CONTENIDO ===== */
 .contenido-pagina {
-  padding: 1.2rem;
+  padding: 1rem;
 }
 
 /* ===== BARRA DE FILTROS ===== */
 .filtros-barra {
   position: sticky;
-  top: 80px;
+  top: 70px;
   background: var(--blanco);
   padding: 0.9rem;
   border: 1px solid var(--azul-borde);
@@ -76,14 +76,13 @@
 
 .input-buscar,
 .select-entidad {
-  padding: 0.6rem;
+  padding: 0.55rem;
   border: 1px solid var(--azul-borde);
   border-radius: 8px;
-  font-size: 0.95rem;
-  flex: 1 1 250px;
+  font-size: 0.9rem;
+  flex: 1 1 100%;
 }
 
-/* BOTÓN DE COMPARAR */
 .btn-comparar {
   padding: 0.6rem 1.2rem;
   background: var(--azul-claro);
@@ -92,7 +91,7 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  flex: 1 1 200px;
+  width: 100%;
 }
 
 .btn-comparar:hover {
@@ -111,9 +110,10 @@
 
 .item-candidato {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
-  background: #f9f9f9;
+  gap: 0.6rem;
+  background: #ffffff;
   padding: 1rem;
   border-radius: 10px;
   border: 1px solid #ddd;
@@ -129,20 +129,21 @@
 }
 
 .checkbox-candidato {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 /* ===== TIPOGRAFÍA ===== */
 .item-candidato h2 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--azul-marino);
 }
 
 .item-candidato p {
-  margin: 0.2rem 0;
-  font-size: 0.9rem;
+  margin: 0.15rem 0;
+  font-size: 0.85rem;
+  line-height: 1.3;
 }
 
 
@@ -153,53 +154,37 @@
 /* ===== Móviles (pantallas pequeñas) ===== */
 @media (max-width: 480px) {
   .cargo-header {
-    padding: 0.8rem 1rem;
+    padding: 0.7rem 0.8rem;
   }
 
   .titulo-header {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   .header-back {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.78rem;
-  }
-
-  .contenido-pagina {
-    padding: 1rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
   }
 
   .filtros-barra {
     flex-direction: column;
-    top: 70px;
-  }
-
-  .btn-comparar {
-    width: 100%;
+    gap: 0.7rem;
+    top: 65px;
   }
 
   .item-candidato {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .item-candidato h2 {
-    font-size: 1rem;
+    gap: 0.5rem;
   }
 }
 
 /* ===== Tablets (pantallas medianas) ===== */
 @media (max-width: 768px) {
-  .cargo-header {
-    padding: 0.9rem 1rem;
-  }
-
-  .titulo-header {
-    font-size: 1.2rem;
-  }
-
   .filtros-barra {
     gap: 0.6rem;
+  }
+
+  .item-candidato {
+    flex-direction: column;
   }
 }
 
@@ -208,5 +193,20 @@
   .contenido-pagina {
     max-width: 900px;
     margin: auto;
+  }
+
+  .filtros-barra .input-buscar,
+  .filtros-barra .select-entidad {
+    flex: 1 1 250px;
+  }
+
+  .btn-comparar {
+    flex: 1 1 200px;
+    width: auto;
+  }
+
+  .item-candidato {
+    flex-direction: row;
+    align-items: flex-start;
   }
 }

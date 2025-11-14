@@ -22,8 +22,15 @@ type Candidato = {
 
 function ComparativaContent() {
   const searchParams = useSearchParams();
+
+  // ✅ Limpieza de IDs (soluciona el error {})
   const idsParam = searchParams.get('ids');
-  const ids = idsParam ? idsParam.split(',').map(Number) : [];
+  const ids = idsParam
+    ? idsParam
+        .split(',')
+        .map((v) => Number(v.trim()))
+        .filter((n) => !isNaN(n))
+    : [];
 
   const [candidatos, setCandidatos] = useState<Candidato[]>([]);
   const [propuestas, setPropuestas] = useState<Propuesta[]>([]);
@@ -43,6 +50,7 @@ function ComparativaContent() {
       setErrorMsg(null);
 
       try {
+        // 🔹 Obtener candidatos
         const { data: candData, error: candError } = await supabase
           .from('candidatos')
           .select('id, nombre, cargo, entidad')
@@ -51,6 +59,7 @@ function ComparativaContent() {
         if (candError) throw candError;
         setCandidatos(candData || []);
 
+        // 🔹 Obtener propuestas
         const { data: propData, error: propError } = await supabase
           .from('propuestas')
           .select('*')
@@ -58,8 +67,9 @@ function ComparativaContent() {
 
         if (propError) throw propError;
         setPropuestas(propData || []);
+
       } catch (err: any) {
-        console.error('Error cargando comparativa:', err);
+        console.error('Error cargando comparativa:', JSON.stringify(err, null, 2));
         setErrorMsg(err?.message || 'Error desconocido');
       } finally {
         setLoading(false);
@@ -70,10 +80,18 @@ function ComparativaContent() {
   }, [ids]);
 
   if (errorMsg)
-    return <p style={{ color: 'red', textAlign: 'center', marginTop: '2rem' }}>Error: {errorMsg}</p>;
+    return (
+      <p style={{ color: 'red', textAlign: 'center', marginTop: '2rem' }}>
+        Error: {errorMsg}
+      </p>
+    );
 
   if (!loading && candidatos.length === 0)
-    return <p style={{ textAlign: 'center', marginTop: '2rem' }}>No hay candidatos seleccionados.</p>;
+    return (
+      <p style={{ textAlign: 'center', marginTop: '2rem' }}>
+        No hay candidatos seleccionados.
+      </p>
+    );
 
   return (
     <>
@@ -119,7 +137,13 @@ function ComparativaContent() {
                     ))}
                   </ul>
                 ) : (
-                  <p style={{ color: '#4a5568', fontStyle: 'italic', marginTop: '0.5rem' }}>
+                  <p
+                    style={{
+                      color: '#4a5568',
+                      fontStyle: 'italic',
+                      marginTop: '0.5rem',
+                    }}
+                  >
                     No hay propuestas para este candidato.
                   </p>
                 )}

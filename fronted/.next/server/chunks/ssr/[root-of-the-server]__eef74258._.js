@@ -142,8 +142,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient
 ;
 function ComparativaContent() {
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSearchParams"])();
+    // ✅ Limpieza de IDs (soluciona el error {})
     const idsParam = searchParams.get('ids');
-    const ids = idsParam ? idsParam.split(',').map(Number) : [];
+    const ids = idsParam ? idsParam.split(',').map((v)=>Number(v.trim())).filter((n)=>!isNaN(n)) : [];
     const [candidatos, setCandidatos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [propuestas, setPropuestas] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -159,14 +160,16 @@ function ComparativaContent() {
             setLoading(true);
             setErrorMsg(null);
             try {
+                // 🔹 Obtener candidatos
                 const { data: candData, error: candError } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from('candidatos').select('id, nombre, cargo, entidad').in('id', ids);
                 if (candError) throw candError;
                 setCandidatos(candData || []);
+                // 🔹 Obtener propuestas
                 const { data: propData, error: propError } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from('propuestas').select('*').in('candidato_id', ids);
                 if (propError) throw propError;
                 setPropuestas(propData || []);
             } catch (err) {
-                console.error('Error cargando comparativa:', err);
+                console.error('Error cargando comparativa:', JSON.stringify(err, null, 2));
                 setErrorMsg(err?.message || 'Error desconocido');
             } finally{
                 setLoading(false);
@@ -188,8 +191,8 @@ function ComparativaContent() {
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/comparativa/page.tsx",
-        lineNumber: 73,
-        columnNumber: 12
+        lineNumber: 84,
+        columnNumber: 7
     }, this);
     if (!loading && candidatos.length === 0) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
         style: {
@@ -199,8 +202,8 @@ function ComparativaContent() {
         children: "No hay candidatos seleccionados."
     }, void 0, false, {
         fileName: "[project]/src/app/comparativa/page.tsx",
-        lineNumber: 76,
-        columnNumber: 12
+        lineNumber: 91,
+        columnNumber: 7
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
@@ -211,7 +214,7 @@ function ComparativaContent() {
                         children: "Comparativa"
                     }, void 0, false, {
                         fileName: "[project]/src/app/comparativa/page.tsx",
-                        lineNumber: 82,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -220,13 +223,13 @@ function ComparativaContent() {
                         children: "Regresar"
                     }, void 0, false, {
                         fileName: "[project]/src/app/comparativa/page.tsx",
-                        lineNumber: 83,
+                        lineNumber: 101,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/comparativa/page.tsx",
-                lineNumber: 81,
+                lineNumber: 99,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -237,7 +240,7 @@ function ComparativaContent() {
                         children: "Comparativa de Propuestas"
                     }, void 0, false, {
                         fileName: "[project]/src/app/comparativa/page.tsx",
-                        lineNumber: 89,
+                        lineNumber: 107,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -251,7 +254,7 @@ function ComparativaContent() {
                                         children: c.nombre
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                        lineNumber: 97,
+                                        lineNumber: 115,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -260,7 +263,7 @@ function ComparativaContent() {
                                                 children: "Cargo:"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/comparativa/page.tsx",
-                                                lineNumber: 100,
+                                                lineNumber: 118,
                                                 columnNumber: 19
                                             }, this),
                                             " ",
@@ -268,7 +271,7 @@ function ComparativaContent() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 117,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -277,7 +280,7 @@ function ComparativaContent() {
                                                 children: "Entidad:"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/comparativa/page.tsx",
-                                                lineNumber: 104,
+                                                lineNumber: 122,
                                                 columnNumber: 19
                                             }, this),
                                             " ",
@@ -285,7 +288,7 @@ function ComparativaContent() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                        lineNumber: 103,
+                                        lineNumber: 121,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -293,7 +296,7 @@ function ComparativaContent() {
                                         children: "Propuestas"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                        lineNumber: 107,
+                                        lineNumber: 125,
                                         columnNumber: 17
                                     }, this),
                                     propCandidato.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -309,24 +312,24 @@ function ComparativaContent() {
                                                         children: p.titulo
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                                        lineNumber: 113,
+                                                        lineNumber: 131,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                                        lineNumber: 114,
+                                                        lineNumber: 132,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: p.descripcion
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                                        lineNumber: 115,
+                                                        lineNumber: 133,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                                        lineNumber: 116,
+                                                        lineNumber: 134,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -334,18 +337,18 @@ function ComparativaContent() {
                                                         children: p.categoria
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                                        lineNumber: 117,
+                                                        lineNumber: 135,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, p.id, true, {
                                                 fileName: "[project]/src/app/comparativa/page.tsx",
-                                                lineNumber: 112,
+                                                lineNumber: 130,
                                                 columnNumber: 23
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 128,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         style: {
@@ -356,25 +359,25 @@ function ComparativaContent() {
                                         children: "No hay propuestas para este candidato."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/comparativa/page.tsx",
-                                        lineNumber: 122,
+                                        lineNumber: 140,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, c.id, true, {
                                 fileName: "[project]/src/app/comparativa/page.tsx",
-                                lineNumber: 96,
+                                lineNumber: 114,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/app/comparativa/page.tsx",
-                        lineNumber: 91,
+                        lineNumber: 109,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/comparativa/page.tsx",
-                lineNumber: 88,
+                lineNumber: 106,
                 columnNumber: 7
             }, this)
         ]
@@ -386,17 +389,17 @@ function ComparativaPage() {
             children: "Cargando comparativa..."
         }, void 0, false, {
             fileName: "[project]/src/app/comparativa/page.tsx",
-            lineNumber: 137,
+            lineNumber: 161,
             columnNumber: 25
         }, void 0),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ComparativaContent, {}, void 0, false, {
             fileName: "[project]/src/app/comparativa/page.tsx",
-            lineNumber: 138,
+            lineNumber: 162,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/comparativa/page.tsx",
-        lineNumber: 137,
+        lineNumber: 161,
         columnNumber: 5
     }, this);
 }

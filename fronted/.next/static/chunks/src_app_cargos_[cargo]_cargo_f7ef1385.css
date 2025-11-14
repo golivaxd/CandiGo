@@ -12,7 +12,7 @@
 .cargo-container {
   background: var(--fondo);
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 70px;
 }
 
 .cargo-header {
@@ -22,7 +22,7 @@
   z-index: 50;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding: .8rem 1rem;
   display: flex;
   position: fixed;
   top: 0;
@@ -32,7 +32,7 @@
 
 .titulo-header {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
@@ -42,8 +42,8 @@
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  padding: .5rem 1rem;
-  font-size: .95rem;
+  padding: .45rem .9rem;
+  font-size: .85rem;
   transition: all .2s;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .contenido-pagina {
-  padding: 1.2rem;
+  padding: 1rem;
 }
 
 .filtros-barra {
@@ -66,16 +66,16 @@
   display: flex;
   position: -webkit-sticky;
   position: sticky;
-  top: 80px;
+  top: 70px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, .08);
 }
 
 .input-buscar, .select-entidad {
   border: 1px solid var(--azul-borde);
   border-radius: 8px;
-  flex: 250px;
-  padding: .6rem;
-  font-size: .95rem;
+  flex: 100%;
+  padding: .55rem;
+  font-size: .9rem;
 }
 
 .btn-comparar {
@@ -84,7 +84,7 @@
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  flex: 200px;
+  width: 100%;
   padding: .6rem 1.2rem;
   font-weight: 600;
 }
@@ -103,11 +103,12 @@
 }
 
 .item-candidato {
-  background: #f9f9f9;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: .6rem;
   padding: 1rem;
   transition: all .2s;
   display: flex;
@@ -122,69 +123,54 @@
 }
 
 .checkbox-candidato {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .item-candidato h2 {
   color: var(--azul-marino);
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .item-candidato p {
-  margin: .2rem 0;
-  font-size: .9rem;
+  margin: .15rem 0;
+  font-size: .85rem;
+  line-height: 1.3;
 }
 
 @media (max-width: 480px) {
   .cargo-header {
-    padding: .8rem 1rem;
+    padding: .7rem .8rem;
   }
 
   .titulo-header {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   .header-back {
-    padding: .4rem .8rem;
-    font-size: .78rem;
-  }
-
-  .contenido-pagina {
-    padding: 1rem;
+    padding: .35rem .75rem;
+    font-size: .75rem;
   }
 
   .filtros-barra {
     flex-direction: column;
-    top: 70px;
-  }
-
-  .btn-comparar {
-    width: 100%;
+    gap: .7rem;
+    top: 65px;
   }
 
   .item-candidato {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .item-candidato h2 {
-    font-size: 1rem;
+    gap: .5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .cargo-header {
-    padding: .9rem 1rem;
-  }
-
-  .titulo-header {
-    font-size: 1.2rem;
-  }
-
   .filtros-barra {
     gap: .6rem;
+  }
+
+  .item-candidato {
+    flex-direction: column;
   }
 }
 
@@ -192,6 +178,20 @@
   .contenido-pagina {
     max-width: 900px;
     margin: auto;
+  }
+
+  .filtros-barra .input-buscar, .filtros-barra .select-entidad {
+    flex: 250px;
+  }
+
+  .btn-comparar {
+    flex: 200px;
+    width: auto;
+  }
+
+  .item-candidato {
+    flex-direction: row;
+    align-items: flex-start;
   }
 }
 
