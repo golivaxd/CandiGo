@@ -182,7 +182,15 @@ export default function Home() {
             {/* Puedes mantener tu logo si encaja, o usar una ilustración general */}
             <img src="/LogoSolo.png" alt="CandiGo Logo" className="welcome-image" /> 
             {/* El botón de descarga ahora es más un CTA complementario */}
-            <button className="welcome-cta-button">Descargar Nuestra App</button>
+<button
+  className="welcome-cta-button"
+  onClick={() => {
+    window.location.href = "https://github.com/Richards117/mi-app-votacion/releases/download/v1.0.0/app-release.apk";
+  }}
+>
+  Descargar Nuestra App
+</button>
+
           </div>
         </div>
       </div>

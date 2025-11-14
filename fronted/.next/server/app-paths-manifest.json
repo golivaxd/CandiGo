@@ -1,5 +1,7 @@
 {
-  "/api/prediccion/route": "app/api/prediccion/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/news/route": "app/api/news/route.js",
+  "/d3h7m1p4/page": "app/d3h7m1p4/page.js",
   "/naive/page": "app/naive/page.js",
   "/page": "app/page.js"
 }
