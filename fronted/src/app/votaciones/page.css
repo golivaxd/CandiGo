@@ -1,0 +1,223 @@
+/* ==================================================
+   RESET + BASE
+================================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: #f5f6fa;
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Variables útiles */
+:root {
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.10);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 6px 22px rgba(0, 0, 0, 0.15);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --blue: #0070f3;
+  --dark: #0d1b2a;
+}
+
+/* ==================================================
+   CONTENEDOR GENERAL
+================================================== */
+.page-container {
+  width: 100%;
+  padding: 24px;
+  max-width: 1000px;
+  margin: 80px auto 40px; /* deja espacio para el header fijo */
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px;
+    margin-top: 70px;
+  }
+}
+
+/* ==================================================
+   HEADER FIJO — efecto premium
+================================================== */
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  padding: 1rem 2rem;
+  background: rgba(13, 27, 42, 0.95);
+  backdrop-filter: blur(6px);
+
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .page-header {
+    padding: 0.8rem 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 20px;
+  }
+}
+
+/* ==================================================
+   BOTONES
+================================================== */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn-blue {
+  background: var(--blue);
+}
+
+.btn-black {
+  background: #000;
+}
+
+/* ==================================================
+   CARD FORMULARIO — moderno y elegante
+================================================== */
+.form-card {
+  width: 100%;
+  padding: 26px;
+
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid #e4e4e4;
+
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 600px) {
+  .form-card {
+    padding: 18px;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ==================================================
+   FORM-ITEM — limpio, elegante y responsivo
+================================================== */
+.form-item {
+  margin-bottom: 22px;
+}
+
+.form-item label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+/* Select premium */
+.form-item select {
+  width: 100%;
+  padding: 12px;
+
+  border: 1.5px solid #d0d0d0;
+  border-radius: var(--radius-md);
+  background: #fafafa;
+  font-size: 16px;
+
+  transition: border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-item select:focus {
+  background: #fff;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.25);
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .form-item select {
+    font-size: 15px;
+    padding: 11px;
+  }
+}
+
+/* ==================================================
+   RESULTADO — caja moderna con animación suave
+================================================== */
+.result-box {
+  width: 100%;
+  margin-top: 28px;
+
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 600;
+
+  background: linear-gradient(135deg, #f0f0f0, #fafafa);
+  border: 1px solid #ddd;
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.result-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 600px) {
+  .result-box {
+    padding: 16px;
+    font-size: 18px;
+  }
+}
+/* Botón de predecir más abajo */
+.predict-btn {
+  margin-top: 40px !important;
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
