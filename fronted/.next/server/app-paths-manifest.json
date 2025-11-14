@@ -1,6 +1,8 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/news/route": "app/api/news/route.js",
+  "/candidatos/[id]/page": "app/candidatos/[id]/page.js",
+  "/cargos/[cargo]/page": "app/cargos/[cargo]/page.js",
+  "/comparativa/page": "app/comparativa/page.js",
   "/d3h7m1p4/page": "app/d3h7m1p4/page.js",
-  "/votaciones/page": "app/votaciones/page.js"
+  "/m12osdhk/page": "app/m12osdhk/page.js"
 }

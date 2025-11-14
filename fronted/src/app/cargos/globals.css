@@ -1,0 +1,158 @@
+/* ============================
+   Estilos globales base
+============================ */
+body {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: #f4f6f9;
+  color: #1b263b;
+}
+
+/* ============================
+   Botón Volver
+============================ */
+.back-btn {
+  padding: 0.55rem 1.2rem;
+  background: #415a77;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.1s ease;
+  margin-bottom: 1rem;
+}
+
+.back-btn:hover {
+  background: #778da9;
+  transform: translateY(-2px);
+}
+
+.back-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================
+   Títulos
+============================ */
+.page-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #0d1b2a;
+}
+
+/* ============================
+   Barra de herramientas sticky
+============================ */
+.toolbar {
+  position: sticky;
+  top: 0;
+  background: #ffffffcc;
+  backdrop-filter: blur(6px);
+  padding: 0.8rem 0.8rem;
+  border-bottom: 1px solid #d6dde5;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  z-index: 20;
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #b8c5d6;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+  flex: 1 1 200px;
+  outline: none;
+  transition: border-color 0.18s ease;
+}
+
+.toolbar input:focus,
+.toolbar select:focus {
+  border-color: #415a77;
+}
+
+.compare-btn {
+  padding: 0.6rem 1.1rem;
+  background: #1e40af;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.compare-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* ============================
+   Lista y tarjetas de candidatos
+============================ */
+.candidato-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.candidato-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid #d6dde5;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.candidato-card:hover {
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+}
+
+.candidato-card.selected {
+  background: #d0f0c0;
+  border-color: #9acd6b;
+}
+
+.candidato-card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #0d1b2a;
+}
+
+.candidato-card p {
+  margin: 0.3rem 0;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+/* ============================
+   Responsive especial
+============================ */
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.4rem;
+  }
+
+  .compare-btn {
+    width: 100%;
+  }
+
+  .candidato-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

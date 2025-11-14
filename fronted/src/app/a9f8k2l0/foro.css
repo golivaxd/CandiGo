@@ -1,4 +1,4 @@
-/* foro.css — Diseño renovado con tipografía Times New Roman y títulos mejorados */
+/* foro.css — Diseño renovado SIN Times New Roman */
 
 /* ---------- Reset / Base ---------- */
 * { box-sizing: border-box; }
@@ -6,9 +6,14 @@
 
 body {
   margin: 0;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Inter", "Segoe UI", sans-serif;
   background: linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%);
   color: #0a1424;
+}
+
+/* ---------- Quitar Times en TODO ---------- */
+body, h1, h2, h3, p, input, textarea, button, small, strong, div, span {
+  font-family: "Inter", "Segoe UI", sans-serif !important;
 }
 
 /* ---------- HEADER (fijo) ---------- */
@@ -29,7 +34,6 @@ body {
 }
 
 .foro-header h1 {
-  font-family: 'Times New Roman', Times, serif;
   font-size: 1.6rem;
   font-weight: bold;
   letter-spacing: 0.5px;
@@ -51,7 +55,6 @@ body {
   gap: 8px;
   padding: 8px 14px;
   border-radius: 999px;
-  font-family: 'Times New Roman', Times, serif;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -65,6 +68,7 @@ body {
   color: #fff;
   box-shadow: 0 4px 10px rgba(25, 60, 110, 0.25);
 }
+
 .header-btn.new:hover {
   transform: translateY(-3px);
   background: linear-gradient(180deg, #325da3, #1e3f6e);
@@ -76,6 +80,7 @@ body {
   color: #f5f7fa;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
+
 .header-btn.back:hover {
   background: rgba(255, 255, 255, 0.16);
 }
@@ -152,13 +157,15 @@ body {
   border-radius: 8px;
   border: 1px solid #cfd9e8;
   background: #fafcfe;
-  font-family: 'Times New Roman', Times, serif;
   font-size: 1rem;
   color: #0b223d;
   transition: all .2s ease;
 }
 
-.new-debate textarea { min-height: 140px; resize: vertical; }
+.new-debate textarea {
+  min-height: 140px;
+  resize: vertical;
+}
 
 .new-debate input:focus,
 .new-debate textarea:focus {
@@ -173,12 +180,12 @@ body {
   border-radius: 8px;
   background: linear-gradient(180deg, #2b4d8a, #18335a);
   color: #fff;
-  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   border: none;
   cursor: pointer;
   transition: transform .12s ease, box-shadow .12s ease;
 }
+
 .send-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(27, 57, 110, 0.16);
@@ -212,7 +219,7 @@ body {
   font-style: italic;
 }
 
-/* ---------- TEXTAREA de comentario ---------- */
+/* ---------- TEXTAREA comentario ---------- */
 .comentario-input {
   width: 100%;
   min-height: 120px;
@@ -221,7 +228,6 @@ body {
   border-radius: 12px;
   background-color: #f9fbfd;
   color: #1a2a44;
-  font-family: 'Times New Roman', Times, serif;
   font-size: 1rem;
   line-height: 1.5;
   resize: vertical;
@@ -247,7 +253,7 @@ body {
   box-shadow: 0 0 6px rgba(43, 108, 176, 0.3);
 }
 
-/* ---------- BOTONES de COMENTARIOS ---------- */
+/* ---------- Botones comentarios ---------- */
 .comentario-buttons {
   display: flex;
   align-items: center;
@@ -262,7 +268,6 @@ body {
   border: 1px solid #a5b8d1;
   background: transparent;
   color: #0f2135;
-  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   cursor: pointer;
   transition: all .15s ease;
@@ -279,7 +284,6 @@ body {
 
 /* ---------- TÍTULOS INTERNOS ---------- */
 h2, h3 {
-  font-family: 'Times New Roman', Times, serif;
   color: #0d274a;
   margin-bottom: 10px;
 }
@@ -288,7 +292,9 @@ h2 {
   font-size: 1.4rem;
   border-bottom: 2px solid #2b4d8a;
   padding-bottom: 6px;
-  display: inline-block;
+  display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 h3 {
@@ -297,11 +303,62 @@ h3 {
   font-style: italic;
 }
 
-/* ---------- Responsivo ---------- */
+/* ---------- Responsivo general ---------- */
 @media (max-width: 640px) {
-  .foro-header { padding: 10px; height: auto; flex-wrap: wrap; gap: 6px; }
+  .foro-header {
+    padding: 10px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
   .foro-header h1 { font-size: 1.2rem; }
   .foro-main { padding: 18px; margin: 12px; }
-  .comentario-buttons { flex-direction: column-reverse; }
-  .comentario-buttons button { width: 100%; }
+
+  .comentario-buttons {
+    flex-direction: column-reverse;
+  }
+
+  .comentario-buttons button {
+    width: 100%;
+  }
+}
+
+/* ----- Fix títulos en celulares ----- */
+@media (max-width: 480px) {
+  h1, h2, h3 {
+    font-size: 1.1rem !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal !important;
+  }
+
+  .foro-header h1 {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* ----- Fix: debate-item NO se sale en celular ----- */
+@media (max-width: 480px) {
+
+  .debate-list {
+    padding: 0 8px !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .debate-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 14px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+  }
+
+  .debate-item h3,
+  .debate-item p {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+  }
 }

@@ -172,7 +172,7 @@ export default function Dashboard() {
               {candidatos.map((candidato, idx) => (
                 <Link href={`/candidatos/${candidato.id}`} key={idx}>
                   <div className="candidato" style={{ cursor: "pointer" }}>
-                    <img src="/images/presidente.jpg" alt={candidato.nombre} />
+
                     <h3>{candidato.nombre}</h3>
                     <p>Cargo: {candidato.cargo}</p>
                     <p>Partido ID: {candidato.partido_id}</p>

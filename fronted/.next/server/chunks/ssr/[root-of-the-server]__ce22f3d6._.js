@@ -251,7 +251,9 @@ function Mapa() {
                             fontSize: '1rem',
                             fontWeight: 500,
                             transition: 'all 0.3s ease',
-                            marginRight: '5rem'
+                            marginRight: '0',
+                            maxWidth: '140px',
+                            whiteSpace: 'nowrap'
                         },
                         onMouseEnter: (e)=>e.target.style.background = '#778da9',
                         onMouseLeave: (e)=>e.target.style.background = '#415a77',
@@ -259,7 +261,7 @@ function Mapa() {
                     }, void 0, false, {
                         fileName: "[project]/src/app/m12osdhk/page.tsx",
                         lineNumber: 120,
-                        columnNumber: 3
+                        columnNumber: 1
                     }, this)
                 ]
             }, void 0, true, {
@@ -277,7 +279,7 @@ function Mapa() {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                lineNumber: 143,
+                lineNumber: 146,
                 columnNumber: 7
             }, this),
             selectedEntidad && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -316,7 +318,7 @@ function Mapa() {
                                 children: selectedEntidad.nombre
                             }, void 0, false, {
                                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                lineNumber: 178,
+                                lineNumber: 181,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -331,13 +333,13 @@ function Mapa() {
                                 children: "✕"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                lineNumber: 179,
+                                lineNumber: 182,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/m12osdhk/page.tsx",
-                        lineNumber: 172,
+                        lineNumber: 175,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -356,7 +358,7 @@ function Mapa() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/app/m12osdhk/page.tsx",
-                        lineNumber: 191,
+                        lineNumber: 194,
                         columnNumber: 11
                     }, this),
                     filteredCandidatos.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -395,7 +397,7 @@ function Mapa() {
                                                 children: candidato.nombre
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                                lineNumber: 230,
+                                                lineNumber: 233,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -406,12 +408,12 @@ function Mapa() {
                                                 children: candidato.cargo
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                                lineNumber: 233,
+                                                lineNumber: 236,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                                lineNumber: 234,
+                                                lineNumber: 237,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -423,13 +425,13 @@ function Mapa() {
                                                 children: candidato.partido?.nombre || candidato.partido_id
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                                lineNumber: 235,
+                                                lineNumber: 238,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                        lineNumber: 229,
+                                        lineNumber: 232,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -441,18 +443,18 @@ function Mapa() {
                                         children: "→"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                        lineNumber: 239,
+                                        lineNumber: 242,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, candidato.id, true, {
                                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                                lineNumber: 210,
+                                lineNumber: 213,
                                 columnNumber: 17
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/m12osdhk/page.tsx",
-                        lineNumber: 208,
+                        lineNumber: 211,
                         columnNumber: 13
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         style: {
@@ -463,13 +465,13 @@ function Mapa() {
                         children: "No hay candidatos que coincidan."
                     }, void 0, false, {
                         fileName: "[project]/src/app/m12osdhk/page.tsx",
-                        lineNumber: 244,
+                        lineNumber: 247,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/m12osdhk/page.tsx",
-                lineNumber: 155,
+                lineNumber: 158,
                 columnNumber: 9
             }, this)
         ]

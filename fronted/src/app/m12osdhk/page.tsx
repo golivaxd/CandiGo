@@ -117,25 +117,28 @@ export default function Mapa() {
     fontWeight: 700,
     fontFamily: "'Montserrat', sans-serif",
   }}>Mapa de Candidatos</h1>
-  <button
-    onClick={() => (window.location.href = '/d3h7m1p4')}
-    style={{
-      padding: '0.6rem 1.4rem',
-      background: '#415a77',
-      color: '#fff',
-      border: 'none',
-      borderRadius: '8px',
-      cursor: 'pointer',
-      fontSize: '1rem',
-      fontWeight: 500,
-      transition: 'all 0.3s ease',
-      marginRight: '5rem', // <-- lo movemos un poco hacia la izquierda
-    }}
-    onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.background = '#778da9')}
-    onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.background = '#415a77')}
-  >
-    Regresar
-  </button>
+<button
+  onClick={() => (window.location.href = '/d3h7m1p4')}
+  style={{
+    padding: '0.6rem 1.4rem',
+    background: '#415a77',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontSize: '1rem',
+    fontWeight: 500,
+    transition: 'all 0.3s ease',
+    marginRight: '0',       // ✔️ Quitar el empuje
+    maxWidth: '140px',      // ✔️ Evita que crezca
+    whiteSpace: 'nowrap',   // ✔️ Evita que se parta
+  }}
+  onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.background = '#778da9')}
+  onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.background = '#415a77')}
+>
+  Regresar
+</button>
+
 </header>
 
 

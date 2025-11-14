@@ -1,0 +1,164 @@
+/* =====================================
+   HEADER FIJO (AZUL MARINO)
+   ===================================== */
+.comp-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #0d1b2a; /* Azul marino */
+  color: #ffffff;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.comp-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Botón regresar */
+.comp-back-btn {
+  background: #1b263b;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.comp-back-btn:hover {
+  background: #415a77;
+}
+
+
+
+/* =====================================
+   AJUSTE DE LAYOUT (por header fijo)
+   ===================================== */
+.comp-main {
+  padding: 6rem 2rem 2rem; /* espacio debajo del header */
+  font-family: 'Inter', sans-serif;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+
+
+/* =====================================
+   TÍTULO PRINCIPAL
+   ===================================== */
+.comp-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #0d1b2a;
+  text-align: center;
+}
+
+
+
+/* =====================================
+   TARJETAS
+   ===================================== */
+.comp-card-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.comp-card {
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 330px;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
+}
+
+.comp-card h2 {
+  font-size: 1.4rem;
+  color: #0d1b2a;
+  margin-bottom: 0.5rem;
+}
+
+.comp-card p {
+  margin: 0.2rem 0;
+  color: #415a77;
+}
+
+
+
+/* =====================================
+   PROPUESTAS
+   ===================================== */
+.comp-prop-title {
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e0e4f1;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1b263b;
+}
+
+.comp-prop-item {
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  background: #f7fafd;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.comp-prop-cat {
+  font-size: 0.85rem;
+  color: #4dd0b0;
+  font-style: italic;
+}
+
+
+
+/* =====================================
+   RESPONSIVE
+   ===================================== */
+@media (max-width: 768px) {
+  .comp-main {
+    padding: 5rem 1rem 1rem;
+  }
+
+  .comp-card {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comp-header {
+    padding: 10px 15px;
+  }
+
+  .comp-header h2 {
+    font-size: 1rem;
+  }
+
+  .comp-back-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .comp-main {
+    padding: 4.5rem 1rem 1rem;
+  }
+}

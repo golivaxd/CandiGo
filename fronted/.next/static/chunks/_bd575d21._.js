@@ -274,12 +274,14 @@ function Page() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         className: "btn btn-blue",
-                        onClick: ()=>window.location.href = "/d3h7m1p4",
+                        onClick: ()=>{
+                            window.location.href = "".concat(window.location.origin, "/d3h7m1p4");
+                        },
                         children: "Regresar"
                     }, void 0, false, {
                         fileName: "[project]/src/app/votaciones/page.tsx",
-                        lineNumber: 251,
-                        columnNumber: 4
+                        lineNumber: 250,
+                        columnNumber: 1
                     }, this)
                 ]
             }, void 0, true, {
@@ -297,7 +299,7 @@ function Page() {
                         children: "entidad_candidato"
                     }, void 0, false, {
                         fileName: "[project]/src/app/votaciones/page.tsx",
-                        lineNumber: 261,
+                        lineNumber: 265,
                         columnNumber: 16
                     }, this),
                     " y se usa",
@@ -306,14 +308,14 @@ function Page() {
                         children: "partido"
                     }, void 0, false, {
                         fileName: "[project]/src/app/votaciones/page.tsx",
-                        lineNumber: 262,
+                        lineNumber: 266,
                         columnNumber: 5
                     }, this),
                     " como etiqueta."
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/votaciones/page.tsx",
-                lineNumber: 260,
+                lineNumber: 264,
                 columnNumber: 3
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -328,7 +330,7 @@ function Page() {
                                 children: fk.replace(/_/g, " ")
                             }, void 0, false, {
                                 fileName: "[project]/src/app/votaciones/page.tsx",
-                                lineNumber: 271,
+                                lineNumber: 275,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -339,33 +341,34 @@ function Page() {
                                         children: opt
                                     }, opt, false, {
                                         fileName: "[project]/src/app/votaciones/page.tsx",
-                                        lineNumber: 278,
+                                        lineNumber: 282,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/votaciones/page.tsx",
-                                lineNumber: 273,
+                                lineNumber: 277,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, fk, true, {
                         fileName: "[project]/src/app/votaciones/page.tsx",
-                        lineNumber: 270,
+                        lineNumber: 274,
                         columnNumber: 9
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/app/votaciones/page.tsx",
-                lineNumber: 266,
+                lineNumber: 270,
                 columnNumber: 3
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 className: "btn btn-blue predict-btn",
-                children: "Predecir"
+                onClick: handlePredict,
+                children: "Predecir partido"
             }, void 0, false, {
                 fileName: "[project]/src/app/votaciones/page.tsx",
-                lineNumber: 289,
-                columnNumber: 1
+                lineNumber: 293,
+                columnNumber: 3
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "result-box",
@@ -374,20 +377,20 @@ function Page() {
                         children: "Resultado: "
                     }, void 0, false, {
                         fileName: "[project]/src/app/votaciones/page.tsx",
-                        lineNumber: 296,
+                        lineNumber: 303,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         children: prediccion || "—"
                     }, void 0, false, {
                         fileName: "[project]/src/app/votaciones/page.tsx",
-                        lineNumber: 297,
+                        lineNumber: 304,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/votaciones/page.tsx",
-                lineNumber: 295,
+                lineNumber: 302,
                 columnNumber: 3
             }, this)
         ]

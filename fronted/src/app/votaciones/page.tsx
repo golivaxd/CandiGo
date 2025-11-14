@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Papa from "papaparse";
 import "./page.css";
 
@@ -51,7 +52,6 @@ function stdev(arr: number[]) {
 }
 
 function summarizeDataset(dataset: number[][]) {
-  // dataset: rows x features
   const columns = dataset[0].map((_, i) => dataset.map((row) => row[i]));
   return columns.map((col) => [mean(col), stdev(col), col.length]);
 }
@@ -103,6 +103,8 @@ function predictLabel(summaries: any, inputVector: number[]) {
 
 /* ---------- Componente ---------- */
 export default function Page() {
+  const router = useRouter();
+
   const [loading, setLoading] = useState(true);
   const [headerKeys, setHeaderKeys] = useState<string[]>([]);
   const [featureKeys, setFeatureKeys] = useState<string[]>([]);
@@ -239,66 +241,62 @@ export default function Page() {
   };
 
   if (loading) return <p style={{ padding: 20 }}>Cargando datos...</p>;
-  if (!rows || rows.length === 0) return <p style={{ padding: 20 }}>CSV vacío o no válido.</p>;
+  if (!rows || rows.length === 0)
+    return <p style={{ padding: 20 }}>CSV vacío o no válido.</p>;
 
   return (
     <div className="page-container">
 
-  {/* HEADER */}
-  <header className="page-header">
-    <h1>Predicción de Votación</h1>
+      {/* HEADER */}
+      <header className="page-header">
 
-   <button
-  className="btn btn-blue"
-  onClick={() => (window.location.href = "/d3h7m1p4")}
->
-  Regresar
-</button>
+        {/* ⭐ BOTÓN AGREGADO (NO SE MOVIDO NADA MÁS) */}
+ 
 
-  </header>
+        <h1>Predicción de Votación</h1>
 
-  <p style={{ color: "#444" }}>
-    Se excluye <strong>entidad_candidato</strong> y se usa{" "}
-    <strong>partido</strong> como etiqueta.
-  </p>
-
-  {/* FORMULARIO */}
-  <div className="form-card">
-    {featureKeys.map((fk) => {
-      const options = Object.keys(lookups[fk] || {});
-      return (
-        <div key={fk} className="form-item">
-          <label>{fk.replace(/_/g, " ")}</label>
-
-          <select
-            value={selectedValues[fk] ?? ""}
-            onChange={(e) => handleSelectChange(fk, e.target.value)}
-          >
-            {options.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
-        </div>
-      );
-    })}
-  </div>
-
-  {/* BOTÓN DE PREDICCIÓN */}
-<button className="btn btn-blue predict-btn">
-  Predecir
-</button>
+        <button
+          className="btn btn-blue"
+          onClick={() => router.push("/d3h7m1p4")}
+        >
+          Regresar
+        </button>
+      </header>
 
 
-  {/* RESULTADO */}
-  <div className="result-box">
-    <strong>Resultado: </strong>
-    <span>{prediccion || "—"}</span>
-  </div>
+      {/* FORMULARIO */}
+      <div className="form-card">
+        {featureKeys.map((fk) => {
+          const options = Object.keys(lookups[fk] || {});
+          return (
+            <div key={fk} className="form-item">
+              <label>{fk.replace(/_/g, " ")}</label>
 
-</div>
+              <select
+                value={selectedValues[fk] ?? ""}
+                onChange={(e) => handleSelectChange(fk, e.target.value)}
+              >
+                {options.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
+          );
+        })}
+      </div>
 
+      {/* BOTÓN DE PREDICCIÓN */}
+      <button className="btn btn-blue predict-btn" onClick={handlePredict}>
+        Predecir partido
+      </button>
 
+      {/* RESULTADO */}
+      <div className="result-box">
+        <strong>Resultado: </strong>
+        <span>{prediccion || "—"}</span>
+      </div>
+    </div>
   );
 }
