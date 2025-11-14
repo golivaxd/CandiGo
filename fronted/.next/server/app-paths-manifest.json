@@ -1,13 +1,5 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/news/route": "app/api/news/route.js",
-  "/b4g8x9z2/page": "app/b4g8x9z2/page.js",
-  "/d3h7m1p4/page": "app/d3h7m1p4/page.js",
-  "/g1hjak98/page": "app/g1hjak98/page.js",
-  "/m12osdhk/page": "app/m12osdhk/page.js",
-  "/nosotros/page": "app/nosotros/page.js",
-  "/nug1270o/page": "app/nug1270o/page.js",
-  "/page": "app/page.js",
-  "/r9t2u5v1/page": "app/r9t2u5v1/page.js",
-  "/votaciones/page": "app/votaciones/page.js"
+  "/api/prediccion/route": "app/api/prediccion/route.js",
+  "/naive/page": "app/naive/page.js",
+  "/page": "app/page.js"
 }
