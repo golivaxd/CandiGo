@@ -70,7 +70,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 function Sidebar(param) {
     let { user, sidebarOpen, setSidebarOpen } = param;
-    var _user_user_metadata, _user_user_metadata1;
+    var _user_user_metadata;
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     // Función para navegar y cerrar sidebar en móviles
@@ -82,8 +82,8 @@ function Sidebar(param) {
         className: "sidebar ".concat(sidebarOpen ? "open" : "closed"),
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                src: ((_user_user_metadata = user.user_metadata) === null || _user_user_metadata === void 0 ? void 0 : _user_user_metadata.avatar_url) || "https://via.placeholder.com/80",
-                alt: "Foto de perfil",
+                src: "/perfil.png",
+                alt: "perfil",
                 className: "profile-img"
             }, void 0, false, {
                 fileName: "[project]/src/components/Sidebar.tsx",
@@ -92,10 +92,10 @@ function Sidebar(param) {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                 className: "username",
-                children: ((_user_user_metadata1 = user.user_metadata) === null || _user_user_metadata1 === void 0 ? void 0 : _user_user_metadata1.full_name) || "Usuario"
+                children: ((_user_user_metadata = user.user_metadata) === null || _user_user_metadata === void 0 ? void 0 : _user_user_metadata.full_name) || "Usuario"
             }, void 0, false, {
                 fileName: "[project]/src/components/Sidebar.tsx",
-                lineNumber: 26,
+                lineNumber: 23,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -107,7 +107,7 @@ function Sidebar(param) {
                         children: "Noticias"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
-                        lineNumber: 28,
+                        lineNumber: 25,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -116,7 +116,7 @@ function Sidebar(param) {
                         children: "Preguntas"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
-                        lineNumber: 29,
+                        lineNumber: 26,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -125,7 +125,7 @@ function Sidebar(param) {
                         children: "Votar"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
-                        lineNumber: 30,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -134,7 +134,7 @@ function Sidebar(param) {
                         children: "Mapa"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
-                        lineNumber: 31,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -143,7 +143,7 @@ function Sidebar(param) {
                         children: "Calendario"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
-                        lineNumber: 32,
+                        lineNumber: 29,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -152,7 +152,7 @@ function Sidebar(param) {
                         children: "Debate"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
-                        lineNumber: 33,
+                        lineNumber: 30,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -161,13 +161,13 @@ function Sidebar(param) {
                         children: "Guía"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Sidebar.tsx",
-                        lineNumber: 34,
+                        lineNumber: 31,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Sidebar.tsx",
-                lineNumber: 27,
+                lineNumber: 24,
                 columnNumber: 7
             }, this)
         ]
@@ -301,7 +301,7 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)"); // 👈 agregado
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabaseClient.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/Sidebar.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$NewsCarousel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/NewsCarousel.tsx [app-client] (ecmascript)");
@@ -320,15 +320,13 @@ function Dashboard() {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [sidebarOpen, setSidebarOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false); // por defecto cerrado
+    const [sidebarOpen, setSidebarOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [news, setNews] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [newsLoading, setNewsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [cargos, setCargos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [cargosLoading, setCargosLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    // Estado para candidatos con los campos reales de la tabla (incluye id)
     const [candidatos, setCandidatos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [candidatosLoading, setCandidatosLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    // Sesión
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
             const checkSession = {
@@ -344,7 +342,6 @@ function Dashboard() {
     }["Dashboard.useEffect"], [
         router
     ]);
-    // Cargar noticias
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
             let mounted = true;
@@ -388,43 +385,32 @@ function Dashboard() {
             })["Dashboard.useEffect"];
         }
     }["Dashboard.useEffect"], []);
-    // Cargar cargos desde Supabase
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
             const fetchCargos = {
                 "Dashboard.useEffect.fetchCargos": async ()=>{
                     setCargosLoading(true);
-                    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from('Votacion').select('CARGO'); // solo el campo CARGO
-                    if (error) {
-                        console.error('Error al cargar cargos:', error.message);
-                    } else {
-                        setCargos(data.map({
-                            "Dashboard.useEffect.fetchCargos": (item)=>item.CARGO
-                        }["Dashboard.useEffect.fetchCargos"]));
-                    }
+                    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from('Votacion').select('CARGO');
+                    if (error) console.error('Error al cargar cargos:', error.message);
+                    else setCargos(data.map({
+                        "Dashboard.useEffect.fetchCargos": (item)=>item.CARGO
+                    }["Dashboard.useEffect.fetchCargos"]));
                     setCargosLoading(false);
                 }
             }["Dashboard.useEffect.fetchCargos"];
             fetchCargos();
         }
     }["Dashboard.useEffect"], []);
-    // Cargar candidatos: solo los 3 con cargo "PRESIDENCIA DE LA REPÚBLICA"
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
             const fetchCandidatos = {
                 "Dashboard.useEffect.fetchCandidatos": async ()=>{
                     setCandidatosLoading(true);
                     try {
-                        const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from('candidatos').select('id, nombre, partido_id, cargo, pagina_web, activo') // <-- añadí id
-                        .eq('cargo', 'PRESIDENCIA DE LA REPÚBLICA').limit(3);
-                        if (error) {
-                            console.error('Error al cargar candidatos:', error);
-                            setCandidatos([]);
-                        } else {
-                            setCandidatos(data || []);
-                        }
-                    } catch (err) {
-                        console.error('fetch candidatos error', err);
+                        const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from('candidatos').select('id, nombre, partido_id, cargo, pagina_web, activo').eq('cargo', 'PRESIDENCIA DE LA REPÚBLICA').limit(3);
+                        if (error) setCandidatos([]);
+                        else setCandidatos(data || []);
+                    } catch (e) {
                         setCandidatos([]);
                     } finally{
                         setCandidatosLoading(false);
@@ -438,24 +424,15 @@ function Dashboard() {
         children: "Cargando..."
     }, void 0, false, {
         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-        lineNumber: 129,
+        lineNumber: 120,
         columnNumber: 23
     }, this);
     if (!user) return null;
-    // Procesar cargos únicos y su cantidad
     const cargosContados = cargos.reduce((acc, cargo)=>{
         acc[cargo] = (acc[cargo] || 0) + 1;
         return acc;
     }, {});
-    const cargosUnicos = Object.entries(cargosContados); // [[cargo, cantidad], ...]
-    const getPresidenteImage = (nombre, pagina_web)=>{
-        if (!nombre) return pagina_web && pagina_web.endsWith('.jpg') ? pagina_web : '/placeholder.jpg';
-        const n = nombre.toLowerCase();
-        if (n.includes('xochi') || n.includes('xochityh')) return '/images/presidente_xochi.jpg';
-        if (n.includes('cl') && n.includes('aud') || n.includes('claudia') || n.includes('claaudia')) return '/images/presidente_claudia.jpg';
-        if (n.includes('cl') && !n.includes('claudia')) return '/images/presidente_cl.jpg';
-        return pagina_web && pagina_web.endsWith('.jpg') ? pagina_web : '/placeholder.jpg';
-    };
+    const cargosUnicos = Object.entries(cargosContados);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "dashboard-container",
         children: [
@@ -465,19 +442,18 @@ function Dashboard() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         className: "menu-toggle",
                         onClick: ()=>setSidebarOpen(!sidebarOpen),
-                        "aria-label": "Abrir menú",
                         children: "☰"
                     }, void 0, false, {
                         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                        lineNumber: 153,
+                        lineNumber: 132,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "header-title",
-                        children: "Dashboard"
+                        children: "Candidaturas Federales"
                     }, void 0, false, {
                         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                        lineNumber: 160,
+                        lineNumber: 139,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -489,13 +465,13 @@ function Dashboard() {
                         children: "Cerrar sesión"
                     }, void 0, false, {
                         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                        lineNumber: 161,
+                        lineNumber: 141,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                lineNumber: 152,
+                lineNumber: 131,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -504,7 +480,7 @@ function Dashboard() {
                 setSidebarOpen: setSidebarOpen
             }, void 0, false, {
                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                lineNumber: 172,
+                lineNumber: 152,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -517,32 +493,32 @@ function Dashboard() {
                                 children: "📰 Novedades Políticas (México)"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 177,
+                                lineNumber: 156,
                                 columnNumber: 11
                             }, this),
                             newsLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "Cargando noticias..."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 178,
-                                columnNumber: 26
+                                lineNumber: 158,
+                                columnNumber: 13
                             }, this) : news.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$NewsCarousel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 articles: news
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 178,
-                                columnNumber: 74
+                                lineNumber: 160,
+                                columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "No se encontraron noticias."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 178,
-                                columnNumber: 109
+                                lineNumber: 162,
+                                columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                        lineNumber: 176,
+                        lineNumber: 155,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -552,127 +528,86 @@ function Dashboard() {
                                 children: "👤 Candidatos a la Presidencia"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 183,
+                                lineNumber: 167,
                                 columnNumber: 11
                             }, this),
                             candidatosLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "Cargando candidatos..."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 186,
+                                lineNumber: 169,
                                 columnNumber: 13
                             }, this) : candidatos.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "candidatos-grid",
-                                children: candidatos.map((candidato, index)=>{
-                                    var _candidato_partido_id, _candidato_id;
-                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                children: candidatos.map((candidato, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/candidatos/".concat(candidato.id),
-                                        onClick: ()=>setSidebarOpen(false),
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "candidato",
-                                            role: "button",
-                                            tabIndex: 0,
-                                            onClick: ()=>setSidebarOpen(false),
-                                            onKeyDown: (e)=>{
-                                                if (e.key === 'Enter' || e.key === ' ') {
-                                                    e.currentTarget.click();
-                                                }
-                                            },
                                             style: {
-                                                cursor: 'pointer'
+                                                cursor: "pointer"
                                             },
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                    src: candidato.cargo === 'PRESIDENCIA DE LA REPÚBLICA' ? '/images/presidente.jpg' : getPresidenteImage(candidato.nombre, candidato.pagina_web),
-                                                    alt: candidato.nombre || 'Candidato'
+                                                    src: "/images/presidente.jpg",
+                                                    alt: candidato.nombre
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                                    lineNumber: 207,
+                                                    lineNumber: 175,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                    children: candidato.nombre || '—'
+                                                    children: candidato.nombre
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                                    lineNumber: 215,
+                                                    lineNumber: 176,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: [
                                                         "Cargo: ",
-                                                        candidato.cargo || '—'
+                                                        candidato.cargo
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                                    lineNumber: 216,
+                                                    lineNumber: 177,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: [
                                                         "Partido ID: ",
-                                                        (_candidato_partido_id = candidato.partido_id) !== null && _candidato_partido_id !== void 0 ? _candidato_partido_id : '—'
+                                                        candidato.partido_id
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                                    lineNumber: 217,
+                                                    lineNumber: 178,
                                                     columnNumber: 21
-                                                }, this),
-                                                candidato.pagina_web ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        type: "button",
-                                                        onClick: (e)=>{
-                                                            e.stopPropagation();
-                                                            e.preventDefault();
-                                                            window.open(candidato.pagina_web, '_blank', 'noopener,noreferrer');
-                                                        },
-                                                        style: {
-                                                            background: 'none',
-                                                            border: 'none',
-                                                            color: 'var(--color-azul-elegante)',
-                                                            textDecoration: 'underline',
-                                                            cursor: 'pointer',
-                                                            padding: 0,
-                                                            font: 'inherit'
-                                                        },
-                                                        "aria-label": "Abrir sitio de ".concat(candidato.nombre),
-                                                        children: "Sitio"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                                        lineNumber: 222,
-                                                        columnNumber: 25
-                                                    }, this)
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                                    lineNumber: 221,
-                                                    columnNumber: 23
-                                                }, this) : null
+                                                }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                            lineNumber: 195,
+                                            lineNumber: 174,
                                             columnNumber: 19
                                         }, this)
-                                    }, (_candidato_id = candidato.id) !== null && _candidato_id !== void 0 ? _candidato_id : index, false, {
+                                    }, idx, false, {
                                         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                        lineNumber: 190,
+                                        lineNumber: 173,
                                         columnNumber: 17
-                                    }, this);
-                                })
+                                    }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 188,
+                                lineNumber: 171,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                children: "No se encontraron candidatos para la Presidencia de la República."
+                                children: "No se encontraron candidatos."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 249,
+                                lineNumber: 184,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                        lineNumber: 182,
+                        lineNumber: 166,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -682,14 +617,14 @@ function Dashboard() {
                                 children: "🗳️ Cargos disponibles"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 255,
+                                lineNumber: 189,
                                 columnNumber: 11
                             }, this),
                             cargosLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "Cargando cargos..."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 257,
+                                lineNumber: 191,
                                 columnNumber: 13
                             }, this) : cargosUnicos.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "cargos-grid",
@@ -697,19 +632,17 @@ function Dashboard() {
                                     let [cargo, cantidad] = param;
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/cargos/".concat(encodeURIComponent(cargo)),
-                                        onClick: ()=>setSidebarOpen(false),
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "cargo-card",
-                                            role: "button",
                                             style: {
-                                                cursor: 'pointer'
+                                                cursor: "pointer"
                                             },
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                     children: cargo
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                                    lineNumber: 267,
+                                                    lineNumber: 200,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -719,48 +652,48 @@ function Dashboard() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                                    lineNumber: 268,
+                                                    lineNumber: 201,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                            lineNumber: 266,
+                                            lineNumber: 199,
                                             columnNumber: 19
                                         }, this)
                                     }, idx, false, {
                                         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                        lineNumber: 261,
+                                        lineNumber: 195,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 259,
+                                lineNumber: 193,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "No hay cargos disponibles."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                                lineNumber: 274,
+                                lineNumber: 207,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                        lineNumber: 254,
+                        lineNumber: 188,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-                lineNumber: 174,
+                lineNumber: 154,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/d3h7m1p4/page.tsx",
-        lineNumber: 150,
+        lineNumber: 130,
         columnNumber: 5
     }, this);
 }

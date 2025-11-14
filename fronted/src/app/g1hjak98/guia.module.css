@@ -1,246 +1,117 @@
-/* === Estilo general === */
+/* ==============================
+   Guía del Votante - Estilo Premium
+   ============================== */
+
 .container {
-  min-height: 100vh;
-  background: #f5f8fb;
-  font-family: 'Inter', sans-serif;
-  color: #1b2b40;
-  padding-top: 80px;
+  max-width: 1200px;
+  margin: 6rem auto 2rem;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-/* === Header fijo elegante === */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(90deg, #0b6fa4, #178dbf);
-  color: #ffffff;
+  background: #0d1b2a;
+  color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   z-index: 1000;
 }
 
 .header h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.7rem;
+  letter-spacing: 0.5px;
+  flex: 1;
 }
 
+
 .header button {
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
+  background-color: #415a77;
   color: #fff;
-  font-size: 1rem;
-  padding: 0.5rem 1.2rem;
-  border-radius: 8px;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .header button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background-color: #2b5ea8;
   transform: translateY(-1px);
 }
 
-/* === Grid adaptable === */
 .grid {
   display: grid;
-  gap: 1.5rem;
-  padding: 2rem 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-/* === Tarjetas limpias y modernas === */
 .card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  border-top: 5px solid #0b6fa4;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  background: linear-gradient(180deg, #ffffff, #f0f4ff);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* === Título === */
 .card h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #0b6fa4;
-  margin-bottom: 0.8rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  color: #2b5ea8;
 }
 
-/* === Descripción === */
 .card p {
-  font-size: 0.95rem;
-  color: #4a5b6b;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-  text-align: justify;
-}
-
-/* === Tipo de sección === */
-.tipo {
-  background: #eaf4fb;
-  color: #0b6fa4;
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 0.4rem 1rem;
-  border-radius: 50px;
-  margin-top: auto;
-}
-
-/* === Adaptación a pantallas pequeñas === */
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
-
-  .header h1 {
-    font-size: 1.3rem;
-  }
-
-  .header button {
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
-  }
-
-  .card {
-    padding: 1.5rem 1rem;
-  }
-}
-/* === Estilo general === */
-.container {
-  min-height: 100vh;
-  background: #f5f8fb;
-  font-family: 'Inter', sans-serif;
-  color: #1b2b40;
-  padding-top: 80px;
-}
-
-/* === Header fijo elegante === */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(90deg, #0b6fa4, #178dbf);
-  color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-
-.header h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
   margin: 0;
-}
-
-.header button {
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  color: #fff;
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
-  padding: 0.5rem 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.header button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
-}
-
-/* === Grid adaptable === */
-.grid {
-  display: grid;
-  gap: 1.5rem;
-  padding: 2rem 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-/* === Tarjetas limpias y modernas === */
-.card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  border-top: 5px solid #0b6fa4;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: all 0.3s ease;
+  color: #1b263b;
+  line-height: 1.6;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
-/* === Título === */
-.card h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #0b6fa4;
-  margin-bottom: 0.8rem;
-}
-
-/* === Descripción === */
-.card p {
-  font-size: 0.95rem;
-  color: #4a5b6b;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-  text-align: justify;
-}
-
-/* === Tipo de sección === */
-.tipo {
-  background: #eaf4fb;
-  color: #0b6fa4;
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 0.4rem 1rem;
-  border-radius: 50px;
-  margin-top: auto;
-}
-
-/* === Adaptación a pantallas pequeñas === */
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    margin: 4rem auto 2rem;
   }
 
   .header h1 {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
   }
 
-  .header button {
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
+  .card h3 {
+    font-size: 1.15rem;
   }
 
-  .card {
-    padding: 1.5rem 1rem;
+  .card p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
   }
 }

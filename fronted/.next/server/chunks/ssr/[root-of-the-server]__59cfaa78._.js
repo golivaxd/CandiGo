@@ -146,13 +146,39 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navi
 function getISODate(date) {
     return date.toISOString().slice(0, 10);
 }
-function CalendarioPage({ userId }) {
+function CalendarioPage() {
+    const [userId, setUserId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [value, setValue] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(new Date());
     const [eventos, setEventos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [nuevoTitulo, setNuevoTitulo] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [nuevoDescripcion, setNuevoDescripcion] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [loadingUser, setLoadingUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
+    // Obtener usuario actual
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const fetchUser = async ()=>{
+            try {
+                const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.getUser();
+                if (error) {
+                    console.error('Error al obtener usuario:', error.message);
+                    setUserId(null);
+                } else if (data.user) {
+                    setUserId(data.user.id);
+                }
+            } catch (err) {
+                console.error('Error inesperado:', err);
+            } finally{
+                setLoadingUser(false);
+            }
+        };
+        fetchUser();
+        // Escuchar cambios de sesión
+        const { data: listener } = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.onAuthStateChange((_event, session)=>{
+            setUserId(session?.user?.id ?? null);
+        });
+        return ()=>listener.subscription.unsubscribe();
+    }, []);
     // Obtener eventos desde Supabase
     const fetchEventos = async ()=>{
         const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from('eventos').select('*').order('fecha', {
@@ -170,8 +196,8 @@ function CalendarioPage({ userId }) {
     const eventosDelDia = value ? eventos.filter((ev)=>ev.fecha === getISODate(value)) : [];
     // Agregar evento
     const agregarEvento = async ()=>{
-        if (!value || !nuevoTitulo) {
-            alert('Completa todos los campos');
+        if (!value || !nuevoTitulo || !userId) {
+            alert('Completa todos los campos y asegúrate de estar logueado');
             return;
         }
         setLoading(true);
@@ -184,7 +210,7 @@ function CalendarioPage({ userId }) {
                 categoria: 'personal',
                 user_id: userId
             }
-        ]).select(); // <-- importante para devolver el registro insertado
+        ]).select();
         setLoading(false);
         if (error) {
             console.error('Error al insertar evento:', error);
@@ -200,6 +226,20 @@ function CalendarioPage({ userId }) {
             setNuevoDescripcion('');
         }
     };
+    if (loadingUser) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        children: "Cargando usuario..."
+    }, void 0, false, {
+        fileName: "[project]/src/app/r9t2u5v1/page.tsx",
+        lineNumber: 122,
+        columnNumber: 27
+    }, this);
+    if (!userId) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        children: "No hay usuario logueado"
+    }, void 0, false, {
+        fileName: "[project]/src/app/r9t2u5v1/page.tsx",
+        lineNumber: 123,
+        columnNumber: 23
+    }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "calendar-page",
         children: [
@@ -210,16 +250,16 @@ function CalendarioPage({ userId }) {
                         children: "Calendario"
                     }, void 0, false, {
                         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                        lineNumber: 95,
+                        lineNumber: 128,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         className: "back-button",
-                        onClick: ()=>router.push('/dashboard'),
+                        onClick: ()=>router.push('/d3h7m1p4'),
                         children: "Regresar"
                     }, void 0, false, {
                         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                        lineNumber: 96,
+                        lineNumber: 129,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -228,13 +268,13 @@ function CalendarioPage({ userId }) {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                        lineNumber: 99,
+                        lineNumber: 132,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                lineNumber: 94,
+                lineNumber: 127,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -253,7 +293,7 @@ function CalendarioPage({ userId }) {
                                     children: "•"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                    lineNumber: 108,
+                                    lineNumber: 141,
                                     columnNumber: 22
                                 }, void 0);
                             }
@@ -261,22 +301,30 @@ function CalendarioPage({ userId }) {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                        lineNumber: 103,
+                        lineNumber: 136,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "selected-date",
                         children: [
-                            "Fecha seleccionada: ",
-                            value ? value.toLocaleDateString('es-MX', {
-                                weekday: 'long',
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                            }) : 'No hay fecha seleccionada'
+                            "Fecha seleccionada:",
+                            ' ',
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                children: value ? value.toLocaleDateString('es-MX', {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                }) : 'No hay fecha seleccionada'
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/r9t2u5v1/page.tsx",
+                                lineNumber: 149,
+                                columnNumber: 3
+                            }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                        lineNumber: 114,
+                        lineNumber: 147,
                         columnNumber: 9
                     }, this),
                     eventosDelDia.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -286,7 +334,7 @@ function CalendarioPage({ userId }) {
                                 children: "Eventos del día:"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                lineNumber: 121,
+                                lineNumber: 164,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -296,28 +344,28 @@ function CalendarioPage({ userId }) {
                                                 children: ev.titulo
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                                lineNumber: 125,
+                                                lineNumber: 168,
                                                 columnNumber: 19
                                             }, this),
                                             ": ",
                                             ev.descripcion,
-                                            " ",
+                                            ' ',
                                             ev.user_id === userId && '(Tuyo)'
                                         ]
                                     }, ev.id, true, {
                                         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                        lineNumber: 124,
+                                        lineNumber: 167,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                lineNumber: 122,
+                                lineNumber: 165,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                        lineNumber: 120,
+                        lineNumber: 163,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -327,7 +375,7 @@ function CalendarioPage({ userId }) {
                                 children: "Agregar evento"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                lineNumber: 133,
+                                lineNumber: 177,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -337,7 +385,7 @@ function CalendarioPage({ userId }) {
                                 onChange: (e)=>setNuevoTitulo(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                lineNumber: 134,
+                                lineNumber: 178,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -346,7 +394,7 @@ function CalendarioPage({ userId }) {
                                 onChange: (e)=>setNuevoDescripcion(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                lineNumber: 140,
+                                lineNumber: 184,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -355,25 +403,25 @@ function CalendarioPage({ userId }) {
                                 children: loading ? 'Agregando...' : 'Agregar'
                             }, void 0, false, {
                                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                                lineNumber: 145,
+                                lineNumber: 189,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                        lineNumber: 132,
+                        lineNumber: 176,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-                lineNumber: 102,
+                lineNumber: 135,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/r9t2u5v1/page.tsx",
-        lineNumber: 93,
+        lineNumber: 126,
         columnNumber: 5
     }, this);
 }

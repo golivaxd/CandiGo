@@ -131,7 +131,6 @@ __turbopack_context__.v({
   "container": "guia-module__zt2OAq__container",
   "grid": "guia-module__zt2OAq__grid",
   "header": "guia-module__zt2OAq__header",
-  "tipo": "guia-module__zt2OAq__tipo",
 });
 }),
 "[project]/src/app/g1hjak98/page.tsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
@@ -155,7 +154,7 @@ function Guia() {
         fetchGuia();
     }, []);
     const fetchGuia = async ()=>{
-        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from('guia_votante').select('*').order('orden', {
+        const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from('guia_votante').select('id,titulo,descripcion,orden').order('orden', {
             ascending: true
         });
         if (data) setItems(data);
@@ -170,83 +169,57 @@ function Guia() {
                         children: "Guía del Votante"
                     }, void 0, false, {
                         fileName: "[project]/src/app/g1hjak98/page.tsx",
-                        lineNumber: 36,
+                        lineNumber: 31,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: ()=>window.location.href = '/dashboard',
-                        children: "← Regresar"
+                        onClick: ()=>window.location.href = '/d3h7m1p4',
+                        children: "Regresar"
                     }, void 0, false, {
                         fileName: "[project]/src/app/g1hjak98/page.tsx",
-                        lineNumber: 37,
+                        lineNumber: 32,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/g1hjak98/page.tsx",
-                lineNumber: 35,
+                lineNumber: 30,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$g1hjak98$2f$guia$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].grid,
                 children: items.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$g1hjak98$2f$guia$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].card,
-                        style: {
-                            backgroundColor: item.color_hex || '#eee'
-                        },
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$g1hjak98$2f$guia$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].icon,
-                                children: item.icon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: item.icon,
-                                    alt: item.titulo
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/g1hjak98/page.tsx",
-                                    lineNumber: 48,
-                                    columnNumber: 28
-                                }, this) : '🗳️'
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/g1hjak98/page.tsx",
-                                lineNumber: 47,
-                                columnNumber: 13
-                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                 children: item.titulo
                             }, void 0, false, {
                                 fileName: "[project]/src/app/g1hjak98/page.tsx",
-                                lineNumber: 50,
+                                lineNumber: 38,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: item.descripcion
                             }, void 0, false, {
                                 fileName: "[project]/src/app/g1hjak98/page.tsx",
-                                lineNumber: 51,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$g1hjak98$2f$guia$2e$module$2e$css__$5b$app$2d$ssr$5d$__$28$css__module$29$__["default"].tipo,
-                                children: item.tipo
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/g1hjak98/page.tsx",
-                                lineNumber: 52,
+                                lineNumber: 39,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, item.id, true, {
                         fileName: "[project]/src/app/g1hjak98/page.tsx",
-                        lineNumber: 42,
+                        lineNumber: 37,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/app/g1hjak98/page.tsx",
-                lineNumber: 40,
+                lineNumber: 35,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/g1hjak98/page.tsx",
-        lineNumber: 34,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }

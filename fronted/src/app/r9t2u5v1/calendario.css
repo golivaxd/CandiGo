@@ -1,111 +1,188 @@
 /* ==============================
-   Estilos generales del calendario
+   Estilos generales del calendario - Moderno y limpio
    ============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600;700&display=swap');
 
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #f4f6f9;
+  background: #f4f6f9;
   color: #1b1b1b;
   box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
-.calendar-page {
-  max-width: 900px;
-  margin: 6rem auto 2rem; /* espacio para el header fijo */
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-/* Header de ancho completo y responsivo */
+/* ===== HEADER ===== */
 .header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  background-color: #0d1b2a;
+  width: 100%;
+  background: #0d1b2a;
   color: #fff;
   display: flex;
-  justify-content: center; /* centra el contenido */
-  padding: 1rem 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-}
-
-.header-inner {
-  max-width: 1200px;
-  width: 100%;
-  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-  box-sizing: border-box;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
 }
 
 .header h1 {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.8rem;
-  flex: 1 1 auto;
-  text-align: left;
+  font-size: 1.7rem;
+  letter-spacing: 0.5px;
+  flex: 1;
 }
 
+/* Botón regresar */
 .back-button {
   background-color: #415a77;
-  color: #ffffff;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #2b5ea8;
+  transform: translateY(-1px);
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.calendar-page {
+  width: 100%;
+  margin: 6rem 0 2rem;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+}
+
+/* ===== MAIN CALENDARIO ===== */
+.main {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: all 0.2s ease;
+}
+
+/* ===== React Calendar ===== */
+.react-calendar {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Navegación y botones */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.react-calendar__navigation button {
+  background-color: #2b5ea8;
+  color: #fff;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s;
-  flex: 0 0 auto;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
 }
 
-.back-button:hover {
-  background-color: #778da9;
+.react-calendar__navigation button:hover {
+  background-color: #415a77;
 }
 
-/* Main calendario */
-.main {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  box-sizing: border-box;
+.react-calendar__navigation button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
 }
 
-/* React Calendar */
-.react-calendar {
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-  font-family: 'Poppins', sans-serif;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+/* Título del mes */
+.react-calendar__navigation__label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1b263b;
+  text-transform: uppercase;
 }
 
+/* Dias de la semana */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #2b5ea8;
+  margin-bottom: 0.5rem;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #a0aec0;
+}
+
+/* Cada día */
 .react-calendar__tile {
   height: 60px;
+  border-radius: 6px;
+  transition: all 0.2s ease, transform 0.1s ease;
+  font-weight: 500;
+  color: #1b263b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.react-calendar__tile:hover {
+  background-color: #e0e7ff;
+  transform: translateY(-1px);
+}
+
+/* Día actual */
 .react-calendar__tile--now {
-  background: #1b263b33;
+  background-color: #dbeafe;
+  font-weight: 600;
+  color: #1e40af;
   border-radius: 6px;
 }
 
+/* Día seleccionado */
 .react-calendar__tile--active {
-  background: #2563eb;
-  color: white;
+  background-color: #2b5ea8;
+  color: #ffffff;
+  font-weight: 600;
   border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transform: none !important;
 }
 
-/* Eventos del día */
+/* ===== Eventos del día ===== */
 .eventos-dia {
   margin-top: 1.5rem;
   padding: 1rem;
-  background-color: #e8f0fe;
-  border-left: 4px solid #2563eb;
+  background: #f0f4ff;
+  border-left: 4px solid #2b5ea8;
   border-radius: 6px;
   box-sizing: border-box;
 }
@@ -113,6 +190,7 @@ body, html {
 .eventos-dia h3 {
   margin-top: 0;
   color: #0d1b2a;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .eventos-dia ul {
@@ -128,19 +206,21 @@ body, html {
   word-break: break-word;
 }
 
-/* Formulario de nuevo evento */
+/* ===== Formulario de nuevo evento ===== */
 .nuevo-evento {
   margin-top: 2rem;
-  background-color: #ffffff;
+  background: #ffffff;
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  width: 100%;
   box-sizing: border-box;
 }
 
 .nuevo-evento h3 {
   margin-top: 0;
   color: #0d1b2a;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .nuevo-evento input,
@@ -152,29 +232,31 @@ body, html {
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
-  transition: border-color 0.3s;
-  box-sizing: border-box;
+  transition: border-color 0.2s ease;
 }
 
 .nuevo-evento input:focus,
 .nuevo-evento textarea:focus {
-  border-color: #2563eb;
+  border-color: #2b5ea8;
   outline: none;
 }
 
+/* Botón nuevo evento */
 .nuevo-evento button {
-  background-color: #1b263b;
-  color: #ffffff;
+  background-color: #2b5ea8;
+  color: #fff;
   border: none;
   padding: 0.7rem 1.2rem;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .nuevo-evento button:hover {
-  background-color: #778da9;
+  background-color: #415a77;
+  transform: translateY(-1px);
 }
 
 .nuevo-evento button:disabled {
@@ -182,24 +264,18 @@ body, html {
   cursor: not-allowed;
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
+  .header {
+    padding: 1rem;
   }
-
   .header h1 {
-    text-align: left;
-    margin-top: 0.5rem;
     font-size: 1.5rem;
   }
-
   .calendar-page {
-    margin: 1rem;
-    padding: 0.5rem;
+    margin: 2rem 1rem;
+    padding: 1rem;
   }
-
   .react-calendar__tile {
     height: 50px;
   }
@@ -210,8 +286,45 @@ body, html {
   .nuevo-evento textarea {
     font-size: 0.9rem;
   }
-
   .nuevo-evento button {
     padding: 0.5rem 1rem;
+  }
+}
+.selected-date {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1rem;
+  background-color: #f0f4ff; /* fondo suave */
+  border-left: 4px solid #2b5ea8; /* coherente con eventos */
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #1b263b;
+  font-size: 1rem;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.selected-date span {
+  font-weight: 600;
+  color: #2b5ea8;
+}
+
+/* Hover opcional */
+.selected-date:hover {
+  background-color: #e8efff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .selected-date {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .selected-date {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
   }
 }

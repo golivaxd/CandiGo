@@ -18,11 +18,8 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }: {
 
   return (
     <aside className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
-      <img
-        src={user.user_metadata?.avatar_url || "https://via.placeholder.com/80"}
-        alt="Foto de perfil"
-        className="profile-img"
-      />
+      <img src="/perfil.png" alt="perfil" className="profile-img" />
+
       <h2 className="username">{user.user_metadata?.full_name || "Usuario"}</h2>
       <nav className="nav-menu">
         <button className="nav-btn" onClick={() => router.push('/nug1270o')}>Noticias</button>

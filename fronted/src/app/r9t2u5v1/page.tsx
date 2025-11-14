@@ -144,17 +144,20 @@ export default function CalendarioPage() {
           }}
         />
 
-        <p>
-          Fecha seleccionada:{' '}
-          {value
-            ? value.toLocaleDateString('es-MX', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })
-            : 'No hay fecha seleccionada'}
-        </p>
+        <p className="selected-date">
+  Fecha seleccionada:{' '}
+  <span>
+    {value
+      ? value.toLocaleDateString('es-MX', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })
+      : 'No hay fecha seleccionada'}
+  </span>
+</p>
+
 
         {eventosDelDia.length > 0 && (
           <div className="eventos-dia">

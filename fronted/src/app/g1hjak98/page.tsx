@@ -5,14 +5,9 @@ import styles from './guia.module.css';
 
 interface GuiaItem {
   id: number;
-  tipo: string;
   titulo: string;
   descripcion: string;
-  icon: string;
-  color_hex: string;
   orden: number;
-  eleccion_id: number;
-  created_at: string;
 }
 
 export default function Guia() {
@@ -25,7 +20,7 @@ export default function Guia() {
   const fetchGuia = async () => {
     const { data } = await supabase
       .from('guia_votante')
-      .select('*')
+      .select('id,titulo,descripcion,orden')
       .order('orden', { ascending: true });
     if (data) setItems(data);
   };
@@ -34,27 +29,18 @@ export default function Guia() {
     <div className={styles.container}>
       <header className={styles.header}>
         <h1>Guía del Votante</h1>
-        <button onClick={() => window.location.href = '/d3h7m1p4'}>← Regresar</button>
+        <button onClick={() => window.location.href = '/d3h7m1p4'}>Regresar</button>
       </header>
 
       <div className={styles.grid}>
         {items.map((item) => (
-          <div
-            key={item.id}
-            className={styles.card}
-            style={{ backgroundColor: item.color_hex || '#eee' }}
-          >
-            <div className={styles.icon}>
-              {item.icon ? <img src={item.icon} alt={item.titulo} /> : '🗳️'}
-            </div>
+          <div key={item.id} className={styles.card}>
             <h3>{item.titulo}</h3>
             <p>{item.descripcion}</p>
-            <span className={styles.tipo}>{item.tipo}</span>
           </div>
         ))}
       </div>
-
-
     </div>
   );
 }
+

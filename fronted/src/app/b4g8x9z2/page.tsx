@@ -9,10 +9,12 @@ type Faq = {
   id: number;
   question: string;
   answer: string;
+  category: string;
 };
 
 export default function PreguntasPage() {
   const [faqs, setFaqs] = useState<Faq[]>([]);
+  const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const router = useRouter();
 
@@ -21,8 +23,9 @@ export default function PreguntasPage() {
       const { data, error } = await supabase
         .from('faq')
         .select('*')
+        .order('category', { ascending: true })
         .order('created_at', { ascending: false });
-      
+
       if (error) {
         console.error('Error cargando FAQs:', error.message);
       } else {
@@ -33,10 +36,15 @@ export default function PreguntasPage() {
     fetchFaqs();
   }, []);
 
+  const faqsPorCategoria = faqs.reduce<Record<string, Faq[]>>((acc, faq) => {
+    if (!acc[faq.category]) acc[faq.category] = [];
+    acc[faq.category].push(faq);
+    return acc;
+  }, {});
+
   return (
     <>
       <Head>
-        {/* Fuentes modernas */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -46,7 +54,6 @@ export default function PreguntasPage() {
       </Head>
 
       <div className="faq-page">
-        {/* Header fijo */}
         <header className="faq-header">
           <h1>Preguntas Frecuentes</h1>
           <button className="back-btn" onClick={() => router.push('/d3h7m1p4')}>
@@ -54,34 +61,65 @@ export default function PreguntasPage() {
           </button>
         </header>
 
-        {/* Contenido principal */}
         <main className="faq-container">
-          <div className="faq-list">
-            {faqs.length === 0 ? (
-              <p className="no-faq">No hay preguntas frecuentes disponibles.</p>
-            ) : (
-              faqs.map((faq, idx) => (
-                <div key={faq.id} className={`faq-item ${openIndex === idx ? 'active' : ''}`}>
-                  <button
-                    className="faq-question"
-                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                  >
-                    {faq.question}
-                    <span className="faq-icon">{openIndex === idx ? '−' : '+'}</span>
-                  </button>
-                  <div
-                    className="faq-answer"
-                    style={{ maxHeight: openIndex === idx ? '200px' : '0' }}
-                  >
-                    <p>{faq.answer}</p>
-                  </div>
+          {Object.keys(faqsPorCategoria).length === 0 ? (
+            <p className="no-faq">No hay preguntas frecuentes disponibles.</p>
+          ) : (
+            Object.entries(faqsPorCategoria).map(([categoria, preguntas]) => (
+              <div
+                key={categoria}
+                className={`faq-category ${openCategory === categoria ? 'active' : ''}`}
+              >
+                <h2
+                  onClick={() =>
+                    setOpenCategory(openCategory === categoria ? null : categoria)
+                  }
+                >
+                  {categoria}
+                  <span className="faq-icon">
+                    {openCategory === categoria ? '' : ''}
+                  </span>
+                </h2>
+
+                <div
+                  className="faq-list"
+                  style={{ maxHeight: openCategory === categoria ? '2000px' : '0' }}
+                >
+                  {preguntas.map((faq, idx) => {
+                    const globalIdx = idx; // cada item puede abrirse individualmente
+                    return (
+                      <div
+                        key={faq.id}
+                        className={`faq-item ${openIndex === globalIdx ? 'active' : ''}`}
+                      >
+                        <button
+                          className="faq-question"
+                          onClick={() =>
+                            setOpenIndex(openIndex === globalIdx ? null : globalIdx)
+                          }
+                        >
+                          {faq.question}
+                          <span className="faq-icon">
+                            {openIndex === globalIdx ? '−' : '+'}
+                          </span>
+                        </button>
+                        <div
+                          className="faq-answer"
+                          style={{
+                            maxHeight: openIndex === globalIdx ? '500px' : '0',
+                          }}
+                        >
+                          <p>{faq.answer}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))
-            )}
-          </div>
+              </div>
+            ))
+          )}
         </main>
 
-        {/* Footer */}
         <footer className="faq-footer">
           <p>© 2025 CandiGo. Todos los derechos reservados.</p>
         </footer>
