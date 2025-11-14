@@ -171,7 +171,7 @@ function Foro() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 className: "header-btn new",
                                 onClick: ()=>setShowNewDebateForm(true),
-                                children: "+ Nuevo Debate"
+                                children: "Nuevo Debate"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/a9f8k2l0/page.tsx",
                                 lineNumber: 124,
@@ -180,7 +180,7 @@ function Foro() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 className: "header-btn back",
                                 onClick: ()=>window.location.href = '/d3h7m1p4',
-                                children: "← Regresar"
+                                children: "Regresar"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/a9f8k2l0/page.tsx",
                                 lineNumber: 130,

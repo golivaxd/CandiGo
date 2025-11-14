@@ -212,7 +212,7 @@ export default function Mapa() {
               {filteredCandidatos.map((candidato) => (
                 <li
                   key={candidato.id}
-                  onClick={() => window.location.href = `/c4v8x1y2/${candidato.id}`}
+                  onClick={() => window.location.href = `/candidatos/${candidato.id}`}
                   style={{
                     padding: '0.75rem 1rem',
                     borderBottom: '1px solid rgba(0,0,0,0.1)',

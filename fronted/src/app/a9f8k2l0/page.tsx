@@ -125,13 +125,13 @@ export default function Foro() {
             className="header-btn new"
             onClick={() => setShowNewDebateForm(true)}
           >
-            + Nuevo Debate
+            Nuevo Debate
           </button>
           <button
             className="header-btn back"
             onClick={() => (window.location.href = '/d3h7m1p4')}
           >
-            ← Regresar
+            Regresar
           </button>
         </div>
       </header>
